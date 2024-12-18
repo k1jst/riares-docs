@@ -9,4 +9,3 @@
 
 - ARRL ARES Standardized Task Book
 - Assessing Radio Comminications Capability Worksheet
-- 
