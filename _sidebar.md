@@ -1,4 +1,6 @@
 ### Net Scripts
 
-- [Read](README)
-- [Example Second Page](second-page)
+- VHF Net
+- Simplex Net
+- Weather Net
+- 
