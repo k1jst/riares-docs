@@ -1,0 +1,157 @@
+<!DOCTYPE html> 
+<html>
+<head> 
+    <meta charset="UTF-8"> 
+<style> 
+p.tx::before {
+    color: black ;
+    font-size: 1.25em;
+    content:  "🎙️";
+}
+p.tx {
+    color: red;
+    font-weight: bold;
+}
+p.tx::after {
+    color: black;
+    font-size: 1.25em;
+    content: "🎧";
+}
+div.instructions {
+    color: green;
+}
+h4 {
+    color: blue;
+}
+body {
+  font-family: Verdana, sans-serif;
+}
+</style>
+</head>
+<body>
+
+<h1>VHF Net Script</h1> 
+<label for="call">Callsign:</label>
+<input type="text" id="call" value="MYCALL" /><br />
+
+<label for="myname">Your Name:</label>
+<input type="text" id="myname" value="MYNAME" /><br />
+
+<label for="netdate">Net Date:</label>
+<input type="date" id="netdate" /><br />
+
+<label for="nextdate">Next Net Date:</label>
+<input type="date" id="nextdate" /><br />
+
+<button onclick="rep()">Replace</button> 
+
+<h3>RI ARES VHF Repeater Net Script</h3> 
+<div class="instructions" id="pre-net-inst">
+<h4>Pre-Net Instructions</h4>
+<p>Net control operators are in control of the net. If people go too fast, slow the pace down. Use pauses when you want to slow things down. If people rush through, or step on each other, log whatever call sign you can hear, and continue calling for check ins. There is no need to explain at length anything you do, unless it is for educational purposes. </p>
+<p>Open NetLogger and create a Net Called RI ARES VHF Repeater Net, and enter W1RIA as the NCS, and your own call as the Operator, a password will be provided by the net manager, then create the net. Place W1RIA on line 1 of the list. You can edit any fields on line 1 as appropriate to your QTH etc.</p></div>
+<div class="net" id="pre-net-check">
+<h4>Pre-net</h4>
+<p>(check for any emergency traffic about 1 or 2 minutes prior to calling the net)</p>
+<p class="tx">This is <b id="call">(Call Sign)</b> checking for any emergency or priority traffic on this repeater. There is an upcoming net. If you have emergency traffic please come now, OVER.</p>
+<p>(if nothing heard)</p>
+<p class="tx">Nothing heard, Out.</p></div>
+
+<div class="net" id="preamble">
+<h4>Preamble</h4>
+<p class="tx">Calling the Rhode Island ARES VHF Repeater Net. 
+This is the Rhode Island Amateur Radio Emergency Service Net for DATE_TODAY. This is <b class="call">(Call Sign)</b>, my name is <b class="name">(First Name)</b>, operating as W1RIA. I am located in <b class="location">(Location)</b> and I will be net control station for this evening’s net.</p>
+<p class="tx">This is a directed net and will always break for any incoming emergency traffic. Any amateur radio operator is welcome to check in. RI ARES maintains a website at riares.org.</p>
+<p class="tx">This RI ARES Repeater net is held every 1st and 3rd Tuesday of the Month, as well as a Skywarn Practive and Training net every Wednesday on this repeater network. There is also a VHF Simplex Net held every 2nd Tuesday of the month, on 147.420 MHz, and a Digital net held every 4th Tuesday of the month. All RI ARES Nets start at 7:30 pm, 1930 local time.</p>
+<p class="tx" class="netlogger">Net control for this net uses NetLogger to log all checkins to this net. All stations are welcome to download the free netlogger software and follow along. Out.</p>
+</div>
+
+<div class="net" id="checkins">
+<h4>Checkins</h4>
+<p class="tx">Check-ins will be taken from mobile and portable stations first, then from fixed stations. When checking in, please delay speaking for a second to allow the repeater network to activate, then say “This is”, and un-key your mic</p>
+<p>(un-key to illustrate and wait for beep)</p><p class="tx">to check for doubling. Please check in with your call sign given phonetically, your name, and your location.<br /> 
+Mobile or Portable Stations, (with emphasis) I say again, only MOBILE OR PORTABLE STATIONS wishing to check in please call with your callsign, name and location, now, OVER.</p>
+<p>(Log call signs, names, and locations)</p><p class="tx">The net recognises (read aloud the call signs heard) Out.</p>
+<p>(If nothing heard)</p><p class="tx"> Nothing Heard, Out.</p>
+<p class="tx">This is W1RIA Net control for this evening’s RI ARES Net, now FIXED STATIONS please call with your callsign, location and name now, OVER.</p> 
+<p>(Log call signs, names, and locations)</p><p class="tx">The net recognises (read aloud the call signs heard) Out.</p>
+<p class=tx>This is W1RIA Net control, any additional stations for the net please call now, Over.</p> 
+<p>(Log call signs, names, and locations)</p><p class="tx">The net recognises (read aloud the call signs heard) Out.</p>
+<p>(If nothing heard)</p><p class="tx"> Nothing Heard, Out.</p>
+</div>
+
+
+<div class="net" id="announcements">
+<h4>Announcements</h4>    
+<p class="tx">This is W1RIA, are there any announcements or news from any Emergency Coordinators who are checked into the net, over?</p> 
+<p class="tx">Net recognises (list Calls signs heard) with announcements for the net. (1st Call Sign) please come with your announcement, OVER</p>
+<p>(If nothing heard)</p><p class="tx"> Nothing Heard, Out.</p>
+<p class="tx">(After announcement acknowledge, and if you have questions or comments, make them) (announcer call sign) thanks.  Roger, Out.</p>
+<p>(Repeat for next call signs with announcements.)</p>  
+</div>
+
+<div class="net" id="recheck">
+<h4>Re-check</h4>
+<p class=tx>This is W1RIA net control for this evening's net, any additional stations wishing to checkin to the net please come with your callsign, name and location now, Over.</p> 
+<p>(Log call signs, names, and locations)</p><p class="tx">The net recognises (read aloud the call signs heard) Out.</p>
+<p>(If nothing heard)</p><p class="tx"> Nothing Heard, Out.</p>
+</div>
+
+<div class="net" id="comments">
+<h4>Comments</h4>
+<p class="tx">This is W1RIA, Net control for this evening’s RI ARES Net, we will now take comments from each station,  (Start with check-in call signs) Any comments for the net? </p>
+<p>After last listed name</p> 
+<p class="tx">Are there any additional checkins for the net, over?</p>
+<p>Repeat process of logging & comments.</p>
+<p>(If nothing heard)</p><p class="tx"> Nothing Heard, Out.</p>
+<p class="tx">That is the bottom of the roster. This is W1RIA, Net control for this evening's RI ARES Net. Are there any additional stations, comments or business for the net before we close the net, Over.</p> 
+<p>Repeat process of logging & comments.</p>
+<p>(If nothing heard)</p><p class="tx"> Nothing Heard, Out.</p>
+</div>
+
+<div id="closing">
+<h4>Closing the net</h4>
+<p class="tx">We would like to thank all participants for joining this net, and thanks to all who stood by while the net was in session. The next RI ARES Net will be held at 7:30 pm, 1930 hours, on (Date of Next Net). The Rhode Island ARES organization would like to thank the owner, trustee, and financial supporters of this repeater network for its use and maintenance. We look forward to our next net. This net is closed at <span id="currentTime">(time)</span> and this network is returned to normal amateur use. This is (Call Sign) for W1RIA, goodnight. Out.</p>
+</div>
+
+
+  
+<script> 
+    // Replace all instances of "MYCALL" 
+    // in the page with Input "call" value 
+    function rep() { 
+        callsign = document.getElementById("call").value;
+        myname = document.getElementById("myname").value;
+        netdate = new Date(document.getElementById("netdate").value + 'T00:00');
+        nextdate = new Date(document.getElementById("netdate").value + 'T00:00');
+        document.body.innerHTML 
+            = document.body.innerHTML
+            .replaceAll("MYNAME", myname);
+        document.body.innerHTML 
+            = document.body.innerHTML
+            .replaceAll("MYCALL", callsign);
+        document.body.innerHTML 
+            = document.body.innerHTML
+            .replaceAll("DATE_TODAY", netdate.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})); 
+        document.body.innerHTML 
+            = document.body.innerHTML
+            .replaceAll("NEXT_NET_DATE", nextdate.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}));
+        document.getElementById("call").value = callsign;
+        document.getElementById("myname").value = myname;
+        document.getElementById("netdate").value = netdate.toISOString().slice(0, 10);
+        document.getElementById("nextdate").value = nextdate.toISOString().slice(0, 10);
+    }
+
+function tick() {
+    var d = new Date();
+    var time = padNumber(d.getHours(),2)+':'+padNumber(d.getMinutes(),2);
+    document.getElementById("currentTime").innerText = time
+    t = setTimeout(tick,1000);
+}
+
+$(document).ready(function(){
+    tick();
+})
+</script>
+</body>
+</html>
