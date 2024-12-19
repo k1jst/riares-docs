@@ -18,7 +18,8 @@ I also recommend putting up an antenna outside. A rope over a tree or two chain 
 
 You can also consider commercial options like the Tram 1477, Diamond X30, or Comet GP-1. These commercial options are all 2 element collinear antennas with an omnidirectional horizontal pattern. If you have a little more to spend, you might consider a collinear with more elements (longer with higher gain figures), just keep in mind that more elements menas more gain but a flatter vertical radiation pattern. If you are trying to get into repeaters that are at a significant elevation difference from you, having a higher gain antenna isn't always going to give you a better signal. I have included radiation pattern diagrams from the following Diamond antennas (they puiblish the radation pattrens, not an advertisement for Diamond).
 
-- D X30A (2 x 1/4λ, .85dBd, 4.5 ft), X50A (3 x,1/4λ, 2.35dBd, 5.6ft), X200A (2 x 5/8λ, 3.85dBd, 8.3ft)  and X510HD (3 x 5/8λ, 6.15dBd, 17.2ft)  below so you can see the diference.
+- X30A (2 x 1/4λ elements, .85dBd gain, 4.5ft length)
+- X50A (3 x,1/4λ elements, 2.35dBd ga, 5.6ft), X200A (2 x 5/8λ, 3.85dBd, 8.3ft)  and X510HD (3 x 5/8λ, 6.15dBd, 17.2ft)  below so you can see the diference.
 
 ![Diamond Antenna Patterns](https://k1jst.github.io/riares-docs/diamond_ant-patterns.png)
 
