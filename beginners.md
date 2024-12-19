@@ -20,6 +20,7 @@ You can also consider commercial options like the Tram 1477, Diamond X30, or Com
 
 ## Antenna Models and Descriptions
 
+Model | Elements | Gain (dBd) | Length (ft)
 X30A (2 x 1/4λ elements, .85dBd gain, 4.5ft length)
 
 - X50A (3 x,1/4λ elements, 2.35dBd gain, 5.6ft length)
