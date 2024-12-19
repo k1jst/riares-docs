@@ -2,7 +2,7 @@
 
 #### K1JST Jeremy, December 19, 2024
 
-For those who have never checked into a repeater net before, here is a brief overview of the process. Setting up your station for repeater contacts is also beneficial for making simplex contacts on FM, so 
+For those who have never checked into a repeater net before, here is a brief overview of the process. Setting up your station for repeater contacts is also beneficial for making simplex contacts on FM, so the information is good all around. I am by no means an expert, but I've read a lot of articles, done a lo
 
 First, make sure you have your radio programmed properly and can open the repeater. If you make a brief transmission when no one is using it with just your call sign you should hear the repeater courtesy tone and tail after you release the PTT button. Even if you can open the repeater, you still aren't sure anyone can actually hear you... So the next thing to do is ask for a radio check. A good time to do this is right after you've heard some people finish a QSO or a few minutes before the net starts. Just "CALLSIGN looking for a radio check" should get you a response. Other good times to try are during drive times or during the day on a weekday when there usually a few people who listen all day (myself included, but I'm usually distracted with work).
 
