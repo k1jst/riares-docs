@@ -18,7 +18,9 @@ I also recommend putting up an antenna outside. A rope over a tree or two chain 
 
 You can also consider commercial options like the Tram 1477, Diamond X30, or Comet GP-1. These commercial options are all 2 element collinear antennas with an omnidirectional horizontal pattern. If you have a little more to spend, you might consider a collinear with more elements (longer with higher gain figures), just keep in mind that more elements menas more gain but a flatter vertical radiation pattern. If you are trying to get into repeaters that are at a significant elevation difference from you, having a higher gain antenna isn't always going to give you a better signal. I have included radiation pattern diagrams from the following Diamond antennas (they puiblish the radation pattrens, not an advertisement for Diamond)  below so you can see the diference.
 
-Antenna Models and Descriptions
+#### Antenna patterns of different colinear antennas
+
+![Diamond Antenna Patterns](https://k1jst.github.io/riares-docs/diamond_ant-patterns.png)
 
 | Model       | X30A     | X50A     | X200A    | X510HD   |
 | ----------- | ---------| -------- | -------- | -------- | 
@@ -26,11 +28,11 @@ Antenna Models and Descriptions
 | Gain (dBd)  | .85      | 2.35     | 3.85     | 6.15     |
 | Length (ft) | 4.5      | 5.6      | 8.3      | 17.2     |
 
-### Antenna Patterns
-
-![Diamond Antenna Patterns](https://k1jst.github.io/riares-docs/diamond_ant-patterns.png)
+### More Antenna Options
 
 [Yagi-Uda antenas](https://k1jst.github.io/riares-docs/nist_nbs-tn-688-yagi.pdf) can also be useful, but keep in mind that repeaters are almost always vertically polarized and Yagis are directional, so you might want the ability to repoint them. There are other stealthy antenna options if you rent or have a nosy HOA... even a magmout antenna on a windows AC or in the attic on a large pizza pan, some wire mesh, or a grill rack can work pretty well.
+
+### This could save your life
 
 If you go with an outdoor antenna, you're going to need to be well away from your electrical service entrance if it's not underground, because you want a near zero chance of your antenna and electrical service touching no matter the circumstances. You'll need a piece of coax long enough to get to your entry point (LMR-400 equivalent coax works well for VHF/UHF, though RG-8X is okay if the run is short), a lightning arrestor, and another piece of coax long enough to get into the house and to your radio. If you don't want to drill a hole, a short length of RG-174 or RG-316 with an sma connector will usually make it through the gap between the two panes of your windows and then you can adapt to SO-239 on both ends of the short window passthrough jumper. Other ideas include a two pool noodles with a slit to fit over the window and the sash creating a barrier that will mold around your cables.  Grounding your antenna is important, and if you are unable to ground the antenna properly then you will want a temporary setup where the coax lives outside your house whenever you aren't using it. For proper grounding of antennas see Mike Holt's Free PDF on [NEC Article 810](https://k1jst.github.io/riares-docs/mikeholt_NEC-810.21.pdf) and check out this [Video](https://youtu.be/WRv8AKVAfyc). But I digress.
 
