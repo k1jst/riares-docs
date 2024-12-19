@@ -1,6 +1,6 @@
 ### Net Scripts
 
-- VHF Net
+- [VHF Net](vhf-net.html)
 - Simplex Net
 - Weather Net
 - HF Net
