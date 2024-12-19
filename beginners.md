@@ -28,4 +28,8 @@ Hope to hear you on the next net. The Swap and Sell net on Saturday Morning at 9
 
 You can see a list of repeaters at NB1RI.net
 
-Any questions feel free to text, call or email.
+If you have any questions feel free to text or call me.
+
+73,
+
+K1JST Jeremy
