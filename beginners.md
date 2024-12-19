@@ -23,9 +23,8 @@ You can also consider commercial options like the Tram 1477, Diamond X30, or Com
 | Model | Elements | Gain (dBd) | Length (ft) |
 | X30A | 2 x 1/4λ | .85 | 4.5 |
 | X50A | 3 x 1/4λ | 2.35 | 5.6 |
-| X200A | 2 x 5/8λ elements, 3.85dBd gain, 8.3ft length)
-
-- X510HD (3 x 5/8λ elements, 6.15dBd gain, 17.2ft lendth)
+| X200A | 2 x 5/8λ | 3.85 | 8.3 |
+| X510HD | 3 x 5/8λ elements, 6.15dBd gain, 17.2ft lendth)
 
 ### Antenna Patterns
 
