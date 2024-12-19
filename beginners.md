@@ -1,6 +1,6 @@
 # Getting Started with Repeaters
 
-So
+FOr those who have never checked into a net be
 
 First, make sure you have your radio programmed properly and can open the repeater. If you make a brief transmission when no one is using it of just your call sign you should hear the repeater courtesy tone and tail after you release the PTT button. Even if you can open the repeater, you still aren't sure anyone can actually hear you... So the next thing to do is ask for a radio check. A good time to do this is right after you've heard some people finish a QSO or a few minutes before the net starts. Just "KC1SJR looking for a radio check" should get you a response. Also, people tend to be listing during drive times and there's a few people who listen all day (myself included, but I'm usually distracted with work).
 
