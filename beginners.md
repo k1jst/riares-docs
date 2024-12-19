@@ -26,6 +26,6 @@ After you know you can get into the repeater, listen to the net control and foll
 
 Hope to hear you on the next net. The Swap and Sell net on Saturday Morning at 9:00 is a good first net as they really just want to see who's listening and don't want comments or anything.
 
-You can see a list of repeaters at NB1RI.net but you should have pretty good coverage from the Cumberland machine seeing as how Albion is about a mile away from it. 145.17 Rx, 144.57 Tx, CTCSS 67.0
+You can see a list of repeaters at NB1RI.net
 
-Any questions feel free to text or call.
+Any questions feel free to text, call or email.
