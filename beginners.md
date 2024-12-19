@@ -21,8 +21,8 @@ You can also consider commercial options like the Tram 1477, Diamond X30, or Com
 ## Antenna Models and Descriptions
 
 | Model | X30A | X50A | X200A | X510HD |
-| Elements | 2 x 1/4λ | 3 x 1/4λ
-| Gain (dBd) |
+| Elements | 2 x 1/4λ | 3 x 1/4λ | 2 x 5/8λ | 3 x 5/8λ |
+| Gain (dBd) | .85 | 2.35 | 3.
 | Length (ft) |
 
 | .85 | 4.5 |
