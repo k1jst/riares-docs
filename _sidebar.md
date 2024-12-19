@@ -7,7 +7,7 @@
 
 ### Articles
 
-- Getting Started with FM and Repeaters
+- [Getting Started with FM and Repeaters](beginners)
 
 ### Forms
 
