@@ -18,8 +18,6 @@ I also recommend putting up an antenna outside. A rope over a tree or two chain 
 
 ![Diamond X200A](x200a-147.gif)
 
-![Diamond X300A](x300a-144.gif)
-
 ![Diamond X510HD](x510hd-147.gif)
 
 If you go with an outdoor antenna, you're going to need to be well away from your electrical service entrance if it's not underground, because you want a near zero chance of your antenna and electrical service touching no matter the circumstances. You'll need a piece of coax long enough to get to your entry point, a lightning arrestor, and another piece of coax long enough to get into the house and to your radio. If you are unable to ground the antenna properly then you're going to want to keep the coax outside your house whenever you aren't using it, and not use it if there's even a sight chance of lightning. For proper grounding search for "NEC Article 810". There are other stealthy options if you rent or have a nosy HOA. But I digress.
