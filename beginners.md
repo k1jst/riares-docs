@@ -1,6 +1,6 @@
 # Getting Started with Repeaters
 
-#### K1JST Jeremy 
+#### K1JST Jeremy, December 19, 2024
 
 For those who have never checked into a net before, here is a brief overview of the process.
 
