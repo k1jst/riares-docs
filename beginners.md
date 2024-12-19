@@ -1,4 +1,4 @@
-# Getting Started with Repeaters
+# Getting Started with FM Repeaters
 
 #### K1JST Jeremy, December 19, 2024
 
