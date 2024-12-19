@@ -4,6 +4,8 @@
 
 For those who have never checked into a repeater net before, here is a brief overview of the process. Setting up your station for repeater contacts is also beneficial for making simplex contacts on FM, so the information is good all around. I am by no means an expert, but I've read a lot of articles, done a lot of experimenting, and basically spent a few years playing and this information is based on my experience. It may not all be perfect, and your milage may vary. So, with the disclaimers out of the way...
 
+### First Steps - Check your Radio
+
 First, make sure you have your radio programmed properly and can open the repeater. If you make a brief transmission when no one is using it with just your call sign you should hear the repeater courtesy tone and tail after you release the PTT button. Even if you can open the repeater, you still aren't sure anyone can actually hear you... so the next thing to do is ask for a radio check. A good time to do this is right after you've heard some people finish a QSO, or a few minutes before the net starts. Just "CALLSIGN looking for a radio check" should get you a response. Other good times to try are during drive times or during the day on a weekday when there usually a few people who listen all day (myself included, but I'm usually distracted with work).
 
 Keep in mind, NB1RI is linked to about 14 repeaters and it takes a second or two for your PTT to propagate, so if you don't leave a little extra time between when you key up and when you start speaking your first word or two can easily get cut off. Also, it's good etiquette to leave a few seconds of silence between transmissions in case someone else wants to throw their call sign out and join the conversation.
