@@ -10,9 +10,9 @@ Keep in mind, NB1RI is linked to about 14 repeaters and it takes a second or two
 
 If you aren't able to get a response, you might need to look at your antenna situation. Low cost HTs are both the best and worst thing every to happen in Amateur Radio. The low cost to entry makes the hobby easily accessible, but the usefulness of a HT depends greatly on how long a distance you wish to communicate. HTs do not have the power or atenna system necessary to diffract or reflect signals over and around obstructions.  Portables work best outside and can have very spotty coverage. You really need near line of sight to the repeater's antenna to get in with a portable. I always recommend putting up an antenna outside and getting a mobile rig and a power supply to use as a base. I also recommend having a mobile in the car. You can usually find a 2 meter FM rig pretty cheap on riswap.net but if you can't, let me know as I usually have a few around. Two chain links fence top rails strapped to a deck or fence post with ratchet straps work great to support a dual band fiberglass antenna about 20' high. Antennas like a homebrew J-pole, Quarter Wave Groundplane, or commercial options like the Tram 1477, Diamond X30, or Comet GP-1 are usually fine when you're starting out. These commercial options are all 2 element collinear antennas. If you have a little more to spend, you might consider a collinear with more elements, just keep in mind that the more elemeents you have the flatter your vertical pattern will be. See figure 1.
 
-![](https://holocron.so/uploads/2ad27fc2-x510-147.gif)
+![Diamond X510](https://holocron.so/uploads/2ad27fc2-x510-147.gif)
 
-![](https://holocron.so/uploads/614e018f-x300-144.gif)
+![Diamond X300](https://holocron.so/uploads/614e018f-x300-144.gif)
 
 ![](https://holocron.so/uploads/385da0a5-x200a-147.gif)
 
