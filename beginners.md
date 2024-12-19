@@ -23,7 +23,7 @@ You can also consider commercial options like the Tram 1477, Diamond X30, or Com
 ![Diamond Antenna Patterns](https://k1jst.github.io/riares-docs/diamond_ant-patterns.png)
 
 | Model       | X30A     | X50A     | X200A    | X510HD   |
-| ----------- | ---------| -------- | -------- | -------- | 
+| ----------- | -------- | -------- | -------- | -------- |
 | Elements    | 2 x 1/4λ | 3 x 1/4λ | 2 x 5/8λ | 3 x 5/8λ |
 | Gain (dBd)  | .85      | 2.35     | 3.85     | 6.15     |
 | Length (ft) | 4.5      | 5.6      | 8.3      | 17.2     |
