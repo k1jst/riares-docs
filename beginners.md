@@ -14,11 +14,11 @@ If you aren't able to get a response, you might need to look at your antenna sit
 
 ![Diamond X300A](https://holocron.so/uploads/614e018f-x300-144.gif)
 
-![](https://holocron.so/uploads/385da0a5-x200a-147.gif)
+![Diamond X200A](https://holocron.so/uploads/385da0a5-x200a-147.gif)
 
-![](https://holocron.so/uploads/6e47c0f3-x50a-147.gif)
+![Diamond X50A](https://holocron.so/uploads/6e47c0f3-x50a-147.gif)
 
-![](https://holocron.so/uploads/2dcca4d9-x30a-147.gif)
+![Diamond X30A](https://holocron.so/uploads/2dcca4d9-x30a-147.gif)
 
 If you go with an outdoor antenna, you're going to need to be well away from your electrical service entrance if it's not underground, because you want a near zero chance of your antenna and electrical service touching no matter the circumstances. You'll need a piece of coax long enough to get to your entry point, a lightning arrestor, and another piece of coax long enough to get into the house and to your radio. If you are unable to ground the antenna properly then you're going to want to keep the coax outside your house whenever you aren't using it, and not use it if there's even a sight chance of lightning. For proper grounding search for "NEC Article 810". There are other stealthy options if you rent or have a nosy HOA. But I digress.
 
