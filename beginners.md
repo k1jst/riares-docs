@@ -28,7 +28,7 @@ Hope to hear you on the next net. The Swap and Sell net on Saturday Morning at 9
 
 You can see a list of repeaters at NB1RI.net
 
-If you have any questions feel free to text or call me.
+If you have any questions feel free to text or call me. My number is in my signature on all my email commnications.
 
 73,
 
