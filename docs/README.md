@@ -1,1 +1,1 @@
-# RI ARES
+# RI ARES Documentation
