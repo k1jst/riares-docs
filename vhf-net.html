@@ -9,7 +9,7 @@ p.tx::before {
     content:  "🎙️";
 }
 p.tx {
-    color: red;
+    color: darkred;
     font-weight: bold;
 }
 p.tx::after {
@@ -18,7 +18,7 @@ p.tx::after {
     content: "🎧";
 }
 div.instructions {
-    color: green;
+    color: darkgreen;
 }
 h4 {
     color: blue;
@@ -82,7 +82,7 @@ function repDate(replaceDate,fromID) {
     const month = date.getMonth();
     const day = getOrdinalNumber(date.getDate());
     const year = date.getFullYear();
-    const y = days[dayOfWeek] + ' ' + months[month] + ' ' + day + ' ' + year;
+    const y = days[dayOfWeek] + ', ' + months[month] + ' ' + day + ', ' + year;
     const x = document.getElementsByClassName(replaceDate);
     for (let i = 0; i < x.length; i++) {
       x[i].textContent = y;
