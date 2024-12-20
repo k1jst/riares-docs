@@ -72,10 +72,10 @@ function repDate(replaceDate,fromID) {
     }
 };
 function repClass(className,fromID) {
-    const y = document.getElementById(fromID).value;
+    const y = document.getElementById(fromID);
     const x = document.getElementsByClassName(className);
     for (let i = 0; i < x.length; i++) {
-        x[i].textContent = y;
+        x[i].textContent = y.value;
     }
 };
 function tick() {
