@@ -41,6 +41,8 @@ span {
 }
 </style>
 <script> 
+document.getElementById('netdatePicker').value = new Date().toISOString().substring(0, 10)
+document.getElementById('nextdatePicker').value = new Date(+new Date + 12096e5).toISOString().substring(0, 10)    
 const replace = [
     { repClass: "callsign", fromID: "call" },
     { repClass: "namesign", fromID: "name" },
