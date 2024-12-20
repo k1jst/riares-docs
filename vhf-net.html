@@ -2,7 +2,11 @@
 <html>
 <head> 
     <meta charset="UTF-8"> 
-<style> 
+<style>
+textarea {
+    width: 50%;
+    overflow:hidden;
+}
 p.tx::before {
     color: black ;
     font-size: 1.25em;
@@ -97,7 +101,7 @@ function repClass(className,fromID) {
     }
 };
 function loadcheckins() {
-    var j = document.getElementsByClassName('checkinbox');
+    var j = document.getElementsByClassName('checkinbox').textContent;
     var k = document.getElementById('checkinreport');
     k.textContent = j.join('\n');     
 }   
@@ -182,15 +186,18 @@ This is the Rhode Island Amateur Radio Emergency Service Net for <span class="ne
 <p>(un-key to illustrate and wait for beep)</p><p class="tx">to check for doubling. Please check in with your call sign given phonetically, your name, and your location.<br /> 
 Mobile or Portable Stations, (with emphasis) I say again, only MOBILE OR PORTABLE STATIONS wishing to check in please call with your callsign, name and location, now, OVER.</p>
 <p>(Log call signs, names, and locations)</p>
-<textarea syle="overflow:hidden; width:500px;" class="checkinbox" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
+
+<textarea id="checkinbox1" class="checkinbox" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
 <p class="tx">The net recognises (read aloud the call signs heard) Out.</p>
 <p>(If nothing heard)</p><p class="tx"> Nothing Heard, Out.</p>
 <p class="tx">This is W1RIA Net control for this evening’s RI ARES Net, now FIXED STATIONS please call with your callsign, location and name now, OVER.</p> 
 <p>(Log call signs, names, and locations)</p>
-<textarea syle="overflow:hidden; width:500px;" class="checkinbox" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
+
+<textarea id="checkinbox2" class="checkinbox" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
 <p class="tx">The net recognises (read aloud the call signs heard) Out.</p>
 <p class=tx>This is W1RIA Net control, any additional stations for the net please call now, Over.</p> 
-<textarea syle="overflow:hidden; width:500px;" class="checkinbox" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
+
+<textarea id="checkinbox3" class="checkinbox" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
 <p>(Log call signs, names, and locations)</p><p class="tx">The net recognises (read aloud the call signs heard) Out.</p>
 <p>(If nothing heard)</p><p class="tx"> Nothing Heard, Out.</p>
 </div>
@@ -199,7 +206,8 @@ Mobile or Portable Stations, (with emphasis) I say again, only MOBILE OR PORTABL
 <div class="net" id="announcements">
 <h4>Announcements</h4>    
 <p class="tx">This is W1RIA, are there any announcements or news from any Emergency Coordinators who are checked into the net, over?</p> 
-<textarea syle="overflow:hidden; width:500px;" id="announcebox" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
+
+<textarea id="announcement1" class="announcement" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
 <p class="tx">Net recognises (list Calls signs heard) with announcements for the net. (1st Call Sign) please come with your announcement, OVER</p>
 <p>(If nothing heard)</p><p class="tx"> Nothing Heard, Out.</p>
 <p class="tx">(After announcement acknowledge, and if you have questions or comments, make them) (announcer call sign) thanks.  Roger, Out.</p>
@@ -210,7 +218,8 @@ Mobile or Portable Stations, (with emphasis) I say again, only MOBILE OR PORTABL
 <h4>Re-check</h4>
 <p class=tx>This is W1RIA net control for this evening's net, any additional stations wishing to checkin to the net please come with your callsign, name and location now, Over.</p> 
 <p>(Log call signs, names, and locations)</p>
-<textarea syle="overflow:hidden; width:500px;" class="checkinbox" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>    
+
+<textarea id="checkinbox4" class="checkinbox" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
 <p class="tx">The net recognises (read aloud the call signs heard) Out.</p>
 <p>(If nothing heard)</p><p class="tx"> Nothing Heard, Out.</p>
 </div>
@@ -218,12 +227,12 @@ Mobile or Portable Stations, (with emphasis) I say again, only MOBILE OR PORTABL
 <div class="net" id="comments">
 <h4>Comments</h4>
 <p class="tx">This is W1RIA, Net control for this evening’s RI ARES Net, we will now take comments from each station, (Start with check-in call signs) Any comments for the net? </p>
-<p id="checkinreport"></p>
+<textarea id="checkinreport" class="checkinreport" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
 <button onclick="loadcheckins()">Load Checkins</button> 
 <p>After last listed name</p> 
 <p class="tx">Are there any additional checkins for the net, over?</p>
 <p>Repeat process of logging & comments.</p>
-<textarea syle="overflow:hidden; width:500px;" class="checkinbox" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
+<textarea id="checkinbox5" class="checkinbox" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
 <p>(If nothing heard)</p><p class="tx"> Nothing Heard, Out.</p>
 <p class="tx">That is the bottom of the roster. This is W1RIA, Net control for this evening's RI ARES Net. Are there any additional stations, comments or business for the net before we close the net, Over.</p> 
 <p>Repeat process of logging & comments.</p>
