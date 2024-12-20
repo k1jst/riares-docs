@@ -48,13 +48,13 @@ document.onreadystatechange = function () {
   }
 }
 const replace = [
-    { repClass: callsign, fromID: call },
-    { repClass: firstname, fromID: name },
-    { repClass: qth, fromID: location }
+    { repClass: "callsign", fromID: "callinput" },
+    { repClass: "firstname", fromID: "nameinput" },
+    { repClass: "qth", fromID: "locationinput" }
 ];
 const replaceDate = [
-    { repClass: netdate, fromID: netdatePicker },
-    { repClass: nextdate, fromID: nextdatePicker }
+    { repClass: "netdate", fromID: "netdatePicker" },
+    { repClass: "nextdate", fromID: "nextdatePicker" }
 ];
 function rep() {
     replace.forEach(replacing => {
@@ -112,10 +112,13 @@ function toggleVisByID(idName) {
 
 <h1>VHF Net Script</h1> 
 <label for="call">Callsign:</label>
-<input type="text" id="call" value="K1JST" /><br />
+<input type="text" id="callinput" value="K1JST" /><br />
 
 <label for="myname">Your Name:</label>
-<input type="text" id="myname" value="JEREMY" /><br />
+<input type="text" id="nameinput" value="JEREMY" /><br />
+
+<label for="myname">Your Location:</label>
+<input type="text" id="locationinput" value="COVENTRY" /><br />
 
 <label for="netdatePicker">Net Date:</label>
 <input type="date" id="netdatePicker" /><br />
