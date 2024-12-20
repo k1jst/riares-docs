@@ -73,10 +73,9 @@ function repClass(className,fromID) {
     }
 };
 function tick() {
-    var d = new Date();
-    var time = padNumber(d.getHours(),2)+':'+padNumber(d.getMinutes(),2);
-    document.getElementById("currentTime").textContent = time;
-    t = setTimeout(tick,1000);
+    var i = document.getElementById("currentTime")
+    i.textContent = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+    var t = setTimeout(tick,1000);
 };
 function toggleVisByID(idName) {
     var x = document.getElementById(idName);
