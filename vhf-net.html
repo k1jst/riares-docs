@@ -77,6 +77,17 @@ function tick() {
     i.textContent = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
     var t = setTimeout(tick,1000);
 };
+function startTick() {
+    var i = document.getElementById("startTime")
+    i.textContent = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+    var t = setTimeout(tick,1000);
+};
+function endTick() {
+    var i = document.getElementById("endTime")
+    i.textContent = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+    var t = setTimeout(tick,1000);
+};
+
 function toggleVisByID(idName) {
     var x = document.getElementById(idName);
     var y = document.getElementById(idName + 'Button');
@@ -106,6 +117,9 @@ function toggleVisByID(idName) {
 <label for="nextdatePicker">Next Net Date:</label>
 <input type="date" id="nextdatePicker" /><br />
 
+<p>Net Start Time: <span id="startTime"></span><br />
+Net End Time: <span id="endTime"></span></p>
+    
 <button id="netloggerButton" onclick="toggleVisByID('netlogger');toggleVisByID('netlogger2');">Netlogger</button><br />
 
 <button onclick="rep()">Replace</button> 
@@ -122,6 +136,7 @@ function toggleVisByID(idName) {
 <p>(if nothing heard)</p>
 <p class="tx">Nothing heard, Out.</p></div>
 
+<button onclick="startTick()">Mark Net Start Time</button> 
 <div class="net" id="preamble">
 <h4>Preamble</h4>
 <p class="tx">Calling the Rhode Island ARES VHF Repeater Net. 
@@ -178,7 +193,7 @@ Mobile or Portable Stations, (with emphasis) I say again, only MOBILE OR PORTABL
 <h4>Closing the net</h4>
 <p class="tx">We would like to thank all participants for joining this net, and thanks to all who stood by while the net was in session. The next RI ARES Net will be held at 7:30 pm, 1930 hours, on <b class="nextdate">(Date of Next Net)</b>. The Rhode Island ARES organization would like to thank the owner, trustee, and financial supporters of this repeater network for its use and maintenance. We look forward to our next net. This net is closed at <span id="currentTime">(time)</span> and this network is returned to normal amateur use. This is <span class="callsign">(Call Sign)</span> for W1RIA, goodnight. Out.</p>
 </div>
-  
+<button onclick="endTick()">Mark Net End Time</button> 
 
 </body>
 </html>
