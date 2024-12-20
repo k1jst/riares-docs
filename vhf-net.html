@@ -43,8 +43,8 @@ span {
 <script> 
 document.onreadystatechange = function () {
   if (document.readyState == "complete") {
-    document.getElementById('netdatePicker').value = new Date().toISOString().slice(0, 15);
-    document.getElementById('nextdatePicker').value = new Date(+new Date + 12096e5).toISOString().slice(0, 15);  
+    document.getElementById('netdatePicker').value = new Date().toISOString().slice(0, 10);
+    document.getElementById('nextdatePicker').value = new Date(+new Date + 12096e5).toISOString().slice(0, 10);  
   }
 }
 const replace = [
@@ -66,7 +66,7 @@ function rep() {
 };
 function repDate(replaceDate,fromID) {
     const x = document.getElementsByClassName(replaceDate);
-    const y = new Date(document.getElementById(fromID).value + 'T00:00');
+    const y = new Date(document.getElementById(fromID).value + 'T00:00').slice(0,15);
     for (let i = 0; i < x.length; i++) {
       x[i].textContent = y;
     }
