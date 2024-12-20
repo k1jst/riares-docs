@@ -47,6 +47,16 @@ document.onreadystatechange = function () {
     document.getElementById('nextdatePicker').value = new Date(+new Date + 12096e5).toISOString().slice(0, 10);  
   }
 }
+function getOrdinalNumber(number) {
+  if (number > 3 && number < 21) return number + 'th';
+
+  switch (number % 10) {
+    case 1: return number + 'st';
+    case 2: return number + 'nd';
+    case 3: return number + 'rd';
+    default: return number + 'th';
+  }
+}
 const replace = [
     { repClass: "callsign", fromID: "callinput" },
     { repClass: "firstname", fromID: "nameinput" },
@@ -65,8 +75,15 @@ function rep() {
     });
 };
 function repDate(replaceDate,fromID) {
+    const date = new Date(document.getElementById(fromID).value + 'T00:00')
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const dayOfWeek = date.getDay();
+    const month = date.getMoonth;
+    const months = ['Months', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    const day = getOrdinalNumber(date.getDate());
+    const year = date.getFullYear();
+    const y = days[dayOfWeek] + ' ' + months[month] + ' ' + day + ' ' + year;
     const x = document.getElementsByClassName(replaceDate);
-    const y = new Date(document.getElementById(fromID).value + 'T00:00').slice(0,15);
     for (let i = 0; i < x.length; i++) {
       x[i].textContent = y;
     }
