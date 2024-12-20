@@ -101,9 +101,13 @@ function repClass(className,fromID) {
     }
 };
 function loadcheckins() {
-    var j = document.getElementsByClassName('checkinbox').textContent;
+    checkinboxes = [1,2,3,4,5];
+    checkins='';
+    for (let i = 0; i < checkinboxes.length; i++) {
+        checkins += docment.getElementById(checkinbox[i]).textContent.join('\n');
+    }
     var k = document.getElementById('checkinreport');
-    k.textContent = j.join('\n');     
+    k.textContent = checkins;
 }   
 function tick() {
     var i = document.getElementById("currentTime")
