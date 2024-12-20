@@ -51,11 +51,11 @@ const replaceDate = [
     { repClass: "nextdate", fromID: "nextdatePicker" }
 ];
 function rep() {
-    replace.foreach(replace => {
-        replClass(replace.repClass, replace.fromID);
+    replace.forEach(replacing => {
+        replClass(replacing.repClass, replacing.fromID);
     });
-    replaceDate.foreach(repDate => {
-        replDate(repDate.repClass, repDate.fromID);
+    replaceDate.forEach(replacingDate => {
+        replDate(replacingDate.repClass, repplacingDate.fromID);
     });
 };
 function repDate(replaceDate,fromID) {
