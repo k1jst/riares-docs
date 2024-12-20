@@ -26,7 +26,7 @@ You can also consider commercial options like the Tram 1477, Diamond X30, or Com
 
 #### Antenna patterns of different colinear antennas
 
-![Diamond Antenna Patterns](https://k1jst.github.io/riares-docs/diamond_ant-patterns.png)
+![Diamond Antenna Patterns](https://k1jst.github.io/riares-docs/docs/img/diamond_ant-patterns.png)
 
 | Model       | X30A     | X50A     | X200A    | X510HD   |
 | ----------- | -------- | -------- | -------- | -------- |
@@ -36,11 +36,11 @@ You can also consider commercial options like the Tram 1477, Diamond X30, or Com
 
 ### More Antenna Options
 
-[Yagi-Uda antenas](https://k1jst.github.io/riares-docs/nist_nbs-tn-688-yagi.pdf) can also be useful, but keep in mind that repeaters are almost always vertically polarized and Yagis are directional, so you might want the ability to repoint them. Being 90° out on polarity can cost you 20db of signal, so it's definitely something to keep in mind. There are other stealthy antenna options if you rent, have a spouse who cares about asthetics, or have a nosy HOA... a roll up jpole or a magmout antenna on a window AC or in the attic on a large pizza pan can work pretty well.
+[Yagi-Uda antenas](https://k1jst.github.io/riares-docs/docs/pdf/nist_nbs-tn-688-yagi.pdf) can also be useful, but keep in mind that repeaters are almost always vertically polarized and Yagis are directional, so you might want the ability to repoint them. Being 90° out on polarity can cost you 20db of signal, so it's definitely something to keep in mind. There are other stealthy antenna options if you rent, have a spouse who cares about asthetics, or have a nosy HOA... a roll up jpole or a magmout antenna on a window AC or in the attic on a large pizza pan can work pretty well.
 
 ### Important information about outdoor antennas
 
-If you go with an outdoor antenna, you're going to need to be well away from your electrical service entrance if it's not underground because you want a near zero chance of your antenna and your electrical service wires touching no matter the circumstances. You'll need a piece of coax long enough to get to your entry point (LMR-400 equivalent coax works well for VHF/UHF, though RG-8X is okay if the run is short), a **lightning arrestor**, and another piece of coax long enough to get into the house and to your radio. If you don't want to drill a hole, a short length of RG-174 or RG-316 with an sma connector will usually make it through the gap between the two panes of your windows and then you can adapt to SO-239 on both ends. Other ideas include two pool noodles with a slit cut lengthwise to fit over the bottom of the window and the sash creating a barrier that will mould around your cables.  Grounding your antenna is important, and if you are unable to ground the antenna properly then you will want a temporary setup where the coax lives outside your house whenever you aren't using it. For proper grounding of antennas see Mike Holt's Free PDF on [NEC Article 810](https://k1jst.github.io/riares-docs/mikeholt_NEC-810.21.pdf) and check out this [Video](https://youtu.be/WRv8AKVAfyc). But I digress.
+If you go with an outdoor antenna, you're going to need to be well away from your electrical service entrance if it's not underground because you want a near zero chance of your antenna and your electrical service wires touching no matter the circumstances. You'll need a piece of coax long enough to get to your entry point (LMR-400 equivalent coax works well for VHF/UHF, though RG-8X is okay if the run is short), a **lightning arrestor**, and another piece of coax long enough to get into the house and to your radio. If you don't want to drill a hole, a short length of RG-174 or RG-316 with an sma connector will usually make it through the gap between the two panes of your windows and then you can adapt to SO-239 on both ends. Other ideas include two pool noodles with a slit cut lengthwise to fit over the bottom of the window and the sash creating a barrier that will mould around your cables.  Grounding your antenna is important, and if you are unable to ground the antenna properly then you will want a temporary setup where the coax lives outside your house whenever you aren't using it. For proper grounding of antennas see Mike Holt's Free PDF on [NEC Article 810](https://k1jst.github.io/riares-docs/docs/pdf/mikeholt_NEC-810.21.pdf) and check out this [Video](https://youtu.be/WRv8AKVAfyc). But I digress.
 
 ### Checking in to the Net
 
