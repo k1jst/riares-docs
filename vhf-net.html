@@ -33,7 +33,7 @@ body {
     display: none;
 }
 #netloggerButton {
-    background-color: darkslategray;
+    background-color: red;
     color: white;
 }
 span {
@@ -51,10 +51,10 @@ const replaceDate = [
     { repClass: "nextdate", fromID: "nextdatePicker" }
 ];
 function rep() {
-    replacement.foreach(replace => {
+    replace.foreach(replace => {
         replClass(replace.repClass, replace.fromID);
     });
-    replacement.foreach(repDate => {
+    replaceDate.foreach(repDate => {
         replDate(repDate.repClass, repDate.fromID);
     });
 };
@@ -91,13 +91,13 @@ function endTick() {
 function toggleVisByID(idName) {
     var x = document.getElementById(idName);
     var y = document.getElementById(idName + 'Button');
-    if (x.style.display === "none") {
-        x.style.display = "block";
-        y.style.backgroundColor = "green";
+    if (x.style.display === "block") {
+        x.style.display = "none";
+        y.style.backgroundColor = "red";
     }
     else {
-        x.style.display="none";
-        y.style.backgroundColor = "darkslategray";
+        x.style.display="block";
+        y.style.backgroundColor = "green";
     }
 };
 </script>
