@@ -26,22 +26,37 @@ h4 {
 body {
   font-family: Verdana, sans-serif;
 }
+#netlogger {
+    display: none;
+}
+#netlogger2 {
+    display: none;
+}
+#netloggerButton {
+    background-color: darkslategray;
+    color: white;
+}
+span {
+    color: black;
+}
 </style>
 </head>
 <body>
 
 <h1>VHF Net Script</h1> 
 <label for="call">Callsign:</label>
-<input type="text" id="call" value="MYCALL" /><br />
+<input type="text" id="call" value="K1JST" /><br />
 
 <label for="myname">Your Name:</label>
-<input type="text" id="myname" value="MYNAME" /><br />
+<input type="text" id="myname" value="JEREMY" /><br />
 
-<label for="netdate">Net Date:</label>
-<input type="date" id="netdate" /><br />
+<label for="netdatePicker">Net Date:</label>
+<input type="date" id="netdatePicker" /><br />
 
-<label for="nextdate">Next Net Date:</label>
-<input type="date" id="nextdate" /><br />
+<label for="nextdatePicker">Next Net Date:</label>
+<input type="date" id="nextdatePicker" /><br />
+
+<button id="netloggerButton" onclick="toggleVisByID('netlogger');toggleVisByID('netlogger2');">Netlogger</button><br />
 
 <button onclick="rep()">Replace</button> 
 
@@ -49,21 +64,21 @@ body {
 <div class="instructions" id="pre-net-inst">
 <h4>Pre-Net Instructions</h4>
 <p>Net control operators are in control of the net. If people go too fast, slow the pace down. Use pauses when you want to slow things down. If people rush through, or step on each other, log whatever call sign you can hear, and continue calling for check ins. There is no need to explain at length anything you do, unless it is for educational purposes. </p>
-<p>Open NetLogger and create a Net Called RI ARES VHF Repeater Net, and enter W1RIA as the NCS, and your own call as the Operator, a password will be provided by the net manager, then create the net. Place W1RIA on line 1 of the list. You can edit any fields on line 1 as appropriate to your QTH etc.</p></div>
+<p id="netlogger2">Open NetLogger and create a Net Called RI ARES VHF Repeater Net, and enter W1RIA as the NCS, and your own call as the Operator, a password will be provided by the net manager, then create the net. Place W1RIA on line 1 of the list. You can edit any fields on line 1 as appropriate to your QTH etc.</p></div>
 <div class="net" id="pre-net-check">
 <h4>Pre-net</h4>
 <p>(check for any emergency traffic about 1 or 2 minutes prior to calling the net)</p>
-<p class="tx">This is <b id="call">(Call Sign)</b> checking for any emergency or priority traffic on this repeater. There is an upcoming net. If you have emergency traffic please come now, OVER.</p>
+<p class="tx">This is <span class="callsign">(Call Sign)</span> checking for any emergency or priority traffic on this repeater. There is an upcoming net. If you have emergency traffic please come now, OVER.</p>
 <p>(if nothing heard)</p>
 <p class="tx">Nothing heard, Out.</p></div>
 
 <div class="net" id="preamble">
 <h4>Preamble</h4>
 <p class="tx">Calling the Rhode Island ARES VHF Repeater Net. 
-This is the Rhode Island Amateur Radio Emergency Service Net for DATE_TODAY. This is <b class="call">(Call Sign)</b>, my name is <b class="name">(First Name)</b>, operating as W1RIA. I am located in <b class="location">(Location)</b> and I will be net control station for this evening’s net.</p>
+This is the Rhode Island Amateur Radio Emergency Service Net for <span class="netdate">DATE_TODAY</span>. This is <span class="callsign">(Call Sign)</span>, my name is <span class="namesign">(First Name)</span>, operating as W1RIA. I am located in <span class="locationsign">(Location)</span> and I will be net control station for this evening’s net.</p>
 <p class="tx">This is a directed net and will always break for any incoming emergency traffic. Any amateur radio operator is welcome to check in. RI ARES maintains a website at riares.org.</p>
 <p class="tx">This RI ARES Repeater net is held every 1st and 3rd Tuesday of the Month, as well as a Skywarn Practive and Training net every Wednesday on this repeater network. There is also a VHF Simplex Net held every 2nd Tuesday of the month, on 147.420 MHz, and a Digital net held every 4th Tuesday of the month. All RI ARES Nets start at 7:30 pm, 1930 local time.</p>
-<p class="tx" class="netlogger">Net control for this net uses NetLogger to log all checkins to this net. All stations are welcome to download the free netlogger software and follow along. Out.</p>
+<p class="tx" id="netlogger">Net control for this net uses NetLogger to log all checkins to this net. All stations are welcome to download the free netlogger software and follow along. Out.</p>
 </div>
 
 <div class="net" id="checkins">
@@ -111,47 +126,69 @@ Mobile or Portable Stations, (with emphasis) I say again, only MOBILE OR PORTABL
 
 <div id="closing">
 <h4>Closing the net</h4>
-<p class="tx">We would like to thank all participants for joining this net, and thanks to all who stood by while the net was in session. The next RI ARES Net will be held at 7:30 pm, 1930 hours, on (Date of Next Net). The Rhode Island ARES organization would like to thank the owner, trustee, and financial supporters of this repeater network for its use and maintenance. We look forward to our next net. This net is closed at <span id="currentTime">(time)</span> and this network is returned to normal amateur use. This is (Call Sign) for W1RIA, goodnight. Out.</p>
+<p class="tx">We would like to thank all participants for joining this net, and thanks to all who stood by while the net was in session. The next RI ARES Net will be held at 7:30 pm, 1930 hours, on <b class="nextdate">(Date of Next Net)</b>. The Rhode Island ARES organization would like to thank the owner, trustee, and financial supporters of this repeater network for its use and maintenance. We look forward to our next net. This net is closed at <span id="currentTime">(time)</span> and this network is returned to normal amateur use. This is <span class="callsign">(Call Sign)</span> for W1RIA, goodnight. Out.</p>
 </div>
-
-
   
 <script> 
-    // Replace all instances of "MYCALL" 
-    // in the page with Input "call" value 
-    function rep() { 
-        callsign = document.getElementById("call").value;
-        myname = document.getElementById("myname").value;
-        netdate = new Date(document.getElementById("netdate").value + 'T00:00');
-        nextdate = new Date(document.getElementById("netdate").value + 'T00:00');
-        document.body.innerHTML 
-            = document.body.innerHTML
-            .replaceAll("MYNAME", myname);
-        document.body.innerHTML 
-            = document.body.innerHTML
-            .replaceAll("MYCALL", callsign);
-        document.body.innerHTML 
-            = document.body.innerHTML
-            .replaceAll("DATE_TODAY", netdate.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})); 
-        document.body.innerHTML 
-            = document.body.innerHTML
-            .replaceAll("NEXT_NET_DATE", nextdate.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}));
-        document.getElementById("call").value = callsign;
-        document.getElementById("myname").value = myname;
-        document.getElementById("netdate").value = netdate.toISOString().slice(0, 10);
-        document.getElementById("nextdate").value = nextdate.toISOString().slice(0, 10);
-    }
+replacements = {
+    "replacements" [
+      {
+        "class": "callsign",
+        "fromID": "call"
+      },
+      {
+        "class": ""
+      }
+    ]
+    
+}
 
+
+function rep() {
+    x = getElementById("call");
+    repClass('callsign',x.value);
+    y = getElementById("myname");
+    repClass('namesign',y.value);
+    z = getElementById("mylocation");
+    repClass('locationsign',z.value);
+    repDate("netdate");
+    repDate("nextdate");
+}
+function repID(idName,idValue) { 
+    x = document.getElementById("idName");
+    x.textContent = idValue;
+};
+function repDate(dateName) {
+    const spans = document.getElementsByClassName(dateName);
+    x = new Date(document.getElementById(dateName + 'Picker').value + 'T00:00');
+    for (let i = 0; i < spans.length; i++) {
+      spans[i].textContent = x;
+    }
+}
+function repClass(className,classValue) {
+    x = document.getElementsByClassName(className);
+    for (let i = 0; i < spans.length; i++) {
+        spans[i].textContent = classValue;
+    }
+}
 function tick() {
     var d = new Date();
     var time = padNumber(d.getHours(),2)+':'+padNumber(d.getMinutes(),2);
-    document.getElementById("currentTime").innerText = time
+    document.getElementById("currentTime").textContent = time
     t = setTimeout(tick,1000);
 }
-
-$(document).ready(function(){
-    tick();
-})
+function toggleVisByID(idName) {
+  var x = document.getElementById(idName);
+  var y = document.getElementById(idName + 'Button');
+  if (x.style.display === "none") {
+    x.style.display = "block";
+    y.style.backgroundColor = "green";
+    }
+  else {
+    x.style.display="none";
+    y.style.backgroundColor = "darkslategray";
+  }
+}
 </script>
 </body>
 </html>
