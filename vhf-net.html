@@ -44,7 +44,9 @@ span {
 document.onreadystatechange = function () {
   if (document.readyState == "complete") {
     document.getElementById('netdatePicker').value = new Date().toISOString().slice(0, 10);
-    document.getElementById('nextdatePicker').value = new Date(+new Date + 12096e5).toISOString().slice(0, 10);  
+    document.getElementById('nextdatePicker').value = new Date(+new Date + 12096e5).toISOString().slice(0, 10);
+    rep();
+    tick();
   }
 }
 function getOrdinalNumber(number) {
@@ -126,7 +128,7 @@ function toggleVisByID(idName) {
 };  
 </script>
 </head>
-<body onload="tick()">
+<body>
 
 <h1>VHF Net Script</h1> 
 <label for="callinput">Callsign:</label>
