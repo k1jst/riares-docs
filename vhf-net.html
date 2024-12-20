@@ -130,79 +130,55 @@ Mobile or Portable Stations, (with emphasis) I say again, only MOBILE OR PORTABL
 </div>
   
 <script> 
-replacements = {
-    "replace" [
-        {
-            "class": "callsign",
-            "fromID": "call"
-        },
-        {
-            "class": "namesign",
-            "fromID": "name"
-        },
-        {
-            "class": "locationsign",
-            "fromID": "location"
-        }
-    ].
-    "repdate" [
-        {
-            "class": "netdate",
-            "fromID": "netdatePicker"
-        },
-        {
-            "class": "nextdate",
-            "fromID": "nextdatePicker"
-        }
-    ]
-}
-
-
+const replace = [
+    { repClass: "callsign", fromID: "call" },
+    { repClass: "namesign", fromID: "name" },
+    { repClass: "locationsign", fromID: "location" }
+];
+const repDate = [
+    { repClass: "netdate", fromID: "netdatePicker" },
+    { repClass: "nextdate", fromID: "nextdatePicker" }
+];
 function rep() {
-    x = getElementById("call");
-    repClass('callsign',x.value);
-    y = getElementById("myname");
-    repClass('namesign',y.value);
-    z = getElementById("mylocation");
-    repClass('locationsign',z.value);
-    repDate("netdate");
-    repDate("nextdate");
-}
-function repID(idName,idValue) { 
-    x = document.getElementById("idName");
-    x.textContent = idValue;
-}
-function repDate(dateName) {
-    const spans = document.getElementsByClassName(dateName);
-    x = new Date(document.getElementById(dateName + 'Picker').value + 'T00:00');
-    for (let i = 0; i < spans.length; i++) {
-      spans[i].textContent = x;
+    replacement.foreach(replace => {
+        replClass(replace.repClass, replace.fromID);
+    });
+    replacement.foreach(repDate => {
+        replDate(repDate.repClass, repDate.fromID);
+    ]);
+};
+function repDate(repDate,fromID) {
+    const x = document.getElementsByClassName(repDate);
+    const y = new Date(document.getElementById(fromID).value + 'T00:00');
+    for (let i = 0; i < x.length; i++) {
+      x[i].textContent = y;
     }
-}
-function repClass(className,classValue) {
-    x = document.getElementsByClassName(className);
-    for (let i = 0; i < spans.length; i++) {
-        spans[i].textContent = classValue;
-    }
-}
+};
+function repClass(className,fromID) {
+    const y = document.getElementsByID(fromID).value;
+    const x = document.getElementsByClassName(className);
+    for (let i = 0; i < x.length; i++) {
+        x[i].textContent = y;
+    });
+};
 function tick() {
     var d = new Date();
     var time = padNumber(d.getHours(),2)+':'+padNumber(d.getMinutes(),2);
     document.getElementById("currentTime").textContent = time;
     t = setTimeout(tick,1000);
-}
+};
 function toggleVisByID(idName) {
-  var x = document.getElementById(idName);
-  var y = document.getElementById(idName + 'Button');
-  if (x.style.display === "none") {
-    x.style.display = "block";
-    y.style.backgroundColor = "green";
-  }
-  else {
-    x.style.display="none";
-    y.style.backgroundColor = "darkslategray";
-  }
-}
+    var x = document.getElementById(idName);
+    var y = document.getElementById(idName + 'Button');
+    if (x.style.display === "none") {
+        x.style.display = "block";
+        y.style.backgroundColor = "green";
+    }
+    else {
+        x.style.display="none";
+        y.style.backgroundColor = "darkslategray";
+    }
+};
 </script>
 </body>
 </html>
