@@ -1,11 +1,10 @@
+### [RI ARES Website](https://riares.org)
+
 ### Net Scripts
 
-- VHF Net
-- Simplex Net
-- Weather Net
-- HF Net
+- [VHF Net - Under Construction](vhf-net.html)
 
-### Forms
+### Articles
 
-- ARRL ARES Standardized Task Book
-- Assessing Radio Comminications Capability Worksheet
+- [Getting Started with FM and Repeaters](beginners)
+
