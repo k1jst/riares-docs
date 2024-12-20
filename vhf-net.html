@@ -59,15 +59,15 @@ function rep() {
     });
 };
 function repDate(replaceDate,fromID) {
-    const x = document.getElementsByClassName(replaceDate);
+    const x = document.getElementByClassName(replaceDate);
     const y = new Date(document.getElementById(fromID).value + 'T00:00');
     for (let i = 0; i < x.length; i++) {
       x[i].textContent = y;
     }
 };
 function repClass(className,fromID) {
-    const y = document.getElementsById(fromID).value;
-    const x = document.getElementsByClassName(className);
+    const y = document.getElementById(fromID).value;
+    const x = document.getElementByClassName(className);
     for (let i = 0; i < x.length; i++) {
         x[i].textContent = y;
     }
