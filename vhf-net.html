@@ -131,16 +131,30 @@ Mobile or Portable Stations, (with emphasis) I say again, only MOBILE OR PORTABL
   
 <script> 
 replacements = {
-    "replacements" [
-      {
-        "class": "callsign",
-        "fromID": "call"
-      },
-      {
-        "class": ""
-      }
+    "replace" [
+        {
+            "class": "callsign",
+            "fromID": "call"
+        },
+        {
+            "class": "namesign",
+            "fromID": "name"
+        },
+        {
+            "class": "locationsign",
+            "fromID": "location"
+        }
+    ].
+    "repdate" [
+        {
+            "class": "netdate",
+            "fromID": "netdatePicker"
+        },
+        {
+            "class": "nextdate",
+            "fromID": "nextdatePicker"
+        }
     ]
-    
 }
 
 
@@ -157,7 +171,7 @@ function rep() {
 function repID(idName,idValue) { 
     x = document.getElementById("idName");
     x.textContent = idValue;
-};
+}
 function repDate(dateName) {
     const spans = document.getElementsByClassName(dateName);
     x = new Date(document.getElementById(dateName + 'Picker').value + 'T00:00');
@@ -174,7 +188,7 @@ function repClass(className,classValue) {
 function tick() {
     var d = new Date();
     var time = padNumber(d.getHours(),2)+':'+padNumber(d.getMinutes(),2);
-    document.getElementById("currentTime").textContent = time
+    document.getElementById("currentTime").textContent = time;
     t = setTimeout(tick,1000);
 }
 function toggleVisByID(idName) {
@@ -183,7 +197,7 @@ function toggleVisByID(idName) {
   if (x.style.display === "none") {
     x.style.display = "block";
     y.style.backgroundColor = "green";
-    }
+  }
   else {
     x.style.display="none";
     y.style.backgroundColor = "darkslategray";
