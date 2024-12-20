@@ -49,8 +49,8 @@ document.onreadystatechange = function () {
 }
 const replace = [
     { repClass: "callsign", fromID: "call" },
-    { repClass: "namesign", fromID: "name" },
-    { repClass: "locationsign", fromID: "location" }
+    { repClass: "firstname", fromID: "name" },
+    { repClass: "qth", fromID: "location" }
 ];
 const replaceDate = [
     { repClass: "netdate", fromID: "netdatePicker" },
@@ -146,7 +146,7 @@ Net End Time: <span id="endTime"></span></p>
 <div class="net" id="preamble">
 <h4>Preamble</h4>
 <p class="tx">Calling the Rhode Island ARES VHF Repeater Net. 
-This is the Rhode Island Amateur Radio Emergency Service Net for <span class="netdate">DATE_TODAY</span>. This is <span class="callsign">(Call Sign)</span>, my name is <span class="namesign">(First Name)</span>, operating as W1RIA. I am located in <span class="locationsign">(Location)</span> and I will be net control station for this evening’s net.</p>
+This is the Rhode Island Amateur Radio Emergency Service Net for <span class="netdate">DATE_TODAY</span>. This is <span class="callsign">(Call Sign)</span>, my name is <span class="firstname">(First Name)</span>, operating as W1RIA. I am located in <span class="qth">(Location)</span> and I will be net control station for this evening’s net.</p>
 <p class="tx">This is a directed net and will always break for any incoming emergency traffic. Any amateur radio operator is welcome to check in. RI ARES maintains a website at riares.org.</p>
 <p class="tx">This RI ARES Repeater net is held every 1st and 3rd Tuesday of the Month, as well as a Skywarn Practive and Training net every Wednesday on this repeater network. There is also a VHF Simplex Net held every 2nd Tuesday of the month, on 147.420 MHz, and a Digital net held every 4th Tuesday of the month. All RI ARES Nets start at 7:30 pm, 1930 local time.</p>
 <p class="tx" id="netlogger">Net control for this net uses NetLogger to log all checkins to this net. All stations are welcome to download the free netlogger software and follow along. Out.</p>
