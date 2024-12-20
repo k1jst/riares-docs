@@ -122,12 +122,7 @@ function toggleVisByID(idName) {
         x.style.display = "block";
         y.style.backgroundColor = "green";
     }
-};
-function setHeight(fieldId){
-    document.getElementById(fieldId).style.height = document.getElementById(fieldId).scrollHeight+'px';
-}
-setHeight('checkins1');
-    
+};  
 </script>
 </head>
 <body onload="tick()">
@@ -183,7 +178,7 @@ This is the Rhode Island Amateur Radio Emergency Service Net for <span class="ne
 <p>(un-key to illustrate and wait for beep)</p><p class="tx">to check for doubling. Please check in with your call sign given phonetically, your name, and your location.<br /> 
 Mobile or Portable Stations, (with emphasis) I say again, only MOBILE OR PORTABLE STATIONS wishing to check in please call with your callsign, name and location, now, OVER.</p>
 <p>(Log call signs, names, and locations)</p>
-<textarea id="checkins1" class="checkins" TextMode="MultiLine" onkeyup="setHeight('checkins1');" onkeydown="setHeight('checkins1');"></textarea>
+<textarea syle="overflow:hidden;" class="checkins" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
 <p class="tx">The net recognises (read aloud the call signs heard) Out.</p>
 <p>(If nothing heard)</p><p class="tx"> Nothing Heard, Out.</p>
 <p class="tx">This is W1RIA Net control for this evening’s RI ARES Net, now FIXED STATIONS please call with your callsign, location and name now, OVER.</p> 
