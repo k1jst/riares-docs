@@ -48,13 +48,13 @@ document.onreadystatechange = function () {
   }
 }
 const replace = [
-    { repClass: "callsign", fromID: "call" },
-    { repClass: "firstname", fromID: "name" },
-    { repClass: "qth", fromID: "location" }
+    { repClass: callsign, fromID: call },
+    { repClass: firstname, fromID: name },
+    { repClass: qth, fromID: location }
 ];
 const replaceDate = [
-    { repClass: "netdate", fromID: "netdatePicker" },
-    { repClass: "nextdate", fromID: "nextdatePicker" }
+    { repClass: netdate, fromID: netdatePicker },
+    { repClass: nextdate, fromID: nextdatePicker }
 ];
 function rep() {
     replace.forEach(replacing => {
