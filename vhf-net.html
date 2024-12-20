@@ -145,14 +145,14 @@ function rep() {
     });
     replacement.foreach(repDate => {
         replDate(repDate.repClass, repDate.fromID);
-    ]);
+    });
 };
 function repDate(repDate,fromID) {
     const x = document.getElementsByClassName(repDate);
     const y = new Date(document.getElementById(fromID).value + 'T00:00');
     for (let i = 0; i < x.length; i++) {
       x[i].textContent = y;
-    }
+    });
 };
 function repClass(className,fromID) {
     const y = document.getElementsByID(fromID).value;
@@ -177,7 +177,7 @@ function toggleVisByID(idName) {
     else {
         x.style.display="none";
         y.style.backgroundColor = "darkslategray";
-    }
+    };
 };
 </script>
 </body>
