@@ -40,6 +40,57 @@ span {
     color: black;
 }
 </style>
+<script> 
+const replace = [
+    { repClass: "callsign", fromID: "call" },
+    { repClass: "namesign", fromID: "name" },
+    { repClass: "locationsign", fromID: "location" }
+];
+const repDate = [
+    { repClass: "netdate", fromID: "netdatePicker" },
+    { repClass: "nextdate", fromID: "nextdatePicker" }
+];
+function rep() {
+    replacement.foreach(replace => {
+        replClass(replace.repClass, replace.fromID);
+    });
+    replacement.foreach(repDate => {
+        replDate(repDate.repClass, repDate.fromID);
+    });
+};
+function repDate(repDate,fromID) {
+    const x = document.getElementsByClassName(repDate);
+    const y = new Date(document.getElementById(fromID).value + 'T00:00');
+    for (let i = 0; i < x.length; i++) {
+      x[i].textContent = y;
+    });
+};
+function repClass(className,fromID) {
+    const y = document.getElementsByID(fromID).value;
+    const x = document.getElementsByClassName(className);
+    for (let i = 0; i < x.length; i++) {
+        x[i].textContent = y;
+    });
+};
+function tick() {
+    var d = new Date();
+    var time = padNumber(d.getHours(),2)+':'+padNumber(d.getMinutes(),2);
+    document.getElementById("currentTime").textContent = time;
+    t = setTimeout(tick,1000);
+};
+function toggleVisByID(idName) {
+    var x = document.getElementById(idName);
+    var y = document.getElementById(idName + 'Button');
+    if (x.style.display === "none") {
+        x.style.display = "block";
+        y.style.backgroundColor = "green";
+    }
+    else {
+        x.style.display="none";
+        y.style.backgroundColor = "darkslategray";
+    };
+};
+</script>
 </head>
 <body onload="tick()">
 
@@ -129,56 +180,6 @@ Mobile or Portable Stations, (with emphasis) I say again, only MOBILE OR PORTABL
 <p class="tx">We would like to thank all participants for joining this net, and thanks to all who stood by while the net was in session. The next RI ARES Net will be held at 7:30 pm, 1930 hours, on <b class="nextdate">(Date of Next Net)</b>. The Rhode Island ARES organization would like to thank the owner, trustee, and financial supporters of this repeater network for its use and maintenance. We look forward to our next net. This net is closed at <span id="currentTime">(time)</span> and this network is returned to normal amateur use. This is <span class="callsign">(Call Sign)</span> for W1RIA, goodnight. Out.</p>
 </div>
   
-<script> 
-const replace = [
-    { repClass: "callsign", fromID: "call" },
-    { repClass: "namesign", fromID: "name" },
-    { repClass: "locationsign", fromID: "location" }
-];
-const repDate = [
-    { repClass: "netdate", fromID: "netdatePicker" },
-    { repClass: "nextdate", fromID: "nextdatePicker" }
-];
-function rep() {
-    replacement.foreach(replace => {
-        replClass(replace.repClass, replace.fromID);
-    });
-    replacement.foreach(repDate => {
-        replDate(repDate.repClass, repDate.fromID);
-    });
-};
-function repDate(repDate,fromID) {
-    const x = document.getElementsByClassName(repDate);
-    const y = new Date(document.getElementById(fromID).value + 'T00:00');
-    for (let i = 0; i < x.length; i++) {
-      x[i].textContent = y;
-    });
-};
-function repClass(className,fromID) {
-    const y = document.getElementsByID(fromID).value;
-    const x = document.getElementsByClassName(className);
-    for (let i = 0; i < x.length; i++) {
-        x[i].textContent = y;
-    });
-};
-function tick() {
-    var d = new Date();
-    var time = padNumber(d.getHours(),2)+':'+padNumber(d.getMinutes(),2);
-    document.getElementById("currentTime").textContent = time;
-    t = setTimeout(tick,1000);
-};
-function toggleVisByID(idName) {
-    var x = document.getElementById(idName);
-    var y = document.getElementById(idName + 'Button');
-    if (x.style.display === "none") {
-        x.style.display = "block";
-        y.style.backgroundColor = "green";
-    }
-    else {
-        x.style.display="none";
-        y.style.backgroundColor = "darkslategray";
-    };
-};
-</script>
+
 </body>
 </html>
