@@ -43,6 +43,13 @@ body {
 span {
     color: black;
 }
+div#left {
+    width: 20%;
+    float: left;
+}
+div#main {
+    float: right;
+}
 </style>
 <script> 
 document.onreadystatechange = function () {
@@ -138,7 +145,7 @@ function toggleVisByID(idName) {
 </script>
 </head>
 <body>
-
+<div id="left">
 <h1>VHF Net Script</h1> 
 <label for="callinput">Callsign:</label>
 <input type="text" id="callinput" value="K1JST" /><br />
@@ -161,7 +168,8 @@ Net End Time: <span id="endTime"></span></p>
 <button id="netloggerButton" onclick="toggleVisByID('netlogger');toggleVisByID('netlogger2');">Netlogger</button><br />
 
 <button onclick="rep()">Replace</button> 
-
+</div>
+<div id="right">
 <h3>RI ARES VHF Repeater Net Script</h3> 
 <div class="instructions" id="pre-net-inst">
 <h4>Pre-Net Instructions</h4>
@@ -248,6 +256,6 @@ Mobile or Portable Stations, (with emphasis) I say again, only MOBILE OR PORTABL
 <p class="tx">We would like to thank all participants for joining this net, and thanks to all who stood by while the net was in session. The next RI ARES Net will be held at 7:30 pm, 1930 hours, on <span class="nextdate">(Date of Next Net)</span>. The Rhode Island ARES organization would like to thank the owner, trustee, and financial supporters of this repeater network for its use and maintenance. We look forward to our next net. This net is closed at <span id="currentTime">(time)</span> and this network is returned to normal amateur use. This is <span class="callsign">(Call Sign)</span> for W1RIA, goodnight. Out.</p>
 </div>
 <button onclick="endTick();tick();">Mark Net End Time</button> 
-
+</div>
 </body>
 </html>
