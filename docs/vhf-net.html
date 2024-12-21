@@ -45,11 +45,23 @@ span {
 }
 div#left {
     width: 20%;
-    height: 1500px;
-    margin: 10px, 10px, 0, 0;
+    height: 100%;
+    margin: 0;
+    position: fixed;
 }
 div#main {
     float: right;
+    width: 80%;
+}
+button {
+  background-color: #222222; /* Green */
+  border: none;
+  color: black;
+  padding: .1em 1em;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 8px;
 }
 </style>
 <script> 
@@ -169,6 +181,7 @@ Net End Time: <span id="endTime"></span></p>
 <button id="netloggerButton" onclick="toggleVisByID('netlogger');toggleVisByID('netlogger2');">Netlogger</button><br />
 
 <button onclick="rep()">Replace</button> 
+<textarea id="checkinbox1" class="checkinbox" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
 </div>
 <div id="right">
 <h3>RI ARES VHF Repeater Net Script</h3> 
@@ -200,17 +213,14 @@ This is the Rhode Island Amateur Radio Emergency Service Net for <span class="ne
 Mobile or Portable Stations, (with emphasis) I say again, only MOBILE OR PORTABLE STATIONS wishing to check in please call with your callsign, name and location, now, OVER.</p>
 <p>(Log call signs, names, and locations)</p>
 
-<textarea id="checkinbox1" class="checkinbox" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
 <p class="tx">The net recognises (read aloud the call signs heard) Out.</p>
 <p>(If nothing heard)</p><p class="tx"> Nothing Heard, Out.</p>
 <p class="tx">This is W1RIA Net control for this evening’s RI ARES Net, now FIXED STATIONS please call with your callsign, location and name now, OVER.</p> 
 <p>(Log call signs, names, and locations)</p>
 
-<textarea id="checkinbox2" class="checkinbox" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
 <p class="tx">The net recognises (read aloud the call signs heard) Out.</p>
 <p class=tx>This is W1RIA Net control, any additional stations for the net please call now, Over.</p> 
 
-<textarea id="checkinbox3" class="checkinbox" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
 <p>(Log call signs, names, and locations)</p><p class="tx">The net recognises (read aloud the call signs heard) Out.</p>
 <p>(If nothing heard)</p><p class="tx"> Nothing Heard, Out.</p>
 </div>
@@ -220,7 +230,6 @@ Mobile or Portable Stations, (with emphasis) I say again, only MOBILE OR PORTABL
 <h4>Announcements</h4>    
 <p class="tx">This is W1RIA, are there any announcements or news from any Emergency Coordinators who are checked into the net, over?</p> 
 
-<textarea id="announcement1" class="announcement" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
 <p class="tx">Net recognises (list Calls signs heard) with announcements for the net. (1st Call Sign) please come with your announcement, OVER</p>
 <p>(If nothing heard)</p><p class="tx"> Nothing Heard, Out.</p>
 <p class="tx">(After announcement acknowledge, and if you have questions or comments, make them) (announcer call sign) thanks.  Roger, Out.</p>
@@ -232,7 +241,6 @@ Mobile or Portable Stations, (with emphasis) I say again, only MOBILE OR PORTABL
 <p class=tx>This is W1RIA net control for this evening's net, any additional stations wishing to checkin to the net please come with your callsign, name and location now, Over.</p> 
 <p>(Log call signs, names, and locations)</p>
 
-<textarea id="checkinbox4" class="checkinbox" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
 <p class="tx">The net recognises (read aloud the call signs heard) Out.</p>
 <p>(If nothing heard)</p><p class="tx"> Nothing Heard, Out.</p>
 </div>
@@ -240,12 +248,9 @@ Mobile or Portable Stations, (with emphasis) I say again, only MOBILE OR PORTABL
 <div class="net" id="comments">
 <h4>Comments</h4>
 <p class="tx">This is W1RIA, Net control for this evening’s RI ARES Net, we will now take comments from each station, (Start with check-in call signs) Any comments for the net? </p>
-<textarea id="checkinreport" class="checkinreport" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
-<button onclick="loadcheckins()">Load Checkins</button> 
 <p>After last listed name</p> 
 <p class="tx">Are there any additional checkins for the net, over?</p>
 <p>Repeat process of logging & comments.</p>
-<textarea id="checkinbox5" class="checkinbox" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
 <p>(If nothing heard)</p><p class="tx"> Nothing Heard, Out.</p>
 <p class="tx">That is the bottom of the roster. This is W1RIA, Net control for this evening's RI ARES Net. Are there any additional stations, comments or business for the net before we close the net, Over.</p> 
 <p>Repeat process of logging & comments.</p>
