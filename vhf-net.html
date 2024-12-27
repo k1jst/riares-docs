@@ -188,12 +188,98 @@
         break-inside: avoid;
       }
     }
+    body #consentBox {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: #f3f3f3;
+    }
 
+    #consentBox {
+      background: #fff;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    #consentBox.hide {
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.8);
+      transition: all 0.3s ease;
+    }
+
+    #consentBox::selection {
+      color: #fff;
+      background: #229a0f;
+    }
+
+    #consentContent p {
+      color: #858585;
+      margin: 10px 0 20px 0;
+    }
+
+    #consentContent .buttons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    #consentButton,
+    #rejectButton {
+      padding: 12px 30px;
+      border: none;
+      outline: none;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 500;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    #consentButton {
+      background: #2a910b;
+      margin-right: 10px;
+    }
+
+    #rejectButton {
+      color: #111211;
+      background: transparent;
+      border: 2px solid #099c2c;
+      text-decoration: none;
+    }
+
+    #consentBox img {
+      max-width: 90px;
+    }
+
+    #consentHeader {
+      font-size: 25px;
+      font-weight: 600;
+      margin-top: 10px;
+    }
     
   </style>
 </head>
 
 <body>
+  <div id="consentBox">
+    <img src="img/ares_logo.png" />
+    <div id="consentContent">
+      <header id="consentHeader">Cookies: Your Choice</header>
+      <p>We can use cookies to save your custom information on your computer so you don't need to enter it all the time.<br />If you don't want cookies saved on your computer, the scripts will default to K1JST's information every time you load the page, but it's your call.</p>
+      <div id="consentButtons">
+        <button id="consentButton">Save My Info</button><button id="rejectCookies">No Thanks</button>
+      </div>
+
+    </div>
+  </div>
   <div id="wrapper">
     <div id="left">
       
@@ -437,19 +523,22 @@
       <button id="nettimesdivButton" style="background-color: green;" onmousedown='' onclick='toggleVisByID("nettimesdiv")'>Time</button><br />
       <button id="netloggerButton" onclick="toggleVisByID('netlogger');toggleVisByID('netlogger2');">Netlogger</button><br />
       <button id="netlogger2Button" style="display: none;">Netlogger2</button>
+      <button id="printButton" title="Customize before you print" onclick="window.print()">Print</button>
       <button onclick="rep()">Replace</button>
     </div>
   </div>
   <div id="checkinsdiv">
     <label for="checkinbox">Checkins:</label><br />
-    <label for="checkinbox" style="font-size: .7em">CALL First Name, Location,
-      Mobile/IO/Notes</label>
+    <label for="checkinbox" style="font-size: .7em">CALL First Name, Location,Mobile/IO/Notes</label>
     <div id="checkin-area">
       <pre title="Click on an entry to return it to the edit block. Press or Click Enter to submit a line." id="checkinreport">
       </pre>
       <div class="textarea-wrapper">
-        <input title="Type text and press Enter key or click enter button to the right" id="checkinbox" type="text" /><button title="Enter" id="checkinboxButton" onclick="checkinEntry()"> ↵ </button><button title="Copy Net Report to Clipboard" id="copyclip" onclick="copyclipCheckins()"> 📋 </button><button title="Increase font size" onclick="checkinAreaFont('increase')"> ➕ </button><button title="Decrease font size" onclick="checkinAreaFont('decrease')"> ➖ </button>
-
+        <input title="Type text and press Enter key or click enter button to the right" id="checkinbox" type="text" />
+        <button title="Enter" id="checkinboxButton" onclick="checkinEntry()"> ↵ </button>
+        <button title="Copy Net Report to Clipboard" id="copyclip" onclick="copyclipCheckins()"> 📋 </button>
+        <!--<button title="Increase font size" onclick="checkinAreaFont('increase')"> ➕ </button> 
+        <button title="Decrease font size" onclick="checkinAreaFont('decrease')"> ➖ </button>  Needs Work -->
         <script>
           document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('checkinbox').onkeydown = function (e) {
@@ -623,6 +712,30 @@
         }
       }
 
+      const consentBox = document.getElementById("consentBox");
+      const acceptBtn = document.getElementById("consentButton");
+      const rejectBtn = getElementById("rejectButton");
+      acceptBtn.onclick = () => {
+        document.cookie = "CookieBy=RIARES; max-age="+ 60 * 60 * 24 * 7 * 52;
+        if (document.cookie) {
+          consentBox.classList.add("hide");
+        } else {
+          alert
+            ("Cookie can't be set! Please"+
+              " unblock this site from the cookie"+
+              " setting of your browser.");
+        }
+      };
+
+      rejectBtn.onclick = () => {
+        alert
+          ("You're the boss.");
+        consentBox.classList.add("hide");
+      };
+
+      let checkCookie = document.cookie.indexOf("CookieBy=RIARES");
+      checkCookie !== -1 ? consentBox.classList.add("hide") :
+      consentBox.classList.remove("hide");
     </script>
 </body>
 
