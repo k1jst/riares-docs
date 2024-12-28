@@ -794,7 +794,29 @@
         //}catch(e){
         //  alert(e);
         //}
-        navigator.clipboard.writeText(text); 
+        //navigator.clipboard.writeText(text);
+        let copyText = document.getElementById("clipboardTextArea");
+        copyText.select();
+        if (window.location.protocol === 'https:') {
+          copyText.setSelectionRange(0, 99999);
+          navigator.clipboard
+            .writeText(copyText.textContent)
+            .then(() => {
+              alert("successfully copied");
+            })
+            .catch(() => {
+              alert("something went wrong");
+            });
+        }
+        else {
+          try {
+            document.execCommand("copy");
+            alert(copyText.textContent + "should be in the clipboard.")
+          } catch(e) {
+            alert("something went wrong, specifically:" + e);
+            }
+          } 
+
       }
     </script>
     <script id="clockscript"> //Draws Clock
