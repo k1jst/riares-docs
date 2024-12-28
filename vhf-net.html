@@ -618,7 +618,7 @@
       function repDate(replaceDate, fromID) {
         const date = new Date(document.getElementById(fromID).value + 'T00:00')
         const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-        const months = ['Months', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        const months = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         const dayOfWeek = date.getDay();
         const month = date.getMonth();
         const day = getOrdinalNumber(date.getDate());
