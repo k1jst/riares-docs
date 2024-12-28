@@ -600,9 +600,9 @@
           repClass(replacing.repClass, replacing.fromID);
         });
         if (getCookie('allow')) {
-            setCookie('callsign', inputCallsign);
-            setCookie('firstname', inputName);
-            setCookie('qth', inputLocation);
+            setCookie('callsign', document.getElementById('inputCallsign').value);
+            setCookie('firstname', document.getElementById('inputName').value);
+            setCookie('qth', document.getElementById('inputLocation').value);
         }
         replaceDate.forEach(replacingDate => {
           repDate(replacingDate.repClass, replacingDate.fromID);
