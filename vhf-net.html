@@ -415,7 +415,7 @@
         <button onclick="rep()">Replace</button>
       </div>
       <div id="nettimesdiv" class="sidebar">
-        <b>Net Start Time: <span id=" netstarttime" class="startTime">(not marked)</span><br />
+        <b>Net Start Time: <span id="netstarttime" class="startTime">(not marked)</span><br />
           <button class="markstartButton" style="background-color: red" onclick="tick('start','mark')">Mark</button>
           <button style="background-color: red;" onclick="tick('start','clear')">Clear</button><br />
           Net End Time: <span id="netendtime" class="endTime">(not marked)</span><br />
@@ -785,38 +785,14 @@
         text += "Net Start Time: " + document.getElementById('netstarttime').textContent + '\nCheckins:\n';
         text += document.getElementById('checkinreport').textContent;
         text += "\nNet End Time: " + document.getElementById('netendtime').textContent;
-        const copyTextArea = document.createElement('clipboardTextArea');
-        copyTextArea.textContent = text;
-        //try{
-        //  document.body.append(copyTextArea);
-        //  copyTextArea.select();
-        //  document.execCommand("copy");    
-        //}catch(e){
-        //  alert(e);
-        //}
-        //navigator.clipboard.writeText(text);
-        let copyText = document.getElementById("clipboardTextArea");
-        copyText.select();
-        if (window.location.protocol === 'https:') {
-          copyText.setSelectionRange(0, 99999);
-          navigator.clipboard
-            .writeText(copyText)
-            .then(() => {
-              alert("successfully copied");
-            })
-            .catch(() => {
-              alert("something went wrong");
-            });
-        }
-        else {
-          try {
-            document.execCommand("copy");
-            alert("should be in the clipboard.");
-          } catch(e) {
-            alert("something went wrong, specifically:" + e);
-            }
-          } 
-
+        navigator.clipboard
+          .writeText(text)
+          .then(() => {
+            alert("Successfully copied checkin report to the clipboard");
+          })
+          .catch(error => {
+            alert("Something went wrong copying to the clipboard. Error:" + error);
+          });
       }
     </script>
     <script id="clockscript"> //Draws Clock
