@@ -1,17 +1,33 @@
 <!DOCTYPE html>
 <html lang="en-us">
+<!--
+    Copyright (C) 2024 Jeremy Taylor
+    k1jst at riares dot org
 
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
 <head>
-  <script id="variables"> //Script Settings
+  <script id="variables">
+    // Use these variables to set default values if you are using the file offline or hosting it yourself.
     let defaultInputCallsign = "K1JST";
     let defaultInputName = "Jeremy";
     let defaultInputLocation = "Coventry, RI";
-    const cookies = "true";
-    const cookieshttp = "true";
+    const cookies = "true"; // false: no cookie permission popup, cookies not allowed 
+    const cookieshttp = "true"; // false: no cookie popup unless the page is being served over https
     const exercise = {
       'Comments': '<p class="tx">This is W1RIA, Net control for this evening’s RI ARES Net, we will now take comments from each station</p><p>Call each station and request comments. Start with Mobile or Portable stations. Skip any In and Out stations. Alternatively, you can request anyone with comments call in, as you did with announcements.</p><p class="tx">(1st Call Sign) Any comments for the net, OVER?</p><p>(If nothing heard)</p><p class="tx"> Nothing Heard, OUT.</p>',
       'Weather': '<p class="tx">This is W1RIA, Net control for this evening’s RI ARES Net. This evening\'s exercise will be to collect weather information from each station. It is ok if you do not have any information to report, just respond with "No Traffic for the Net". If you have any of this information available, please report the current temperature, humidity, barometric pressure, wind speed, wind direction, highest recent wind gusts, precipitation totals, or any other pertinent weather information.</p><p>Call each station and request comments. Start with Mobile or Portable stations. Skip any In and Out stations. Alternatively, you can request anyone with comments call in, as you did with announcements</p><p class="tx">(1st Call Sign) please come with your weather information for the net, OVER.</p><p>(If nothing heard)</p><p class="tx"> Nothing Heard, OUT.</p>'
-
     }
   </script>
   <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -22,7 +38,7 @@
       left: 0;
       width: auto;
       font-family: 'Courier New', monospace;
-      font-weight: 600;
+      font-weight: bold;
       font-size: 1.25em;
       background-color: #444;
       opacity 1;
@@ -641,14 +657,14 @@
         }
       };
       function tick(y, x) {
-        var j = document.getElementsByClassName(y + "Time")
-        var elems = document.querySelectorAll('.mark' + y + 'Button');
+        let j = document.getElementsByClassName(y + "Time")
+        let elems = document.querySelectorAll('.mark' + y + 'Button');
         switch (x) {
           case 'mark':
             for (let i = 0; i < j.length; i++) {
               j[i].textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
             }
-            var index = 0, length = elems.length;
+            let index = 0, length = elems.length;
             for ( ; index < length; index++) {
               elems[index].style.backgroundColor = "green";
             }
@@ -657,15 +673,15 @@
             for (let i = 0; i < j.length; i++) {
               j[i].textContent = '(not marked)';
             }
-            var index = 0, length = elems.length;
+            let index = 0, length = elems.length;
             for ( ; index < length; index++) {
               elems[index].style.backgroundColor = "red";
             }
         }
       };
       function toggleVisByID(idName) {
-        var x = document.getElementById(idName);
-        var y = document.getElementById(idName + 'Button');
+        let x = document.getElementById(idName);
+        let y = document.getElementById(idName + 'Button');
         if (!x.classList.contains('hidden')) {
           x.classList.add('hidden');
           y.style.backgroundColor = "red";
@@ -675,13 +691,7 @@
           y.style.backgroundColor = "green";
         }
       }
-      document.onreadystatechange = function () {
-        if (document.readyState == "complete") {
-
-
-          // Initial update 
-        }
-      }
+      
       function getCookie(name) {
         let matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
         return matches ? decodeURIComponent(matches[1]) : undefined;
@@ -707,8 +717,9 @@
       function cookieCheck() {
         const consentBox = document.getElementById("consentBox");
         if (cookies && (cookieshttp || window.location.protocol === 'https:')) {
-          if (getCookie('allow')) {
+          if (getCookie('allow')) { 
             consentBox.classList.add("hide");
+            setCookie('allow','true');
           } else {
             consentBox.classList.remove("hide");
           }
