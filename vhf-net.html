@@ -49,7 +49,6 @@
       z-index: 20;
     }
 
-
     * {
       box-sizing: inherit;
     }
@@ -664,7 +663,7 @@
             for (let i = 0; i < j.length; i++) {
               j[i].textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
             }
-            let index = 0, length = elems.length;
+            var index = 0, length = elems.length;
             for ( ; index < length; index++) {
               elems[index].style.backgroundColor = "green";
             }
@@ -673,7 +672,7 @@
             for (let i = 0; i < j.length; i++) {
               j[i].textContent = '(not marked)';
             }
-            let index = 0, length = elems.length;
+            var index = 0, length = elems.length;
             for ( ; index < length; index++) {
               elems[index].style.backgroundColor = "red";
             }
