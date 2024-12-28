@@ -787,10 +787,15 @@
         text += "\nNet End Time: " + document.getElementById('netendtime').textContent;
         const copyTextArea = document.createElement('clipboardTextArea');
         copyTextArea.textContent = text;
-        document.body.append(copyTextArea);
-        copyTextArea.select();
-        document.execCommand("copy");
-        copyTextArea.remove();
+
+        try{
+          document.body.append(copyTextArea);
+          copyTextArea.select();
+          document.execCommand("copy");    
+        }catch(e){
+          alert(e);
+        }
+        
       }
     </script>
     <script id="clockscript"> //Draws Clock
