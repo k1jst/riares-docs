@@ -25,9 +25,11 @@
     let defaultInputLocation = "Coventry, RI";
     const cookies = "true"; // false: no cookie permission popup, cookies not allowed 
     const cookieshttp = "true"; // false: no cookie popup unless the page is being served over https
-    const exercise = {
-      'Comments': '<p class="tx">This is W1RIA, Net control for this evening’s RI ARES Net, we will now take comments from each station</p><p>Call each station and request comments. Start with Mobile or Portable stations. Skip any In and Out stations. Alternatively, you can request anyone with comments call in, as you did with announcements.</p><p class="tx">(1st Call Sign) Any comments for the net, OVER?</p><p>(If nothing heard)</p><p class="tx"> Nothing Heard, OUT.</p>',
-      'Weather': '<p class="tx">This is W1RIA, Net control for this evening’s RI ARES Net. This evening\'s exercise will be to collect weather information from each station. It is ok if you do not have any information to report, just respond with "No Traffic for the Net". If you have any of this information available, please report the current temperature, humidity, barometric pressure, wind speed, wind direction, highest recent wind gusts, precipitation totals, or any other pertinent weather information.</p><p>Call each station and request comments. Start with Mobile or Portable stations. Skip any In and Out stations. Alternatively, you can request anyone with comments call in, as you did with announcements</p><p class="tx">(1st Call Sign) please come with your weather information for the net, OVER.</p><p>(If nothing heard)</p><p class="tx"> Nothing Heard, OUT.</p>'
+    const exerciseChoices = {
+      'Comments': '<h4>Comments</h4><p class="tx">This is W1RIA, Net control for this evening’s RI ARES Net, we will now take comments from each station</p><p>Call each station and request comments. Start with Mobile or Portable stations. Skip any In and Out stations. Alternatively, you can request anyone with comments call in, as you did with announcements.</p><p class="tx">(Call Sign) Any comments for the net, OVER?</p><p>(If nothing heard)</p><p class="tx"> Nothing Heard, OUT.</p>',
+      'Weather': '<h4>Weather</h4><p class="tx">This is W1RIA, Net control for this evening’s RI ARES Net. This evening’s exercise will be to collect weather information from each station. It is ok if you do not have any information to report, just respond with "No Traffic for the Net". If you have any of this information available, please report the current temperature, humidity, barometric pressure, wind speed, wind direction, highest recent wind gusts, precipitation totals, or any other pertinent weather information.</p><p>Call each station and request comments. Start with Mobile or Portable stations. Skip any In and Out stations. Alternatively, you can request anyone with traffic call in, as you did with announcements</p><p class="tx">(Call Sign) please come with your weather information for the net, OVER.</p><p>(If nothing heard)</p><p class="tx"> Nothing Heard, OUT.</p>',
+      'Airport_Weather': '<h4>Airport Weather</h4><p class="tx">This is W1RIA, Net control for this evening’s RI ARES Net. This evening’s exercise will be to report local airport weather information gathered broadcasts in the VHF-AM Aviation Band. Details of the frequencies and airport locations of these broadcasts can be found at the ri ares dot org website under the documents tab. Traffic contents include airport name, ZULU time of report, and if available the wind, visibility, sky condition, temperature, dew point, and altimeter. It is ok if you do not have any information to report, just respond with "No Traffic for the Net". This is W1RIA, Net control for the RI ARES VHF Net, we will now take traffic from each station for this exercise.</p><p>Call each station and request comments. Start with Mobile or Portable stations. Skip any In and Out stations. Alternatively, you can request anyone with traffic call in, as you did with announcements</p><p class="tx">(Call Sign) please come with your traffic for the net, OVER.</p><p>(If nothing heard)</p><p class="tx"> Nothing Heard, OUT.</p>',
+      'Repeater': '<h4>Repeater</h4><p class="tx">This is W1RIA, Net control for this evening’s RI ARES Net. This evening’s exercise will be to report which repeater you are using to check into the net and your current power level. You may also provide any comments you may have for the net. This is W1RIA, Net control for the RI ARES VHF Net, we will now take traffic from each station for this exercise.</p><p>Call each station and request comments. Start with Mobile or Portable stations. Skip any In and Out stations.</p><p class="tx">(Call Sign) please come with your traffic for the net, OVER.</p><p>(If nothing heard)</p><p class="tx"> Nothing Heard, OUT.</p>'
     }
   </script>
   <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -37,6 +39,8 @@
       top: 0;
       left: 0;
       width: auto;
+      height: auto;
+      text-align: center;
       font-family: 'Courier New', monospace;
       font-weight: bold;
       font-size: 1.25em;
@@ -48,6 +52,8 @@
       box-shadow: 0 1em 2em rgba(0, 0, 0, 0.3);
       z-index: 20;
     }
+
+
 
     * {
       box-sizing: inherit;
@@ -116,6 +122,12 @@
       border: none;
     }
 
+    .timediv button {
+      background-color: rgba(0, 0, 0, 0.3)
+    }
+    .timediv button.clear {
+      padding: 0;
+    }
     p.tx::before {
       color: black;
       font-size: 1.25em;
@@ -355,9 +367,10 @@
       display: flex;
       justify-content: center;
     }
-    .markstartButton,
-    .markendButton {
-      background-color: red;
+    
+    .time {
+      color:white;
+      font-size: 1rem !important;
     }
   </style>
 </head>
@@ -376,19 +389,28 @@
     </ul>
     <p>If you have any suggestions or comments reach out to K1JST. Feel free to make your own improvements and submit a pull request at https://github.com/k1jst/riares-docs/</p>
   </div>
-  <div id="clockdiv"><div class="clock"></div><button class="markstartButton" onclick="tick('start','mark')">Mark Start</button><button class="markendButton" onclick="tick('end','mark')">Mark End</button></div>
+  <div id="clockdiv">
+    <div class="clock"></div>
+    <div class="timediv">
+    <button class="markstartButton" onclick="tick('start','mark')">Start ✅</button>
+    <button class="markendButton" onclick="tick('end','mark')">End ✅</button>
+    <div id="startTimediv" class="time startTimediv hidden">S 
+      <span id="netstarttime" class="time startTime">(not marked)</span> <button class="clearstarttButton clear" onclick="tick('start','clear')">❎</button>
+    </div>
+    <div id="endTimediv" class="time endTimediv hidden">E 
+      <span id="netendtime" class="time endTime">(not marked)</span> <button class="clearendButton clear" onclick="tick('end','clear')">❎</button>
+    </div>
+  </div></div>
   <div id="customtoggle"><button id="customizetoggleButton"
     onclick='toggleVisByID("customizetoggle")'> ☰ </button><button popovertarget="help" id="helpButton">❔</button><br />
   <div id="customizetoggle">
     <button id="clockdivButton" style="background-color: green;"
       onclick='toggleVisByID("clockdiv")'>Clock</button><br />
-    <button id="allinputdivButton" onclick='toggleVisByID("inputdiv"); toggleVisByID("inputdatediv"); toggleVisByID("nettimesdiv");'>All Input</button><br />
+    <button id="allinputdivButton" onclick='toggleVisByID("inputdiv"); toggleVisByID("inputdatediv");'>All Input</button><br />
     <button id="inputdivButton" style="background-color: green;"
       onclick='toggleVisByID("inputdiv")'>Call/Name</button><br />
     <button id="inputdatedivButton" style="background-color: green;"
-      onclick='toggleVisByID("inputdatediv")'>Date</button><br />
-    <button id="nettimesdivButton" style="background-color: green;"
-      onclick='toggleVisByID("nettimesdiv")'>Time</button><br />
+      onclick='toggleVisByID("inputdatediv")'>Date/Exercise</button><br />
     <button id="netloggerButton"
       onclick="toggleVisByID('netlogger');toggleVisByID('netlogger2');">Netlogger</button><br />
     <button id="netlogger2Button" style="display: none;">Netlogger2</button>
@@ -433,15 +455,10 @@
         <input type="date" class="repvalue" id="netdatePicker" /><br />
         <label for="nextdatePicker">Next Net Date:</label>
         <input type="date" class="repvalue" id="nextdatePicker" /><br />
+        <label for="exercisePicker">Exercise</label>
+        <select id="exercisePicker" class="repvalue">
+        </select>
         <button onclick="rep()">Replace</button>
-      </div>
-      <div id="nettimesdiv" class="sidebar">
-        <b>Net Start Time: <span id="netstarttime" class="startTime">(not marked)</span><br />
-          <button class="markstartButton" style="background-color: red" onclick="tick('start','mark')">Mark</button>
-          <button style="background-color: red;" onclick="tick('start','clear')">Clear</button><br />
-          Net End Time: <span id="netendtime" class="endTime">(not marked)</span><br />
-          <button class="markstartButton" style="background-color: red" onclick="tick('end','mark')">Mark</button>
-          <button style="background-color: red;" onclick="tick('end','clear')">Clear</button></b>
       </div>
     </div>
   <div id="right">
@@ -531,8 +548,8 @@
       <p>(If nothing heard)</p>
       <p class="tx"> Nothing Heard, OUT.</p>
     </div>
-    <div class="net" id="comments">
-      <h4>Comments</h4>
+    <div class="net" id="exercise">
+      <h4>Exercise</h4>
       <p class="tx">This is W1RIA, Net control for this evening’s RI ARES Net, we will now take comments from each
         station, (Start with check-in call signs) Any comments for the net? </p>
       <p>After last listed name</p>
@@ -576,6 +593,27 @@
       </div>
     </div>
     <script>
+      function repExercise() {
+        const dest = document.getElementById('exercise');
+        const pick = document.getElementById('exercisePicker').value;
+        for (choice in exerciseChoices) {
+          if (pick === choice) {
+            dest.innerHTML = exerciseChoices[pick];
+          }
+        }
+      }
+      function exerciseChoiceBuilder() {
+        const dest = document.getElementById('exercisePicker');
+        let result = '';
+        for (choice in exerciseChoices) {
+          if (choice === "Comments") {
+            result += '<option value=' + choice + ' selected>'+ choice + '</option>';
+          } else {
+            result += '<option value=' + choice + ' >'+ choice + '</option>';
+          }
+        }
+        dest.innerHTML = result;
+      }
       function textToPhonetic(text) {
         const phoneticAlphabet = {
           'a': 'Alpha', 'b': 'Bravo', 'c': 'Charlie', 'd': 'Delta',
@@ -618,6 +656,7 @@
         { repClass: "nextdate", fromID: "nextdatePicker" }
       ];
       function rep() {
+        repExercise();
         replace.forEach(replacing => {
           repClass(replacing.repClass, replacing.fromID);
         });
@@ -658,6 +697,7 @@
       function tick(y, x) {
         let j = document.getElementsByClassName(y + "Time")
         let elems = document.querySelectorAll('.mark' + y + 'Button');
+        let elemsdiv = document.getElementsByClassName( y + 'Timediv');
         switch (x) {
           case 'mark':
             for (let i = 0; i < j.length; i++) {
@@ -667,6 +707,10 @@
             for ( ; index < length; index++) {
               elems[index].style.backgroundColor = "green";
             }
+            var index = 0, length = elemsdiv.length;
+            for ( ; index < length; index++) {
+              elemsdiv[index].classList.remove("hidden");
+            }
             break;
           case 'clear':
             for (let i = 0; i < j.length; i++) {
@@ -674,7 +718,11 @@
             }
             var index = 0, length = elems.length;
             for ( ; index < length; index++) {
-              elems[index].style.backgroundColor = "red";
+              elems[index].style.backgroundColor = "#444";
+            }
+            var index = 0, length = elemsdiv.length;
+            for ( ; index < length; index++) {
+              elemsdiv[index].classList.add("hidden");
             }
         }
       };
@@ -762,6 +810,7 @@
         let nextdateTimeString = new Date(Date.now() + 12096e5);
         document.getElementById('netdatePicker').value = new Date(dateTimeString + "Z").toISOString().slice(0, 10);
         document.getElementById('nextdatePicker').value = new Date(nextdateTimeString + "Z").toISOString().slice(0, 10);
+        exerciseChoiceBuilder();
         rep();
       });
 
