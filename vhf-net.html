@@ -734,8 +734,8 @@
         cookieCheck();
         if (getCookie('allow')) {
           if (getCookie('callsign')) defaultInputCallsign = getCookie('callsign');
-          if (getCookie('firstname')) defaultInputName = getCookie('name');
-          if (getCookie('qth')) defaultInputLocation = getCookie('location');
+          if (getCookie('firstname')) defaultInputName = getCookie('firstname');
+          if (getCookie('qth')) defaultInputLocation = getCookie('qth');
         }
         document.getElementById('inputCallsign').value = defaultInputCallsign;
         document.getElementById('inputName').value = defaultInputName;
