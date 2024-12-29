@@ -53,8 +53,6 @@
       z-index: 20;
     }
 
-
-
     * {
       box-sizing: inherit;
     }
@@ -122,6 +120,10 @@
       border-radius: 3px;
       margin: .2em;
       border: none;
+    }
+
+    .sidebar button {
+      padding: 0;
     }
 
     .timediv button {
@@ -374,22 +376,38 @@
       color:white;
       font-size: 1rem !important;
     }
+
+    #help {
+      width: 90vw;
+      background-color: #88aaff;
+      padding: 1em;
+    }
+
+    #help #helpsymbol {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color:white;
+      display: inline-block;
+      padding: .5em;
+
+    }
   </style>
 </head>
 
 <body>
   <div popover id="help">
-    <p>Thanks for checking out our customizable net script.</p>
+    <div id="helpsymbol">❔</div><p>Thanks for checking out our customizable net script.</p>
     <ul>
       <li>Use the menu ☰ to toggle visibility of customizable elements and inputs.</li>
-      <li>Enter your customization in the input boxes and press the Replace button. If you have cookies enabled and the page is not being used locally these values will be stored as cookies.</li>
+      <li>Enter your customization in the input boxes and press replace ⟳. If you have cookies enabled and the page is not being used locally these values will be stored as cookies.</li>
       <li>The Date fields automatically populate. The Next Net date is set for 2 weeks out. If this is inaccurate use the date picker to select the correct value.</li>
-      <li>Use the Mark buttons to mark the start and end of the net. This will be used in the Net Report, and the end time will also populate in the net closing portion of the script.</li>
-      <li>Populate checkins at the bottom of the screen by typing in the text box. Press Enter to submit a checkin. If you need to edit a checkin, click on it in the list... the checkin value will be returned to the edit window for you to change. Press enter to resubmit.</li>
-      <li>Use the clipboard icon to copy a checkin report to the clipboard that you can paste into an email or google form.</li>
+      <li>Use Start ✅ and End ✅ to mark the start and end of the net. This will be used in the Net Report, and the end time will also populate in the net closing portion of the script.</li>
+      <li>Populate checkins at the bottom of the screen by typing in the text box. Press or click Enter ⏎ to submit a checkin. If you need to edit a checkin, click on it in the list... the checkin value will be returned to the edit window for you to change. Press or click Enter ⏎ to resubmit.</li>
+      <li>Use the Clipboard 📋 to copy a checkin report to the clipboard that you can paste into an email or google form.</li>
       <li>The script is also designed to be used offline. All of the code is embedded in the html file. If you save the html file to your computer, you can edit the variables at the top of the file to disable the cookie popup and set your defaults.</li>
     </ul>
-    <p>If you have any suggestions or comments reach out to K1JST. Feel free to make your own improvements and submit a pull request at https://github.com/k1jst/riares-docs/</p>
+    <p>If you have any suggestions or comments reach out to K1JST. Feel free to make your own improvements and submit a pull request at <a href="https://github.com/k1jst/riares-docs/">https://github.com/k1jst/riares-docs/</a></p>
   </div>
   <div id="clockdiv">
     <div class="clock"></div>
@@ -407,17 +425,17 @@
     onclick='toggleVisByID("customizetoggle")'> ☰ </button><button popovertarget="help" id="helpButton">❔</button><br />
   <div id="customizetoggle">
     <button id="clockdivButton" style="background-color: green;"
-      onclick='toggleVisByID("clockdiv")'>Clock</button><br />
+      onclick='toggleVisByID("clockdiv")'>Clock 🕓</button><br />
     <button id="allinputdivButton" onclick='toggleVisByID("inputdiv"); toggleVisByID("inputdatediv");'>All Input</button><br />
     <button id="inputdivButton" style="background-color: green;"
-      onclick='toggleVisByID("inputdiv")'>Call/Name</button><br />
+      onclick='toggleVisByID("inputdiv")'>Call/Name 👤</button><br />
     <button id="inputdatedivButton" style="background-color: green;"
-      onclick='toggleVisByID("inputdatediv")'>Date/Exercise</button><br />
+      onclick='toggleVisByID("inputdatediv")'>Date/Exercise 📅🏋🏻‍♂️</button><br />
     <button id="netloggerButton"
-      onclick="toggleVisByID('netlogger');toggleVisByID('netlogger2');">Netlogger</button><br />
+      onclick="toggleVisByID('netlogger');toggleVisByID('netlogger2');">Netlogger 🖥️</button><br />
     <button id="netlogger2Button" style="display: none;">Netlogger2</button>
-    <button id="printButton" title="Customize before you print" onclick="window.print()">Print</button>
-    <button onclick="rep()">Replace</button>
+    <button id="printButton" title="Customize before you print" onclick="window.print()">Print 🖨️</button>
+    <button onclick="rep()">Replace ⟳</button>
   </div>
 </div>
   <div id="page">
@@ -450,7 +468,7 @@
         <input type="text" id="inputName" class="repvalue" value="" /><br />
         <label for="inputLocation">Your Location:</label>
         <input type="text" id="inputLocation" class="repvalue" value="" /><br />
-        <button onclick="rep()">Replace</button>
+        <button onclick="rep()">🔁</button>
       </div>
       <div id="inputdatediv" class="sidebar">
         <label for="netdatePicker">Net Date:</label>
@@ -460,7 +478,7 @@
         <label for="exercisePicker">Exercise</label>
         <select id="exercisePicker" class="repvalue">
         </select>
-        <button onclick="rep()">Replace</button>
+        <button onclick="rep()">🔁</button>
       </div>
     </div>
   <div id="right">
@@ -516,16 +534,16 @@
         <p>If a partial callsign is heard or the signal is very noisy, ask the station to change position or boost power
           and try checking in again.</p>
       </aside>
-      <p class="tx">The net recognises (read aloud the call signs heard) OUT.</p>
+      <p class="tx">The net recognizes (read aloud the call signs heard) OUT.</p>
       <p>(If nothing heard)</p>
       <p class="tx"> Nothing Heard, OUT.</p>
       <p class="tx">This is W1RIA Net control for this evening’s RI ARES Net, now FIXED STATIONS please call with your
         callsign, location and name now, OVER.</p>
       <p>(Log call signs, names, and locations)</p>
-      <p class="tx">The net recognises (read aloud the call signs heard) OUT.</p>
+      <p class="tx">The net recognizes (read aloud the call signs heard) OUT.</p>
       <p class=tx>This is W1RIA Net control, any additional stations for the net please call now, OVER.</p>
       <p>(Log call signs, names, and locations)</p>
-      <p class="tx">The net recognises (read aloud the call signs heard) OUT.</p>
+      <p class="tx">The net recognizes (read aloud the call signs heard) OUT.</p>
       <p>(If nothing heard)</p>
       <p class="tx"> Nothing Heard, OUT.</p>
     </div>
@@ -533,7 +551,7 @@
       <h4>Announcements</h4>
       <p class="tx">This is W1RIA, are there any announcements or news from any Emergency Coordinators who are checked
         into the net, OVER?</p>
-      <p class="tx">Net recognises (list Calls signs heard) with announcements for the net. (1st Call Sign) please come
+      <p class="tx">Net recognizes (list Calls signs heard) with announcements for the net. (1st Call Sign) please come
         with your announcement, OVER</p>
       <p>(If nothing heard)</p>
       <p class="tx"> Nothing Heard, OUT.</p>
@@ -546,7 +564,7 @@
       <p class=tx>This is W1RIA net control for this evening's net, any additional stations wishing to checkin to the
         net please come with your callsign, name and location now, OVER.</p>
       <p>(Log call signs, names, and locations)</p>
-      <p class="tx">The net recognises (read aloud the call signs heard) OUT.</p>
+      <p class="tx">The net recognizes (read aloud the call signs heard) OUT.</p>
       <p>(If nothing heard)</p>
       <p class="tx"> Nothing Heard, OUT.</p>
     </div>
@@ -588,7 +606,7 @@
       </pre>
       <div class="textarea-wrapper">
         <input title="Type text and press Enter key or click enter button to the right" id="checkinbox" type="text" />
-        <button title="Enter" id="checkinboxButton" onclick="checkinEntry()"> ↵ </button>
+        <button title="Enter" id="checkinboxButton" onclick="checkinEntry()"> ⏎ </button>
         <button title="Copy Net Report to Clipboard" id="copyclip" onclick="copyclipCheckins()"> 📋 </button>
         <!--<button title="Increase font size" onclick="checkinAreaFont('increase')"> ➕ </button> 
         <button title="Decrease font size" onclick="checkinAreaFont('decrease')"> ➖ </button>  Needs Work -->
