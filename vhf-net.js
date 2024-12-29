@@ -29,8 +29,8 @@ function buildSelectChoiceExercise() {
 /**
  * Builds digital clock in HH:MM:SS format
  */
-let clock = document.querySelector('.clock');
 function updateTime() {
+    let clock = document.querySelector('div#digital-clock');
     let hours = new Date().getHours();
     let minutes = new Date().getMinutes();
     let seconds = new Date().getSeconds();
@@ -108,6 +108,11 @@ function setCookieValues() {
         setCookie('qth', document.getElementById('inputLocation').value);
     }
 }
+/**
+ * Updates the date values in the script from the input field
+ * @param {date} replaceDate - Date to format and insert as string
+ * @param {string} fieldId - Where to put it
+ */
 function setDateValues(replaceDate, fieldId) {
     const date = new Date(document.getElementById(fieldId).value + 'T00:00')
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -178,39 +183,36 @@ function toggleVisByID(idName) {
     }
 }
 
-function setVisibility(className, attributes = {}) {
-    attributes = {
-        'change': 'toggle',
-        'button': className + "Button"
-    }
-    let elements = document.querySelectorAll(className);
-    let buttons = document.querySelectorAll(attributes.button);
-    elements.forEach(element => {
-        switch (attributes.change) {
-            case 'toggle':
-                if (element.classList.contains('hidden')) {
-                    element.classList.remove('hidden');
-                    buttons.forEach(button => { button.classList.add('button--state-active') });
-                } else {
-                    element.classList.add('hidden');
-                    buttons.forEach(button => { button.classList.remove('button--state-active') });
-                }
-                break;
-            case 'show':
-                element.classList.remove('hidden');
-                buttons.forEach(button => { button.classList.add('button--state-active') });
-                break;
-            case 'hide':
-                element.classList.add('hidden');
-                buttons.forEach(button => { button.classList.remove('button--state-active') });
+function setVisibility(divName, change, button) {
+    if (!button) { button = divName + 'Button'}
+    if (!change) { change = 'toggle' }
+    let _element = document.querySelector(`#${divName}`);
+    let _button = document.querySelector(`#${button}`);
+    if (change === 'toggle') {
+        if (_element.classList.contains('hidden')) {
+            _element.classList.remove('hidden');
+            _button.classList.add('button--state-active');
+        } else {
+            _element.classList.add('hidden');
+            _button.classList.remove('button--state-active');
         }
-    })
+    }
+    if (change === 'show') {
+        _element.classList.remove('hidden');
+        _button.classList.add('button--state-active');
+    }
+    if (change === 'hide') {
+        _element.classList.add('hidden');
+        _button.classList.remove('button--state-active');
+    }
 }
+
 
 function getCookie(name) {
     let matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
     return matches ? decodeURIComponent(matches[1]) : undefined;
 }
+
 function setCookie(name, value, attributes = {}) {
     attributes = {
         path: '/',
