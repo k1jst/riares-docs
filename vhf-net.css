@@ -1,0 +1,364 @@
+.clock-block {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: auto;
+    height: auto;
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    font-size: 1.25em;
+    background-color: #444;
+    opacity: 1;
+    color: white;
+    padding: .5em;
+    margin: .2em;
+    box-shadow: 0 1em 2em rgba(0, 0, 0, 0.3);
+    z-index: 20;
+}
+
+* {
+    box-sizing: inherit;
+}
+
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Verdana, sans-serif;
+}
+
+p,
+div,
+span {
+    opacity: 1;
+    scale: 1;
+}
+
+div#page {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    align-items: center;
+}
+
+div#wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div#left input {
+    margin: .2em;
+}
+
+div#inputdiv {
+    width: auto;
+}
+
+div#left label {
+    font-size: .8em;
+}
+
+div#right {
+    z-index: 1;
+    padding-left: 1rem;
+    padding-right: 2.5rem;
+    padding-bottom: 30vh;
+}
+
+.instructions p {
+    margin-left: 2em;
+}
+
+button {
+    transition: all .5s;
+    background-color: #444;
+    color: white;
+    padding: .25em .5em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 3px;
+    margin: .2em;
+    border: none;
+}
+
+.sidebar button {
+    padding: .15em;
+}
+
+.timediv button {
+    background-color: rgba(0, 0, 0, 0.3)
+}
+
+.timediv button.clear {
+    padding: 0;
+}
+
+p.tx::before {
+    color: black;
+    font-size: 1.25em;
+    content: "🎙️";
+}
+
+p.tx {
+    color: darkred;
+    font-weight: bold;
+}
+
+p.tx::after {
+    color: black;
+    font-size: 1.25em;
+    content: "🎧";
+}
+
+div.instructions {
+    color: darkgreen;
+}
+
+h4 {
+    color: blue;
+
+}
+
+#netloggerButton {
+    background-color: red;
+    color: white;
+}
+
+span {
+    color: black;
+}
+
+div.sidebar {
+    float: left;
+    margin: 0 2vw;
+    margin-top: 1.75em;
+}
+
+#clipboardTextArea {
+    position: absolute;
+    left: -100%;
+}
+
+div#nettimesdiv {
+    font-size: .8em;
+}
+
+#netlogger,
+#netlogger2 {
+    font-style: oblique;
+    background-color: lightyellow;
+}
+
+div#checkinsdiv {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    color: white;
+    background-color: black;
+    border-top: 3px solid darkgray;
+    padding: .5em;
+    padding-left: 1em;
+
+}
+
+div#checkin-area {
+    font-size: 16px;
+}
+
+div#checkin-area pre {
+    max-height: 20vh;
+    overflow: auto;
+}
+
+div#checkin-area .checkinline {
+    color: white;
+    font-size: 1.2em;
+}
+
+input#checkinbox {
+    width: 80vw;
+}
+
+label {
+    font-weight: bolder;
+}
+
+.hidden {
+    display: none;
+    opacity: 0;
+    scale: 0;
+}
+
+@media print {
+
+    div#left,
+    div#checkinsdiv,
+    #customizetoggle,
+    #customtoggle,
+    #consentBox,
+    .clock-block,
+    .sidebar {
+        display: none !important;
+    }
+
+    p {
+        line-height: 1.5;
+    }
+
+    div#right div {
+        break-inside: avoid;
+    }
+}
+
+div#customtoggle {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 9;
+}
+
+div#customizetoggle {
+    background-color: #666;
+    margin-right: .2em;
+    margin-top: .5em;
+    padding: .5em;
+    box-shadow: 0 1em 2em rgba(0, 0, 0, 0.3);
+}
+
+div#customizetoggle button {
+    width: 100%;
+    text-align: left;
+}
+
+button#customizetoggleButton,
+button#helpButton {
+    float: right;
+    margin: 0, .2em;
+    width: auto;
+    background-color: #444 !important;
+    color: white !important;
+}
+
+
+#consentBox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30vw;
+    min-width: 20em;
+    height: auto;
+    background-color: #fff;
+    opacity: 1;
+    padding: 2em;
+    border-radius: 15px;
+    box-shadow: 0 1em 2em rgba(0, 0, 0, 0.3);
+    text-align: center;
+    z-index: 10;
+}
+
+#consentBox.hide {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.8);
+    transition: all 0.3s ease;
+}
+
+#consentPopup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+#consentBox::selection {
+    color: #fff;
+    background: #229a0f;
+}
+
+#consentContent p {
+    color: #444;
+    margin: 1em 0 2em 0;
+}
+
+#consentContent .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1em;
+}
+
+#consentButton,
+#rejectButton {
+    padding: 1vw 2vh;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 500;
+    border-radius: 1vw;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#consentButton {
+    background: #2a910b;
+    margin-right: 1em;
+}
+
+#rejectButton {
+    color: #111211;
+    background: transparent;
+    border: 2px solid #111211;
+    text-decoration: none;
+}
+
+#consentPopup img {
+    max-width: 90px;
+}
+
+#consentHeader {
+    font-size: 1.5em;
+    font-weight: 600;
+    padding-top: 1em;
+}
+
+div#header {
+    font-size: 3wh;
+    font-weight: 600;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
+.time {
+    color: white;
+    font-size: 1rem !important;
+}
+
+#help {
+    width: 90vw;
+    background-color: #88aaff;
+    padding: 1em;
+}
+
+#help #helpsymbol {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: white;
+    display: inline-block;
+    padding: .5em;
+
+}
+
+.button--state-active {
+    background-color: green !important;
+}
