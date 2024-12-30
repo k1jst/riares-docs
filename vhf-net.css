@@ -1,0 +1,388 @@
+* {
+    box-sizing: inherit;
+}
+
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Verdana, sans-serif;
+}
+
+p,
+div,
+span {
+    opacity: 1;
+    scale: 1;
+}
+
+p {
+    line-height: 1.5rem;
+}
+
+h4 {
+    color: blue;
+}
+
+label {
+    font-weight: bolder;
+}
+
+button {
+    transition: all .5s;
+    background-color: #444;
+    color: white;
+    padding: .25em .5em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 3px;
+    margin: .2em;
+    border: none;
+}
+
+.help-pop {
+    width: 90dvw;
+    background-color: #88aaff;
+    padding: 1em;
+}
+
+.help-pop--symbol {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: white;
+    display: inline-block;
+    padding: .5em;
+}
+
+.time-box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: auto;
+    height: auto;
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    font-size: 1.25em;
+    background-color: #444;
+    opacity: 1;
+    color: white;
+    padding: .5em;
+    margin: .2em;
+    box-shadow: 0 1em 2em rgba(0, 0, 0, 0.3);
+    z-index: 20;
+}
+
+.time-box--digital-clock {
+    color: white;
+}
+
+.time-box--time-stamp {
+    color: white;
+    font-size: 1rem !important;
+}
+
+.time-box--time-stamp--button {
+    background-color: rgba(0, 0, 0, 0.3)
+}
+
+.cookie-consent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30vw;
+    min-width: 20em;
+    height: auto;
+    background-color: #fff;
+    opacity: 1;
+    padding: 2em;
+    border-radius: 15px;
+    box-shadow: 0 1em 2em rgba(0, 0, 0, 0.3);
+    text-align: center;
+    z-index: 10;
+}
+
+.cookie-consent.hide {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.8);
+    transition: all 0.3s ease;
+}
+
+.cookie-consent-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.cookie-consent-box::selection {
+    color: #fff;
+    background: #229a0f;
+}
+
+.cookie-consent--content img {
+    max-width: 90px;
+}
+
+.cookie-consent--content p {
+    color: #444;
+    margin: 1em 0 2em 0;
+}
+
+.cookie-consent--content-header {
+    font-size: 1.5em;
+    font-weight: 600;
+    padding-top: 1em;
+}
+
+.cookie-consent--input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1em;
+}
+
+.cookie-consent--input-button {
+    padding: 1vw 2vh;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 500;
+    border-radius: 1vw;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cookie-consent--input-button-agree {
+    background: #2a910b;
+    margin-right: 1em;
+}
+
+.cookie-consent--input-button-decline {
+    color: #111211;
+    background: transparent;
+    border: 2px solid #111211;
+    text-decoration: none;
+}
+
+.checkin-input {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: white;
+    background-color: black;
+    border-top: 3px solid darkgray;
+    padding: .5em;
+    padding-left: 1em;
+    z-index: 100;
+}
+
+.checkin-input--display {
+    font-size: 16px;
+}
+
+.checkin-input--display pre {
+    max-height: 20vh;
+    overflow: auto;
+}
+
+.checkin-input--display .checkinline {
+    color: white;
+    font-size: 1.2em;
+}
+
+.checkin-input--text-input {
+    width: 80dvw;
+}
+
+.page {
+    position: relative;
+    height: 100dvh;
+    width: 100%;
+    align-items: center;
+}
+
+.header-title {
+    font-size: 3wh;
+    font-weight: 600;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.header-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-input--info {
+    float: left;
+    width: auto;
+    margin: 0 2vw;
+    margin-top: 1.75em;
+}
+
+.header-input--info label {
+    font-size: .8em;
+}
+
+.header-input--info input {
+    margin: .2em;
+}
+
+.header-input--info button {
+    padding: .15em;
+}
+
+.content-net {
+    z-index: 1;
+    padding-left: 1rem;
+    padding-right: 2.5rem;
+    padding-bottom: 30vh;
+}
+
+.content-net span {
+    color: black;
+}
+
+.net--netlogger {
+    font-style: oblique;
+}
+
+.instructions p {
+    margin-left: 2em;
+}
+
+p.tx::before {
+    color: black;
+    font-size: 1.25em;
+    content: "🎙️";
+}
+
+p.tx {
+    color: darkred;
+    font-weight: bold;
+    display: inline-block;
+    background: transparent;
+}
+
+p.tx[data-selected=true] {
+    background-color: #ff9;
+    box-shadow: .3em .3em .3em .2em #888;
+}
+
+p.net[data-selected=true] {
+    background-color: #ff9;
+    box-shadow: .3em .3em .3em .2em #888;
+}
+div.net:has(~ div.net p.tx[data-selected=true]) p {
+    text-decoration: line-through;
+    background-color: #eeeeee;
+    box-shadow: .3em .3em .3em .2em #888;
+}
+p:has(~ p.tx[data-selected=true]) {
+    text-decoration: line-through;
+    background-color: #eeeeee;
+    box-shadow: .3em .3em .3em .2em #888;
+}
+
+p.tx::after {
+    color: black;
+    font-size: 1.25em;
+    content: "🎧";
+}
+
+div.instructions {
+    color: darkgreen;
+}
+
+.menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 9;
+}
+
+.menu--header-button  {
+    float: right;
+    margin: 0, .2em;
+    width: auto;
+    background-color: #444 !important;
+    color: white !important;
+}
+
+.menu-display {
+    background-color: #666;
+    margin-right: .2em;
+    margin-top: .5em;
+    padding: .5em;
+    box-shadow: 0 1em 2em rgba(0, 0, 0, 0.3);
+}
+
+.menu-display--button {
+    width: 100%;
+    text-align: left;
+}
+
+#clipboardTextArea {
+    position: absolute;
+    left: -100%;
+}
+
+/**
+ * Blinking text
+ *
+*/
+.blink {
+    animation: blinker 1s linear infinite;
+}
+  
+@keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+}
+
+@media print {
+    .checkin-input,
+    .menu,
+    .help-pop,
+    .cookie-consent,
+    .page-header,
+    .time-box,
+    .sidebar {
+        display: none !important;
+    }
+
+    p {
+        line-height: 1.5;
+    }
+
+    div#right div {
+        break-inside: avoid;
+    }
+}
+
+.button--state-active {
+    background-color: green !important;
+}
+
+.clear-padding {
+    padding: 0 !important;
+}
+
+.hidden {
+    display: none;
+    opacity: 0;
+    scale: 0;
+}

@@ -17,460 +17,136 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
+
 <head>
+  <script type="text/javascript" src="vhf-net.js"></script>
   <script id="variables">
     // Use these variables to set default values if you are using the file offline or hosting it yourself.
     let defaultInputCallsign = "K1JST";
     let defaultInputName = "Jeremy";
     let defaultInputLocation = "Coventry, RI";
-    const cookies = "true"; // false: no cookie permission popup, cookies not allowed 
-    const cookieshttp = "true"; // false: no cookie popup unless the page is being served over https
-    const exerciseChoices = {
-      'Comments': '<h4>Comments from Each Station</h4><p class="tx">This is W1RIA, Net control for this evening’s RI ARES Net, we will now take comments from each station</p><p>Call each station and request comments. You cam also request comments on a certain topic, or pose a question for each station to answer. Start with Mobile or Portable stations. Skip any In and Out stations. Alternatively, you can request anyone with comments call in, as you did with announcements.</p><p class="tx">(Call Sign) Any comments for the net, OVER?</p><p>(If nothing heard)</p><p class="tx"> Nothing Heard, OUT.</p>',
-      'Weather': '<h4>Weather Exercise</h4><p class="tx">This is W1RIA, Net control for this evening’s RI ARES Net. This evening’s exercise will be to collect weather information from each station. It is ok if you do not have any information to report, just respond with "No Traffic for the Net". If you have any of this information available, please report the current temperature, humidity, barometric pressure, wind speed, wind direction, highest recent wind gusts, precipitation totals, or any other pertinent weather information.</p><p>Call each station and request comments. Start with Mobile or Portable stations. Skip any In and Out stations. Alternatively, you can request anyone with traffic call in, as you did with announcements</p><p class="tx">(Call Sign) please come with your weather information for the net, OVER.</p><p>(If nothing heard)</p><p class="tx"> Nothing Heard, OUT.</p>',
-      'Airport_Weather': '<h4>Airport Weather Exercise</h4><p class="tx">This is W1RIA, Net control for this evening’s RI ARES Net. This evening’s exercise will be to report local airport weather information gathered broadcasts in the VHF-AM Aviation Band. Details of the frequencies and airport locations of these broadcasts can be found at the ri ares dot org website under the documents tab. Traffic contents include airport name, ZULU time of report, and if available the wind, visibility, sky condition, temperature, dew point, and altimeter. It is ok if you do not have any information to report, just respond with "No Traffic for the Net". This is W1RIA, Net control for the RI ARES VHF Net, we will now take traffic from each station for this exercise.</p><p>Call each station and request comments. Start with Mobile or Portable stations. Skip any In and Out stations. Alternatively, you can request anyone with traffic call in, as you did with announcements</p><p class="tx">(Call Sign) please come with your traffic for the net, OVER.</p><p>(If nothing heard)</p><p class="tx"> Nothing Heard, OUT.</p>',
-      'Repeater': '<h4>Repeater Exercise</h4><p class="tx">This is W1RIA, Net control for this evening’s RI ARES Net. This evening’s exercise will be to report which repeater you are using to check into the net and your current power level. You may also provide any comments you may have for the net. This is W1RIA, Net control for the RI ARES VHF Net, we will now take traffic from each station for this exercise.</p><p>Call each station and request comments. Start with Mobile or Portable stations. Skip any In and Out stations.</p><p class="tx">(Call Sign) please come with your traffic for the net, OVER.</p><p>(If nothing heard)</p><p class="tx"> Nothing Heard, OUT.</p>'
+    const ALLOW_COOKIE_PROMPT = "true"; // false: no cookie permission popup, cookies not allowed 
+    const ALLOW_COOKIES_OVER_HTTP = "true"; // false: no cookie popup unless the page is being served over https
+    const EXERCISE_CHOICES = {
+      'Comments': '<h4>Comments from Each Station</h4><p class="tx">This is W1RIA, Net control for this evening’s RI ARES Net, we will now take comments from each station</p><p class="net">Call each station and request comments. You cam also request comments on a certain topic, or pose a question for each station to answer. Start with Mobile or Portable stations. Skip any In and Out stations. Alternatively, you can request anyone with comments call in, as you did with announcements.</p><p class="tx">(Call Sign) Any comments for the net, OVER?</p><p class="net">(If nothing heard)</p><p class="tx"> Nothing Heard, OUT.</p>',
+      'Weather': '<h4>Weather Exercise</h4><p class="tx">This is W1RIA, Net control for this evening’s RI ARES Net. This evening’s exercise will be to collect weather information from each station. It is ok if you do not have any information to report, just respond with "No Traffic for the Net". If you have any of this information available, please report the current temperature, humidity, barometric pressure, wind speed, wind direction, highest recent wind gusts, precipitation totals, or any other pertinent weather information.</p><p class="net">Call each station and request comments. Start with Mobile or Portable stations. Skip any In and Out stations. Alternatively, you can request anyone with traffic call in, as you did with announcements</p><p class="tx">(Call Sign) please come with your weather information for the net, OVER.</p><p class="net">(If nothing heard)</p><p class="tx"> Nothing Heard, OUT.</p>',
+      'Airport_Weather': '<h4>Airport Weather Exercise</h4><p class="tx">This is W1RIA, Net control for this evening’s RI ARES Net. This evening’s exercise will be to report local airport weather information gathered broadcasts in the VHF-AM Aviation Band. Details of the frequencies and airport locations of these broadcasts can be found at the ri ares dot org website under the documents tab. Traffic contents include airport name, ZULU time of report, and if available the wind, visibility, sky condition, temperature, dew point, and altimeter. It is ok if you do not have any information to report, just respond with "No Traffic for the Net". This is W1RIA, Net control for the RI ARES VHF Net, we will now take traffic from each station for this exercise.</p><p class="net">Call each station and request comments. Start with Mobile or Portable stations. Skip any In and Out stations. Alternatively, you can request anyone with traffic call in, as you did with announcements</p><p class="tx">(Call Sign) please come with your traffic for the net, OVER.</p><p class="net">(If nothing heard)</p><p class="tx"> Nothing Heard, OUT.</p>',
+      'Repeater': '<h4>Repeater Exercise</h4><p class="tx">This is W1RIA, Net control for this evening’s RI ARES Net. This evening’s exercise will be to report which repeater you are using to check into the net and your current power level. You may also provide any comments you may have for the net. This is W1RIA, Net control for the RI ARES VHF Net, we will now take traffic from each station for this exercise.</p><p class="net">Call each station and request comments. Start with Mobile or Portable stations. Skip any In and Out stations.</p><p class="tx">(Call Sign) please come with your traffic for the net, OVER.</p><p class="net">(If nothing heard)</p><p class="tx"> Nothing Heard, OUT.</p>'
     }
   </script>
   <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RI ARES VHF Repeater Script</title>
+  <link rel="stylesheet" href="vhf-net.css" />
   <style>
-    #clockdiv {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: auto;
-      height: auto;
-      text-align: center;
-      font-family: 'Courier New', monospace;
-      font-weight: bold;
-      font-size: 1.25em;
-      background-color: #444;
-      opacity 1;
-      color: white;
-      padding: .5em;
-      margin: .2em;
-      box-shadow: 0 1em 2em rgba(0, 0, 0, 0.3);
-      z-index: 20;
-    }
-
-    * {
-      box-sizing: inherit;
-    }
-
-    html {
-      height: 100%;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: Verdana, sans-serif;
-    }
-
-    p,
-    div,
-    span {
-      opacity: 1;
-      scale: 1;
-    }
-
-    div#page {
-      position: relative;
-      height: 100vh;
-      width: 100vw;
-      align-items: center;
-    }
-
-    div#wrapper {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    div#left input {
-      margin: .2em;
-    }
-
-    div#inputdiv {
-      width: auto;
-    }
-
-    div#left label {
-      font-size: .8em;
-    }
-
-    div#right {
-      z-index: 1;
-      padding-left: 1rem;
-      padding-right: 2.5rem;
-      padding-bottom: 30vh;
-    }
-
-    .instructions p {
-      margin-left: 2em;
-    }
-
-    button {
-      transition: all .5s;
-      background-color: #444;
-      color: white;
-      padding: .25em .5em;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      border-radius: 3px;
-      margin: .2em;
-      border: none;
-    }
-
-    .sidebar button {
-      padding: .15em;
-    }
-
-    .timediv button {
-      background-color: rgba(0, 0, 0, 0.3)
-    }
-    .timediv button.clear {
-      padding: 0;
-    }
-    p.tx::before {
-      color: black;
-      font-size: 1.25em;
-      content: "🎙️";
-    }
-
-    p.tx {
-      color: darkred;
-      font-weight: bold;
-    }
-
-    p.tx::after {
-      color: black;
-      font-size: 1.25em;
-      content: "🎧";
-    }
-
-    div.instructions {
-      color: darkgreen;
-    }
-
-    h4 {
-      color: blue;
-
-    }
-
-    #netloggerButton {
-      background-color: red;
-      color: white;
-    }
-
-    span {
-      color: black;
-    }
-
-    div.sidebar {
-      float: left;
-      margin: 0 2vw;
-      margin-top: 1.75em;
-    }
-
-    #clipboardTextArea {
-      position: absolute;
-      left: -100%;
-    }
-
-    div#nettimesdiv {
-      font-size: .8em;
-    }
-
-    #netlogger,
-    #netlogger2 {
-      font-style: oblique;
-      background-color: lightyellow;
-    }
-
-    div#checkinsdiv {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100vw;
-      color: white;
-      background-color: black;
-      border-top: 3px solid darkgray;
-      padding: .5em;
-      padding-left: 1em;
-
-    }
-
-    div#checkin-area {
-      font-size: 16px;
-    }
-
-    div#checkin-area pre {
-      max-height: 10em;
-      overflow: auto;
-    }
-
-    div#checkin-area .checkinline {
-      color: white;
-      font-size: 1.2em;
-    }
-
-    input#checkinbox {
-      width: 80vw;
-    }
-
-    label {
-      font-weight: bolder;
-    }
-
-    .hidden {
-      display: none;
-      opacity: 0;
-      scale: 0;
-    }
-
-    @media print {
-
-      div#left,
-      div#checkinsdiv,
-      #customizetoggle,
-      #customtoggle,
-      #consentBox,
-      #clockdiv,
-      .sidebar {
-        display: none !important;
-      }
-
-      p {
-        line-height: 1.5;
-      }
-
-      div#right div {
-        break-inside: avoid;
-      }
-    }
-
-    div#customtoggle {
-      position: fixed;
-      top: 0;
-      right: 0;
-      z-index: 9;
-    }
-
-    div#customizetoggle {
-      background-color: #666;
-      margin-right: .2em;
-      margin-top: .5em;
-      padding: .5em;
-      box-shadow: 0 1em 2em rgba(0, 0, 0, 0.3);
-    }
-
-    div#customizetoggle button {
-      width: 100%;
-      text-align: left;
-    }
-
-    button#customizetoggleButton,
-    button#helpButton {
-      float: right;
-      margin: 0, .2em;
-      width: auto;
-      background-color: #444 !important;
-      color: white !important;
-    }
-
-
-    #consentBox {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 30vw;
-      min-width: 20em;
-      height: auto;
-      background-color: #fff;
-      opacity: 1;
-      padding: 2em;
-      border-radius: 15px;
-      box-shadow: 0 1em 2em rgba(0, 0, 0, 0.3);
-      text-align: center;
-      z-index: 10;
-    }
-
-    #consentBox.hide {
-      opacity: 0;
-      pointer-events: none;
-      transform: scale(0.8);
-      transition: all 0.3s ease;
-    }
-
-    #consentPopup {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-      width: 100%;
-    }
-
-    #consentBox::selection {
-      color: #fff;
-      background: #229a0f;
-    }
-
-    #consentContent p {
-      color: #444;
-      margin: 1em 0 2em 0;
-    }
-
-    #consentContent .buttons {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 1em;
-    }
-
-    #consentButton,
-    #rejectButton {
-      padding: 1vw 2vh;
-      border: none;
-      outline: none;
-      color: #fff;
-      font-size: 1.25rem;
-      font-weight: 500;
-      border-radius: 1vw;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    #consentButton {
-      background: #2a910b;
-      margin-right: 1em;
-    }
-
-    #rejectButton {
-      color: #111211;
-      background: transparent;
-      border: 2px solid #111211;
-      text-decoration: none;
-    }
-
-    #consentPopup img {
-      max-width: 90px;
-    }
-
-    #consentHeader {
-      font-size: 1.5em;
-      font-weight: 600;
-      padding-top: 1em;
-    }
-
-    div#header {
-      font-size: 3wh;
-      font-weight: 600;
-      width: 100vw;
-      display: flex;
-      justify-content: center;
-    }
-    
-    .time {
-      color:white;
-      font-size: 1rem !important;
-    }
-
-    #help {
-      width: 90vw;
-      background-color: #88aaff;
-      padding: 1em;
-    }
-
-    #help #helpsymbol {
-      position: absolute;
-      top: 0;
-      right: 0;
-      background-color:white;
-      display: inline-block;
-      padding: .5em;
-
-    }
   </style>
 </head>
 
 <body>
-  <div popover id="help">
-    <div id="helpsymbol">❔</div><p>Thanks for checking out our customizable net script.</p>
+<!-- Fixed containers that live above the page -->
+  <div popover id="help-popup" class="help-pop">
+    <div id="help-popup-symbol" class="help-pop--symbol">❔</div>
+    <p>Thanks for checking out our customizable net script.</p>
     <ul>
-      <li>Use the menu ☰ to toggle visibility of customizable elements and inputs.</li>
-      <li>Enter your customization in the input boxes and press replace ⟳. If you have cookies enabled and the page is not being used locally these values will be stored as cookies.</li>
-      <li>The Date fields automatically populate. The Next Net date is set for 2 weeks out. If this is inaccurate use the date picker to select the correct value.</li>
-      <li>Use Start ✅ and End ✅ to mark the start and end of the net. This will be used in the Net Report, and the end time will also populate in the net closing portion of the script.</li>
-      <li>Populate checkins at the bottom of the screen by typing in the text box. Press or click Enter ⏎ to submit a checkin. If you need to edit a checkin, click on it in the list... the checkin value will be returned to the edit window for you to change. Press or click Enter ⏎ to resubmit.</li>
-      <li>Use the Clipboard 📋 to copy a checkin report to the clipboard that you can paste into an email or google form.</li>
-      <li>The script is also designed to be used offline. All of the code is embedded in the html file. If you save the html file to your computer, you can edit the variables at the top of the file to disable the cookie popup and set your defaults.</li>
+      <li>Use the menu ☰ to toggle visibility of customizable elements and inputs and print your customized net script.</li>
+      <li>Enter your customization in the input boxes and press replace ⟳. If you have cookies enabled and the page is
+        not being used locally these values will be stored as cookies.</li>
+      <li>The Date fields automatically populate. The Next Net date is set for 2 weeks out. If this is inaccurate use
+        the date picker to select the correct value.</li>
+      <li>Use Start ✅ and End ✅ to mark the start and end of the net. This will be used in the Net Report, and the end
+        time will also populate in the net closing portion of the script.</li>
+      <li>Populate checkins at the bottom of the screen by typing in the text box. Press or click Enter ⏎ to submit a
+        checkin. If you need to edit a checkin, click on it in the list... the checkin value will be returned to the
+        edit window for you to change. Press or click Enter ⏎ to resubmit.</li>
+      <li>Use the Clipboard 📋 to copy a checkin report to the clipboard that you can paste into an email or google
+        form.</li>
+      <li>The script is also designed to be used offline. All of the code is embedded in the html file. If you save the
+        html file to your computer, you can edit the variables at the top of the file to disable the cookie popup and
+        set your defaults.</li>
     </ul>
-    <p>If you have any suggestions or comments reach out to K1JST. Feel free to make your own improvements and submit a pull request at <a href="https://github.com/k1jst/riares-docs/">https://github.com/k1jst/riares-docs/</a></p>
+    <p>If you have any suggestions or comments reach out to K1JST. Feel free to make your own improvements and submit a
+      pull request at <a href="https://github.com/k1jst/riares-docs/">https://github.com/k1jst/riares-docs/</a></p>
   </div>
-  <div id="clockdiv">
-    <div class="clock"></div>
-    <div class="timediv">
-    <button class="markstartButton" onclick="tick('start','mark')">Start ✅</button>
-    <button class="markendButton" onclick="tick('end','mark')">End ✅</button>
-    <div id="startTimediv" class="time startTimediv hidden">S 
-      <span id="netstarttime" class="time startTime">(not marked)</span> <button class="clearstarttButton clear" onclick="tick('start','clear')">❎</button>
+  <div id="time-box" class="time-box">
+    <div id="time-box--digital-clock" class="clock"></div>
+    <div class="time-box--time-stamp">
+      <button class="time-box--time-stamp--button time-stamp--button-start" onclick="recordTimeStamp('start','mark')">Start ✅</button>
+      <button class="time-box--time-stamp--button time-stamp--button-end" onclick="recordTimeStamp('end','mark')">End ✅</button>
+      <div id="time-box--time-stamp-start" class="time-box--time-stamp--box time-box--time-stamp-start hidden">S
+        <span id="time-box--time-stamp--value-start" class="time-box--time-stamp--value time-box--time-stamp--value-start">(not marked)</span> <button id="time-box--time-stamp--button-start-clear" class="time-box--time-stamp--button clear-padding"
+          onclick="recordTimeStamp('start','clear')">❎</button>
+      </div>
+      <div class="time-box--time-stamp--box time-box--time-stamp-end hidden">E
+        <span id="time-box--time-stamp--value-end" class="time-box--time-stamp--value time-box--time-stamp--value-end">(not marked)</span> <button id="time-box--time-stamp--button-end-clear" class="time-box--time-stamp--button clear-padding"
+          onclick="recordTimeStamp('end','clear')">❎</button>
+      </div>
     </div>
-    <div id="endTimediv" class="time endTimediv hidden">E 
-      <span id="netendtime" class="time endTime">(not marked)</span> <button class="clearendButton clear" onclick="tick('end','clear')">❎</button>
-    </div>
-  </div></div>
-  <div id="customtoggle"><button id="customizetoggleButton"
-    onclick='toggleVisByID("customizetoggle")'> ☰ </button><button popovertarget="help" id="helpButton">❔</button><br />
-  <div id="customizetoggle">
-    <button id="clockdivButton" style="background-color: green;"
-      onclick='toggleVisByID("clockdiv")'>Clock 🕓</button><br />
-    <button id="allinputdivButton" onclick='toggleVisByID("inputdiv"); toggleVisByID("inputdatediv");'>All Input</button><br />
-    <button id="inputdivButton" style="background-color: green;"
-      onclick='toggleVisByID("inputdiv")'>Call/Name 👤</button><br />
-    <button id="inputdatedivButton" style="background-color: green;"
-      onclick='toggleVisByID("inputdatediv")'>Date/Exercise 📅🏋🏻‍♂️</button><br />
-    <button id="netloggerButton"
-      onclick="toggleVisByID('netlogger');toggleVisByID('netlogger2');">Netlogger 🖥️</button><br />
-    <button id="netlogger2Button" style="display: none;">Netlogger2</button>
-    <button id="printButton" title="Customize before you print" onclick="window.print()">Print 🖨️</button>
-    <button onclick="rep()">Replace ⟳</button>
   </div>
-</div>
-  <div id="page">
-
-    <div id="header">RI ARES VHF Repeater Net Script</div>
-    <div id="consentBox">
-      <div id="consentPopup">
-        <div id="consentContent">
-          <img src="img/ares_logo.png" /><br />
-          <header id="consentHeader">Cookies: Your Choice</header>
-          <p>We can use cookies to save your custom information on your computer so you don't need to enter it all the
-            time. If you don't want cookies saved on your computer, the scripts will default to K1JST's information
-            every time you load the page, but it's your call.</p>
-          <div id="consentButtons">
-            <button id="consentButton" onclick="cookieAccept()">Save My Info</button><button id="rejectButton"
-              onclick="cookieReject()">No Thanks</button>
-          </div>
+  <div id="customtoggle" class="menu"><button id="customizetoggleButton" class="menu--header-button menu-display--vistoggle-button button--state-active" onclick='setVisibility("div.menu-display", "toggle", "button.menu-display--vistoggle-button")'> ☰
+    </button><button popovertarget="help" id="helpButton" class="menu--header-button menu-help--vistoggle-button">❔</button><br />
+    <div id="customizetoggle" class="menu-display">
+      <button id="clock-box--vistoggle-button" class="menu-display--button clock-box--vistoggle-button button--state-active"
+        onclick='setVisibility("div.time-box", "toggle", "button.clock-box--vistoggle-button")'>👁 Clock 🕓</button><br />
+      <button id="header-input-info--vistoggle-button" class="menu-display--button menu--vis-button-info button--state-active" onclick='setVisibility("div.header-input--info", "toggle", "button.menu--vis-button-info")'>👁 All Input</button><br />
+      <button id="inputdivButton" class="menu-display--button menu--vis-button-info menu--vis-button-info-user button--state-active" onclick='setVisibility("div.header-input--info-user", "toggle", "button.menu--vis-button-info-user")'>👁 Callsign/Name/QTH
+        👤</button><br />
+      <button id="inputdatedivButton" class="menu-display--button menu--vis-button-info menu--vis-button-info-date-exercise button--state-active"
+        onclick='setVisibility("div.header-input--info-date-exercise", "toggle", "button.menu--vis-button-info-date-exercise")'>👁 Date/Exercise 📅🏋🏻‍♂️</button><br />
+      <button id="menu--vis-button-netlogger" class="menu-display--button menu--vis-button net--netlogger-button" onclick='setVisibility("div.net--netlogger", "toggle", "button.net--netlogger-button")'>👁 Netlogger 🖥️</button><br />
+      <button class="menu-display--button menu--utility menu--utility-print" title="Be sure to customize before you print" onclick="window.print()">🛠️ Print 🖨️</button>
+      <button class="menu-display--button menu--utility menu--utility-replace" onclick="setValues()">🛠️ Replace ⟳</button>
+    </div>
+  </div>
+  <div id="checkinsdiv" class="checkin-input">
+    <label for="checkinbox">Checkins:</label><br />
+    <label for="checkinbox" style="font-size: .7em">CALL First Name, Location,Mobile/IO/Notes</label>
+    <div id="checkin-area" class="checkin-input--display">
+      <pre title="Click on an entry to return it to the edit block. Press or Click Enter to submit a line."
+        id="checkinreport">
+      </pre>
+      <div class="textarea-wrapper">
+        <input title="Type text and press Enter key or click enter button to the right" class="checkin-input--text-input" id="checkinbox" type="text" />
+        <button title="Enter" id="checkinboxButton" onclick="recordCheckin()"> ⏎ </button>
+        <button title="Copy Net Report to Clipboard" id="copyclip" onclick="copyNetReport_Clipboard()"> 📋 </button>
+        <!--<button title="Increase font size" onclick="alterCheckinAreaFontSize('increase')"> ➕ </button> 
+        <button title="Decrease font size" onclick="alterCheckinAreaFontSize('decrease')"> ➖ </button>  Needs Work -->
+      </div>
+    </div>
+  </div>
+  <div id="consentBox" class="cookie-consent">
+    <div id="consentPopup" class="cookie-consent-box">
+      <div id="consentContent" class="cookie-consent--content">
+        <img src="img/ares_logo.png" /><br />
+        <header id="consentHeader" class="cookie-consent--content-header">Cookies: Your Choice</header>
+        <p>We can use cookies to save your custom information on your computer so you don't need to enter it all the
+          time. If you don't want cookies saved on your computer, the scripts will default to K1JST's information
+          every time you load the page, but it's your call.</p>
+        <div id="consentButtons" class="cookie-consent--input">
+          <button id="consentButton" class="cookie-consent--input-button cookie-consent--input-button-agree" onclick="acceptCookies()">Save My Info</button><button id="rejectButton" class="cookie-consent--input-button cookie-consent--input-button-decline"
+            onclick="declineCookies()">No Thanks</button>
         </div>
       </div>
     </div>
+  </div>
+<!-- The page layer begins here -->
+  <div id="page" class="page">
+  <header class="page-header">
+    <div id="header" class="header-title">RI ARES VHF Repeater Net Script</div>
+    
 
 
-    <div id="wrapper">
-      <div id="left">
-      </div>
-      <div id="inputdiv" class="sidebar">
+  <div class="header-input">
+    <div id="left">
+      
+      <div class="header-input--info header-input--info-user sidebar">
         <label for="inputCallsign">Callsign:</label>
         <input type="text" id="inputCallsign" class="repvalue" value="" /><br />
-        <label for="inputName">Your Name:</label>
+        <label for="inputName">First Name:</label>
         <input type="text" id="inputName" class="repvalue" value="" /><br />
-        <label for="inputLocation">Your Location:</label>
-        <input type="text" id="inputLocation" class="repvalue" value="" /><br />
-        <button onclick="rep()">⟳</button>
+        <label for="inputLocation">Location:</label>
+        <input type="text" id="inputLocation" class="repvalue" value="" />
+        <button onclick="setValues()">⟳</button>
       </div>
-      <div id="inputdatediv" class="sidebar">
+      <div class="header-input--info header-input--info-date-exercise sidebar">
         <label for="netdatePicker">Net Date:</label>
         <input type="date" class="repvalue" id="netdatePicker" /><br />
         <label for="nextdatePicker">Next Net Date:</label>
@@ -478,423 +154,132 @@
         <label for="exercisePicker">Exercise</label>
         <select id="exercisePicker" class="repvalue">
         </select>
-        <button onclick="rep()">⟳</button>
+        <button onclick="setValues()">⟳</button>
       </div>
-    </div>
-  <div id="right">
-    <h3>RI ARES VHF Repeater Net Script</h3>
-    <div class="instructions" id="pre-net-inst">
-      <h4>Pre-Net Instructions</h4>
-      <p>Net control operators are in control of the net. If people go too fast, slow the pace down. Use pauses when you
-        want to slow things down. If people rush through, or step on each other, log whatever call sign you can hear,
-        and continue calling for check ins. There is no need to explain at length anything you do, unless it is for
-        educational purposes. </p>
-      <p class="hidden" id="netlogger">Open NetLogger and create a Net Called RI ARES VHF Repeater Net, and enter W1RIA
-        as the NCS, and your own call as the Operator, a password will be provided by the net manager, then create the
-        net. Place W1RIA on line 1 of the list. You can edit any fields on line 1 as appropriate to your QTH etc.</p>
-    </div>
-    <div class="net" id="pre-net-check">
-      <h4>Pre-net</h4>
-      <p>(check for any emergency traffic about 1 or 2 minutes prior to calling the net)</p>
-      <p class="tx">This is <span class="callsign">(Call Sign)</span> checking for any emergency or priority traffic on
-        this repeater. There is an upcoming net. If you have emergency traffic please come now, OVER.</p>
-      <p>(if nothing heard)</p>
-      <p class="tx">Nothing heard, OUT.</p>
-    </div>
-    <div class="net" id="preamble">
-      <h4>Preamble</h4>
-      <p class="tx">Calling the Rhode Island ARES VHF Repeater Net. This is the Rhode Island Amateur Radio Emergency
-        Service Net for <span class="netdate">DATE_TODAY</span>. This is <span class="callsign tophonetic">(Call
-          Sign)</span>, my name is <span class="firstname">(First Name)</span>, operating as <b>Whiskey One Romeo India
-          Alpha</b>. I am located in <span class="qth">(Location)</span> and I will be net control station for this
-        evening’s net.</p>
-      <p class="tx">This is a directed net and will always break for any incoming emergency traffic. Any amateur radio
-        operator is welcome to check in. RI ARES maintains a website at riares dot org.</p>
-      <p class="tx">This RI ARES Repeater net is held every 1st and 3rd Tuesday of the Month, as well as a Skywarn
-        Practice and Training net every Wednesday on this repeater network. There is also a VHF Simplex Net held every
-        2nd Tuesday of the month, on 147 decimal 42 megahertz, and a Digital net is held every 4th Tuesday of the month
-        with instructions sent by email. All RI ARES Practice and Training Nets start at 7:30 pm, 1930 local time.</p>
-    </div>
-    <div class="net hidden" id="netlogger2">
-      <p class="tx">Net control for this net uses NetLogger to log all checkins to this net. All stations are welcome to
-        download the free netlogger software and follow along. OUT.</p>
-    </div>
-    <div class="net" id="checkins">
-      <h4>Checkins</h4>
-      <p class="tx">Check-ins will be taken from mobile and portable stations first, then from fixed stations. When
-        checking in, please delay speaking for a second to allow the repeater network to activate, then say “This is”,
-        and un-key your mic</p>
-      <p>(un-key to illustrate and wait for beep)</p>
-      <p class="tx">to check for doubling. Please check in with your call sign given phonetically, your name, and your
-        location.<br />
-        Mobile or Portable Stations, (with emphasis) I say again, only MOBILE OR PORTABLE STATIONS wishing to check in
-        please call with your callsign, name and location, now, OVER.</p>
-      <p>(Log call signs, names, and locations).</p>
-      <aside>
-        <p>If a partial callsign is heard or the signal is very noisy, ask the station to change position or boost power
-          and try checking in again.</p>
-      </aside>
-      <p class="tx">The net recognizes (read aloud the call signs heard) OUT.</p>
-      <p>(If nothing heard)</p>
-      <p class="tx"> Nothing Heard, OUT.</p>
-      <p class="tx">This is W1RIA Net control for this evening’s RI ARES Net, now FIXED STATIONS please call with your
-        callsign, location and name now, OVER.</p>
-      <p>(Log call signs, names, and locations)</p>
-      <p class="tx">The net recognizes (read aloud the call signs heard) OUT.</p>
-      <p class=tx>This is W1RIA Net control, any additional stations for the net please call now, OVER.</p>
-      <p>(Log call signs, names, and locations)</p>
-      <p class="tx">The net recognizes (read aloud the call signs heard) OUT.</p>
-      <p>(If nothing heard)</p>
-      <p class="tx"> Nothing Heard, OUT.</p>
-    </div>
-    <div class="net" id="announcements">
-      <h4>Announcements</h4>
-      <p class="tx">This is W1RIA, are there any announcements or news from any Emergency Coordinators who are checked
-        into the net, OVER?</p>
-      <p class="tx">Net recognizes (list Calls signs heard) with announcements for the net. (1st Call Sign) please come
-        with your announcement, OVER</p>
-      <p>(If nothing heard)</p>
-      <p class="tx"> Nothing Heard, OUT.</p>
-      <p class="tx">(After announcement acknowledge, and if you have questions or comments, make them) (announcer call
-        sign) thanks. Roger, OUT.</p>
-      <p>(Repeat for next call signs with announcements.)</p>
-    </div>
-    <div class="net" id="recheck">
-      <h4>Re-check</h4>
-      <p class=tx>This is W1RIA net control for this evening's net, any additional stations wishing to checkin to the
-        net please come with your callsign, name and location now, OVER.</p>
-      <p>(Log call signs, names, and locations)</p>
-      <p class="tx">The net recognizes (read aloud the call signs heard) OUT.</p>
-      <p>(If nothing heard)</p>
-      <p class="tx"> Nothing Heard, OUT.</p>
-    </div>
-    <div class="net" id="exercise">
-      <h4>Exercise</h4>
-      <p class="tx">This is W1RIA, Net control for this evening’s RI ARES Net, we will now take comments from each
-        station, (Start with check-in call signs) Any comments for the net? </p>
-      <p>After last listed name</p>
-      <p class="tx">Are there any additional checkins for the net, OVER?</p>
-      <p>Repeat process of logging & comments.</p>
-      <p>(If nothing heard)</p>
-      <p class="tx"> Nothing Heard, OUT.</p>
-    </div>
-    <div id="bottomofroster">
-      <p class="tx">That is the bottom of the roster. This is W1RIA, Net control for this evening's RI ARES Net. Are
-        there any additional stations, comments or business for the net before we close the net, OVER.</p>
-      <p>Repeat process of logging & exercise.</p>
-      <p>(If nothing heard)</p>
-      <p class="tx"> Nothing Heard, OUT.</p>
-    </div>
-    <div id="closing">
-      <h4>Closing the net</h4>
-      <p class="tx">We would like to thank all participants for joining this net, and thanks to all who stood by while
-        the net was in session. The next RI ARES Net will be held at 7:30 pm, 1930 hours, on <span
-          class="nextdate">(Date of Next Net)</span>. The Rhode Island ARES organization would like to thank the owner,
-        trustee, and financial supporters of this repeater network for its use and maintenance. We look forward to our
-        next net. This net is closed at <span class="endTime">(not marked)</span> and this network is returned to normal
-        amateur use. This is <span class="callsign">(Call Sign)</span> for W1RIA, goodnight. OUT.
-      </p>
     </div>
   </div>
-</div>
-  <div id="checkinsdiv">
-    <label for="checkinbox">Checkins:</label><br />
-    <label for="checkinbox" style="font-size: .7em">CALL First Name, Location,Mobile/IO/Notes</label>
-    <div id="checkin-area">
-      <pre title="Click on an entry to return it to the edit block. Press or Click Enter to submit a line."
-        id="checkinreport">
-      </pre>
-      <div class="textarea-wrapper">
-        <input title="Type text and press Enter key or click enter button to the right" id="checkinbox" type="text" />
-        <button title="Enter" id="checkinboxButton" onclick="checkinEntry()"> ⏎ </button>
-        <button title="Copy Net Report to Clipboard" id="copyclip" onclick="copyclipCheckins()"> 📋 </button>
-        <!--<button title="Increase font size" onclick="checkinAreaFont('increase')"> ➕ </button> 
-        <button title="Decrease font size" onclick="checkinAreaFont('decrease')"> ➖ </button>  Needs Work -->
+  </header>
+  <main class="content-net">
+      <h3>RI ARES VHF Repeater Net Script</h3>
+      <div class="net instructions" id="pre-net-inst">
+        <h4>Pre-Net Instructions</h4>
+        <p class="net">Net control operators are in control of the net. If people go too fast, slow the pace down. Use pauses when
+          you
+          want to slow things down. If people rush through, or step on each other, log whatever call sign you can hear,
+          and continue calling for check ins. There is no need to explain at length anything you do, unless it is for
+          educational purposes. </p>
+        <div class="net net--netlogger hidden"><p class="net">Open NetLogger and create a Net Called RI ARES VHF Repeater Net, and enter
+          W1RIA
+          as the NCS, and your own call as the Operator, a password will be provided by the net manager, then create the
+          net. Place W1RIA on line 1 of the list. You can edit any fields on line 1 as appropriate to your QTH etc.</p></div>
       </div>
-    </div>
-    <script>
-      function repExercise() {
-        const dest = document.getElementById('exercise');
-        const pick = document.getElementById('exercisePicker').value;
-        for (choice in exerciseChoices) {
-          if (pick === choice) {
-            dest.innerHTML = exerciseChoices[pick];
-          }
-        }
-      }
-      function exerciseChoiceBuilder() {
-        const dest = document.getElementById('exercisePicker');
-        let result = '';
-        for (choice in exerciseChoices) {
-          if (choice === "Comments") {
-            result += '<option value=' + choice + ' selected>'+ choice + '</option>';
-          } else {
-            result += '<option value=' + choice + ' >'+ choice + '</option>';
-          }
-        }
-        dest.innerHTML = result;
-      }
-      function textToPhonetic(text) {
-        const phoneticAlphabet = {
-          'a': 'Alpha', 'b': 'Bravo', 'c': 'Charlie', 'd': 'Delta',
-          'e': 'Echo', 'f': 'Foxtrot', 'g': 'Golf', 'h': 'Hotel',
-          'i': 'India', 'j': 'Juliett', 'k': 'Kilo', 'l': 'Lima',
-          'm': 'Mike', 'n': 'November', 'o': 'Oscar', 'p': 'Papa',
-          'q': 'Quebec', 'r': 'Romeo', 's': 'Sierra', 't': 'Tango',
-          'u': 'Uniform', 'v': 'Victor', 'w': 'Whiskey', 'x': 'X-ray',
-          'y': 'Yankee', 'z': 'Zulu', '1': 'One', '2': 'Two', '3': 'Three',
-          '3': 'Four', '5': 'Five', '6': 'Six', '7': 'Seven', '8': 'Eight',
-          '9': 'Niner', '0': 'Zero'
-        };
-        let result = '';
-        for (let char of text.toLowerCase()) {
-          if (char in phoneticAlphabet) {
-            result += phoneticAlphabet[char] + ' ';
-          } else {
-            result += char + ' ';
-          }
-        }
-        return result.trim();
-      }
-      function getOrdinalNumber(number) {
-        if (number > 3 && number < 21) return number + 'th';
-
-        switch (number % 10) {
-          case 1: return number + 'st';
-          case 2: return number + 'nd';
-          case 3: return number + 'rd';
-          default: return number + 'th';
-        }
-      }
-      const replace = [
-        { repClass: "callsign", fromID: "inputCallsign" },
-        { repClass: "firstname", fromID: "inputName" },
-        { repClass: "qth", fromID: "inputLocation" }
-      ];
-      const replaceDate = [
-        { repClass: "netdate", fromID: "netdatePicker" },
-        { repClass: "nextdate", fromID: "nextdatePicker" }
-      ];
-      function rep() {
-        repExercise();
-        replace.forEach(replacing => {
-          repClass(replacing.repClass, replacing.fromID);
-        });
-        if (getCookie('allow')) {
-            setCookie('callsign', document.getElementById('inputCallsign').value);
-            setCookie('firstname', document.getElementById('inputName').value);
-            setCookie('qth', document.getElementById('inputLocation').value);
-        }
-        replaceDate.forEach(replacingDate => {
-          repDate(replacingDate.repClass, replacingDate.fromID);
-        });
-      };
-      function repDate(replaceDate, fromID) {
-        const date = new Date(document.getElementById(fromID).value + 'T00:00')
-        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-        const months = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-        const dayOfWeek = date.getDay();
-        const month = date.getMonth();
-        const day = getOrdinalNumber(date.getDate());
-        const year = date.getFullYear();
-        const y = days[dayOfWeek] + ', ' + months[month] + ' ' + day + ', ' + year;
-        const x = document.getElementsByClassName(replaceDate);
-        for (let i = 0; i < x.length; i++) {
-          x[i].textContent = y;
-        }
-      };
-      function repClass(className, fromID) {
-        const y = document.getElementById(fromID);
-        const x = document.getElementsByClassName(className);
-        for (let i = 0; i < x.length; i++) {
-          let z = y.value;
-          if (x[i].classList.contains('tophonetic')) {
-            z = textToPhonetic(y.value);
-          }
-          x[i].textContent = z;
-        }
-      };
-      function tick(y, x) {
-        let j = document.getElementsByClassName(y + "Time")
-        let elems = document.querySelectorAll('.mark' + y + 'Button');
-        let elemsdiv = document.getElementsByClassName( y + 'Timediv');
-        switch (x) {
-          case 'mark':
-            for (let i = 0; i < j.length; i++) {
-              j[i].textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-            }
-            var index = 0, length = elems.length;
-            for ( ; index < length; index++) {
-              elems[index].style.backgroundColor = "green";
-            }
-            var index = 0, length = elemsdiv.length;
-            for ( ; index < length; index++) {
-              elemsdiv[index].classList.remove("hidden");
-            }
-            break;
-          case 'clear':
-            for (let i = 0; i < j.length; i++) {
-              j[i].textContent = '(not marked)';
-            }
-            var index = 0, length = elems.length;
-            for ( ; index < length; index++) {
-              elems[index].style.backgroundColor = "#444";
-            }
-            var index = 0, length = elemsdiv.length;
-            for ( ; index < length; index++) {
-              elemsdiv[index].classList.add("hidden");
-            }
-        }
-      };
-      function toggleVisByID(idName) {
-        let x = document.getElementById(idName);
-        let y = document.getElementById(idName + 'Button');
-        if (!x.classList.contains('hidden')) {
-          x.classList.add('hidden');
-          y.style.backgroundColor = "red";
-        }
-        else {
-          x.classList.remove('hidden');
-          y.style.backgroundColor = "green";
-        }
-      }
-      
-      function getCookie(name) {
-        let matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
-        return matches ? decodeURIComponent(matches[1]) : undefined;
-      }
-      function setCookie(name, value, attributes = {}) {
-        attributes = {
-          path: '/',
-          'max-age': 31449600,
-        }
-        if (attributes.expires instanceof Date) {
-          attributes.expires = attributes.expires.toUTCString();
-        }
-        let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
-        for (let attributeKey in attributes) {
-          updatedCookie += "; " + attributeKey;
-          let attributeValue = attributes[attributeKey];
-          if (attributeValue !== true) {
-            updatedCookie += "=" + attributeValue;
-          }
-        }
-        document.cookie = updatedCookie;
-      }
-      function cookieCheck() {
-        const consentBox = document.getElementById("consentBox");
-        if (cookies && (cookieshttp || window.location.protocol === 'https:')) {
-          if (getCookie('allow')) { 
-            consentBox.classList.add("hide");
-            setCookie('allow','true');
-          } else {
-            consentBox.classList.remove("hide");
-          }
-        } else {
-          consentBox.classList.add("hide");
-        }
-      }
-      function cookieAccept() {
-        setCookie('allow', 'true');
-        if (getCookie('allow')) {
-          consentBox.classList.add("hide");
-        } else {
-          alert
-            ("Cookie can't be set! Please" +
-              " unblock this site from the cookie" +
-              " setting of your browser.");
-        }
-      }
-      function cookieReject() {
-        const consentBox = document.getElementById("consentBox");
-        consentBox.classList.add("hide");
-      }
-      //Inital Load
-      document.addEventListener('DOMContentLoaded', function () {
-        document.getElementById('checkinbox').onkeydown = function (e) {
-          if (e.key == 'Enter') {
-            checkinEntry();
-          }
-        }
-        cookieCheck();
-        if (getCookie('allow')) {
-          if (getCookie('callsign')) defaultInputCallsign = getCookie('callsign');
-          if (getCookie('firstname')) defaultInputName = getCookie('firstname');
-          if (getCookie('qth')) defaultInputLocation = getCookie('qth');
-        }
-        document.getElementById('inputCallsign').value = defaultInputCallsign;
-        document.getElementById('inputName').value = defaultInputName;
-        document.getElementById('inputLocation').value = defaultInputLocation;
-        let checkins;
-        let dateTimeString = new Date();
-        let nextdateTimeString = new Date(Date.now() + 12096e5);
-        document.getElementById('netdatePicker').value = new Date(dateTimeString + "Z").toISOString().slice(0, 10);
-        document.getElementById('nextdatePicker').value = new Date(nextdateTimeString + "Z").toISOString().slice(0, 10);
-        exerciseChoiceBuilder();
-        rep();
-      });
-
-      function checkinEntry() {
-        let checkinInput = document.getElementById('checkinbox').value;
-        checkins += checkinInput;
-        checkins += '\n';
-        checkins = checkins.replace("[object HTMLDivElement]", "");
-        let k = document.getElementById('checkinreport');
-        k.textContent = checkins;
-        k.innerHTML = "<span class='checkinline' onclick='editcheckin(this);'>" + (k.textContent.split("\n").filter(Boolean).join("</span>\n<span class='checkinline' onclick='editcheckin(this);'>")) + "</span>";
-        k.scrollTop = k.scrollHeight;
-        document.getElementById('checkinbox').value = null;
-      }
-      function checkinAreaFont(x) {
-        let y = document.getElementById('checkin-area')
-        let currentFontSize = 16;
-        if (x === 'increase') {
-          currentFontSize += 1;
-        }
-        if (x === 'decrease') {
-          currentFontSize -= 1;
-        }
-        y.style.fontSize = currentFontSize;
-        checkinEntry();
-      }
-      function editcheckin(x) {
-        checkinEntry();
-        let p = document.getElementById('checkinbox');
-        let t = x.textContent;
-        checkins = checkins.replace(t, '');
-        p.value = t;
-      }
-      function copyclipCheckins() {
-        let text = "Net Date: " + document.getElementById('netdatePicker').value + '\n';
-        text += "Net Control: " + document.getElementById('inputCallsign').value + ' ' + document.getElementById('inputName').value + ', ' + document.getElementById('inputLocation').value + '\n'
-        text += "Net Start Time: " + document.getElementById('netstarttime').textContent + '\nCheckins:\n';
-        text += document.getElementById('checkinreport').textContent;
-        text += "\nNet End Time: " + document.getElementById('netendtime').textContent;
-        navigator.clipboard
-          .writeText(text)
-          .then(() => {
-            alert("Successfully copied checkin report to the clipboard");
-          })
-          .catch(error => {
-            alert("Something went wrong copying to the clipboard. Error:" + error);
-          });
-      }
-    </script>
-    <script id="clockscript"> //Draws Clock
-      let clock = document.querySelector('.clock');
-      function updateTime() {
-        let hours = new Date().getHours();
-        let minutes = new Date().getMinutes();
-        let seconds = new Date().getSeconds();
-        let zone = new Date().toLocaleTimeString('en-us',{timeZoneName:'short'}).split(' ')[2];
-        hours = hours < 10 ? "0" + hours : hours;
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-        clock.innerHTML = `${hours}:${minutes}:${seconds} ${zone}`;
-        setTimeout(updateTime, 1000);
-      }
-      updateTime();
-    </script>
+      <div class="net" id="pre-net-check">
+        <h4>Pre-net</h4>
+        <p class="net">(check for any emergency traffic about 1 or 2 minutes prior to calling the net)</p>
+        <p class="tx">This is <span class="callsign">(Call Sign)</span> checking for any emergency or priority traffic
+          on
+          this repeater. There is an upcoming net. If you have emergency traffic please come now, OVER.</p>
+        <p class="net">(if nothing heard)</p>
+        <p class="tx">Nothing heard, OUT.</p>
+      </div>
+      <div class="net" id="preamble">
+        <h4>Preamble</h4>
+        <p class="tx">Calling the Rhode Island ARES VHF Repeater Net. This is the Rhode Island Amateur Radio Emergency
+          Service Net for <span class="netdate">DATE_TODAY</span>. This is <span class="callsign phonetic">(Call
+            Sign)</span>, my name is <span class="firstname">(First Name)</span>, operating as <b>Whiskey One Romeo
+            India
+            Alpha</b>. I am located in <span class="qth">(Location)</span> and I will be net control station for this
+          evening’s net.</p>
+        <p class="tx">This is a directed net and will always break for any incoming emergency traffic. Any amateur radio
+          operator is welcome to check in. RI ARES maintains a website at riares dot org.</p>
+        <p class="tx">This RI ARES Repeater net is held every 1st and 3rd Tuesday of the Month, as well as a Skywarn
+          Practice and Training net every Wednesday on this repeater network. There is also a VHF Simplex Net held every
+          2nd Tuesday of the month, on 147 decimal 42 megahertz, and a Digital net is held every 4th Tuesday of the
+          month
+          with instructions sent by email. All RI ARES Practice and Training Nets start at 7:30 pm, 1930 local time.</p>
+      </div>
+      <div class="net--netlogger net hidden" id="netlogger2">
+        <p class="tx">Net control for this net uses NetLogger to log all checkins to this net. All stations are welcome
+          to
+          download the free netlogger software and follow along. OUT.</p>
+      </div>
+      <div class="net" id="checkins">
+        <h4>Checkins</h4>
+        <p class="tx">Check-ins will be taken from mobile and portable stations first, then from fixed stations. When
+          checking in, please delay speaking for a second to allow the repeater network to activate, then say “This is”,
+          and un-key your mic</p>
+        <p class="net">(un-key to illustrate and wait for beep)</p>
+        <p class="tx">to check for doubling. Please check in with your call sign given phonetically, your name, and your
+          location.<br />
+          Mobile or Portable Stations, (with emphasis) I say again, only MOBILE OR PORTABLE STATIONS wishing to check in
+          please call with your callsign, name and location, now, OVER.</p>
+        <p class="net">(Log call signs, names, and locations). If a partial callsign is heard or the signal is very noisy, ask the station to change position or boost power and try checking in again.</p>
+        <p class="tx">The net recognizes (read aloud the call signs heard) OUT.</p>
+        <p class="net">(If nothing heard)</p>
+        <p class="tx"> Nothing Heard, OUT.</p>
+        <p class="tx">This is W1RIA Net control for this evening’s RI ARES Net, now FIXED STATIONS please call with your
+          callsign, location and name now, OVER.</p>
+        <p class="net">(Log call signs, names, and locations)</p>
+        <p class="tx">The net recognizes (read aloud the call signs heard) OUT.</p>
+        <p class=tx>This is W1RIA Net control, any additional stations for the net please call now, OVER.</p>
+        <p class="net">(Log call signs, names, and locations)</p>
+        <p class="tx">The net recognizes (read aloud the call signs heard) OUT.</p>
+        <p class="net">(If nothing heard)</p>
+        <p class="tx"> Nothing Heard, OUT.</p>
+      </div>
+      <div class="net" id="announcements">
+        <h4>Announcements</h4>
+        <p class="tx">This is W1RIA, are there any announcements or news from any Emergency Coordinators who are checked
+          into the net, OVER?</p>
+        <p class="tx">Net recognizes (list Calls signs heard) with announcements for the net. (1st Call Sign) please
+          come
+          with your announcement, OVER</p>
+        <p class="net">(If nothing heard)</p>
+        <p class="tx"> Nothing Heard, OUT.</p>
+        <p class="tx">(After announcement acknowledge, and if you have questions or comments, make them) (announcer call
+          sign) thanks. Roger, OUT.</p>
+        <p class="net">Repeat for next call signs with announcements.</p>
+      </div>
+      <div class="net" id="recheck">
+        <h4>Re-check</h4>
+        <p class=tx>This is W1RIA net control for this evening's net, any additional stations wishing to checkin to the
+          net please come with your callsign, name and location now, OVER.</p>
+        <p class="net">(Log call signs, names, and locations)</p>
+        <p class="tx">The net recognizes (read aloud the call signs heard) OUT.</p>
+        <p class="net">(If nothing heard)</p>
+        <p class="tx"> Nothing Heard, OUT.</p>
+      </div>
+      <div class="net" id="exercise">
+        <h4>Exercise</h4>
+        <p class="tx">This is W1RIA, Net control for this evening’s RI ARES Net, we will now take comments from each
+          station, (Start with check-in call signs) Any comments for the net? </p>
+        <p class="net">After last listed name</p>
+        <p class="tx">Are there any additional checkins for the net, OVER?</p>
+        <p class="net">Repeat process of logging & exercise.</p>
+        <p class="net">(If nothing heard)</p>
+        <p class="tx"> Nothing Heard, OUT.</p>
+      </div>
+      <div id="bottomofroster" class="net">
+        <p class="tx">That is the bottom of the roster. This is W1RIA, Net control for this evening's RI ARES Net. Are
+          there any additional stations, comments or business for the net before we close the net? This is the last call for checkins, OVER.</p>
+        <p class="net">Log call signs, names, and locations. Repeat process of logging & exercise.</p>
+        <p class="net">(If nothing heard)</p>
+        <p class="tx"> Nothing Heard, OUT.</p>
+      </div>
+      <div id="closing" class="net">
+        <h4>Closing the net</h4>
+        <p class="tx">We would like to thank all participants for joining this net, and thanks to all who stood by while
+          the net was in session. The next RI ARES Net will be held at 7:30 pm, 1930 hours, on <span
+            class="nextdate">(Date of Next Net)</span>. The Rhode Island ARES organization would like to thank the
+          owner,
+          trustee, and financial supporters of this repeater network for its use and maintenance. We look forward to our
+          next net. This net is closed at <span class="endTime">(not marked)</span> and this network is returned to
+          normal
+          amateur use. This is <span class="callsign">(Call Sign)</span> for W1RIA, goodnight. OUT.
+        </p>
+      </div>
+  </main>
+  </div>
 </body>
 
 </html>
