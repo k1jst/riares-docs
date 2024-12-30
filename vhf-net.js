@@ -183,27 +183,41 @@ function toggleVisByID(idName) {
     }
 }
 
-function setVisibility(divName, change, button) {
-    if (!button) { button = divName + 'Button'}
+function setVisibility(selector, change, button) {
+    if (!button) { button = "button." + selector + 'Button'}
     if (!change) { change = 'toggle' }
-    let _element = document.querySelector(`#${divName}`);
-    let _button = document.querySelector(`#${button}`);
+    let _element = document.querySelectorAll(`${selector}`);
+    let _button = document.querySelectorAll(`${button}`);
     if (change === 'toggle') {
-        if (_element.classList.contains('hidden')) {
-            _element.classList.remove('hidden');
-            _button.classList.add('button--state-active');
+      for (let i = 0; i < _element.length; i++) {
+        if (_element[i].classList.contains('hidden')) {
+            _element[i].classList.remove('hidden');
+            for (var x = 0; x < _button.length; x++) {
+                if (!_button[x].classList.contains('button--state-active')) { _button[x].classList.add('button--state-active'); }
+            }
         } else {
-            _element.classList.add('hidden');
-            _button.classList.remove('button--state-active');
+            _element[i].classList.add('hidden');
+            for (var x = 0; x < _button.length; x++) {
+                if (_button[x].classList.contains('button--state-active')) {_button[x].classList.remove('button--state-active');}
+          }
         }
+      }
     }
     if (change === 'show') {
-        _element.classList.remove('hidden');
-        _button.classList.add('button--state-active');
+      for (let i = 0; i < _element.length; i++) {
+        if (_element[i].classList.contains('hidden')) {_element[i].classList.remove('hidden');}
+        for (let x = 0; x < _button.length; x++) {
+            if (!_button[x].classList.contains('button--state-active')) {_button[x].classList.add('button--state-active');}
+        }
+      }
     }
     if (change === 'hide') {
-        _element.classList.add('hidden');
-        _button.classList.remove('button--state-active');
+      for (let i = 0; i < _element.length; i++) {
+        if (!_element[i].classList.contains('hidden')) {_element[i].classList.add('hidden');}
+        for (let x = 0; x < _button.length; x++) {
+            if (_button[x].classList.contains('button--state-active')) {_button[x].classList.remove('button--state-active');}
+        }
+      }
     }
 }
 

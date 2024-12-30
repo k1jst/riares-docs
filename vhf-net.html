@@ -42,6 +42,7 @@
 </head>
 
 <body>
+<!-- Fixed containers that live above the page -->
   <div popover id="help" class="help-pop">
     <div id="helpsymbol" class="help-pop--symbol">❔</div>
     <p>Thanks for checking out our customizable net script.</p>
@@ -80,57 +81,72 @@
       </div>
     </div>
   </div>
-  <div id="customtoggle"><button id="customizetoggleButton" onclick='toggleVisByID("customizetoggle")'> ☰
-    </button><button popovertarget="help" id="helpButton">❔</button><br />
-    <div id="customizetoggle">
-      <button id="clock-box--vistoggle-Button" class="button--state-active"
-        onclick='setVisibility("time-box", "toggle", "clock-box--vistoggle-Button")'>👁 Clock 🕓</button><br />
-      <button id="allinputdivButton" onclick='toggleVisByID("inputdiv"); toggleVisByID("inputdatediv");'>👁 All
-        Input</button><br />
-      <button id="inputdivButton" style="background-color: green;" onclick='toggleVisByID("inputdiv")'>Call/Name
+  <div id="customtoggle" class="menu"><button id="customizetoggleButton" class="menu--header-button menu-display--vistoggle-button button--state-active" onclick='setVisibility("div.menu-display", "toggle", "button.menu-display--vistoggle-button")'> ☰
+    </button><button popovertarget="help" id="helpButton" class="menu--header-button menu-help--vistoggle-button">❔</button><br />
+    <div id="customizetoggle" class="menu-display">
+      <button id="clock-box--vistoggle-button" class="menu-display--button clock-box--vistoggle-button button--state-active"
+        onclick='setVisibility("div.time-box", "toggle", "button.clock-box--vistoggle-button")'>👁 Clock 🕓</button><br />
+      <button id="header-input-info--vistoggle-button" class="menu-display--button menu--vis-button-info button--state-active" onclick='setVisibility("div.header-input--info", "toggle", "button.menu--vis-button-info")'>👁 All Input</button><br />
+      <button id="inputdivButton" class="menu-display--button menu--vis-button-info menu--vis-button-info-user button--state-active" onclick='setVisibility("div.header-input--info-user", "toggle", "button.menu--vis-button-info-user")'>👁 Callsign/Name/QTH
         👤</button><br />
-      <button id="inputdatedivButton" style="background-color: green;"
-        onclick='toggleVisByID("inputdatediv")'>👁 Date/Exercise 📅🏋🏻‍♂️</button><br />
-      <button id="netloggerButton" onclick="toggleVisByID('netlogger');toggleVisByID('netlogger2');">👁 Netlogger
-        🖥️</button><br />
-      <button id="netlogger2Button" style="display: none;">Netlogger2</button>
-      <button id="printButton" title="Customize before you print" onclick="window.print()">🛠️ Print 🖨️</button>
-      <button onclick="setValues()">🛠️ Replace ⟳</button>
+      <button id="inputdatedivButton" class="menu-display--button menu--vis-button-info menu--vis-button-info-date-exercise button--state-active"
+        onclick='setVisibility("div.header-input--info-date-exercise", "toggle", "button.menu--vis-button-info-date-exercise")'>👁 Date/Exercise 📅🏋🏻‍♂️</button><br />
+      <button id="menu--vis-button-netlogger" class="menu-display--button menu--vis-button net--netlogger-button" onclick='setVisibility("div.net--netlogger", "toggle", "button.net--netlogger-button")'>👁 Netlogger 🖥️</button><br />
+      <button class="menu-display--button menu--utility menu--utility-print" title="Be sure to customize before you print" onclick="window.print()">🛠️ Print 🖨️</button>
+      <button class="menu-display--button menu--utility menu--utility-replace" onclick="setValues()">🛠️ Replace ⟳</button>
     </div>
   </div>
-  <div id="page">
-
-    <div id="header">RI ARES VHF Repeater Net Script</div>
-    <div id="consentBox">
-      <div id="consentPopup">
-        <div id="consentContent">
-          <img src="img/ares_logo.png" /><br />
-          <header id="consentHeader">Cookies: Your Choice</header>
-          <p>We can use cookies to save your custom information on your computer so you don't need to enter it all the
-            time. If you don't want cookies saved on your computer, the scripts will default to K1JST's information
-            every time you load the page, but it's your call.</p>
-          <div id="consentButtons">
-            <button id="consentButton" onclick="acceptCookies()">Save My Info</button><button id="rejectButton"
-              onclick="declineCookies()">No Thanks</button>
-          </div>
+  <div id="checkinsdiv" class="checkin-input">
+    <label for="checkinbox">Checkins:</label><br />
+    <label for="checkinbox" style="font-size: .7em">CALL First Name, Location,Mobile/IO/Notes</label>
+    <div id="checkin-area" class="checkin-input--display">
+      <pre title="Click on an entry to return it to the edit block. Press or Click Enter to submit a line."
+        id="checkinreport">
+      </pre>
+      <div class="textarea-wrapper">
+        <input title="Type text and press Enter key or click enter button to the right" class="checkin-input--text-input" id="checkinbox" type="text" />
+        <button title="Enter" id="checkinboxButton" onclick="recordCheckin()"> ⏎ </button>
+        <button title="Copy Net Report to Clipboard" id="copyclip" onclick="copyNetReport_Clipboard()"> 📋 </button>
+        <!--<button title="Increase font size" onclick="alterCheckinAreaFontSize('increase')"> ➕ </button> 
+        <button title="Decrease font size" onclick="alterCheckinAreaFontSize('decrease')"> ➖ </button>  Needs Work -->
+      </div>
+    </div>
+  </div>
+  <div id="consentBox" class="cookie-consent">
+    <div id="consentPopup" class="cookie-consent-box">
+      <div id="consentContent" class="cookie-consent--content">
+        <img src="img/ares_logo.png" /><br />
+        <header id="consentHeader" class="cookie-consent--content-header">Cookies: Your Choice</header>
+        <p>We can use cookies to save your custom information on your computer so you don't need to enter it all the
+          time. If you don't want cookies saved on your computer, the scripts will default to K1JST's information
+          every time you load the page, but it's your call.</p>
+        <div id="consentButtons" class="cookie-consent--input">
+          <button id="consentButton" class="cookie-consent--input-button cookie-consent--input-button-agree" onclick="acceptCookies()">Save My Info</button><button id="rejectButton" class="cookie-consent--input-button cookie-consent--input-button-decline"
+            onclick="declineCookies()">No Thanks</button>
         </div>
       </div>
     </div>
+  </div>
+<!-- The page layer begins here -->
+  <div id="page" class="page">
+  <header class="page-header">
+    <div id="header" class="header-title">RI ARES VHF Repeater Net Script</div>
+    
 
 
-    <div id="wrapper">
-      <div id="left">
-      </div>
-      <div id="inputdiv" class="sidebar">
+  <div class="header-input">
+    <div id="left">
+      
+      <div class="header-input--info header-input--info-user sidebar">
         <label for="inputCallsign">Callsign:</label>
         <input type="text" id="inputCallsign" class="repvalue" value="" /><br />
-        <label for="inputName">Your Name:</label>
+        <label for="inputName">First Name:</label>
         <input type="text" id="inputName" class="repvalue" value="" /><br />
-        <label for="inputLocation">Your Location:</label>
-        <input type="text" id="inputLocation" class="repvalue" value="" /><br />
+        <label for="inputLocation">Location:</label>
+        <input type="text" id="inputLocation" class="repvalue" value="" />
         <button onclick="setValues()">⟳</button>
       </div>
-      <div id="inputdatediv" class="sidebar">
+      <div class="header-input--info header-input--info-date-exercise sidebar">
         <label for="netdatePicker">Net Date:</label>
         <input type="date" class="repvalue" id="netdatePicker" /><br />
         <label for="nextdatePicker">Next Net Date:</label>
@@ -141,19 +157,21 @@
         <button onclick="setValues()">⟳</button>
       </div>
     </div>
-    <div id="right">
+  </div>
+  </header>
+  <main class="content-net">
       <h3>RI ARES VHF Repeater Net Script</h3>
-      <div class="instructions" id="pre-net-inst">
+      <div class="net instructions" id="pre-net-inst">
         <h4>Pre-Net Instructions</h4>
         <p>Net control operators are in control of the net. If people go too fast, slow the pace down. Use pauses when
           you
           want to slow things down. If people rush through, or step on each other, log whatever call sign you can hear,
           and continue calling for check ins. There is no need to explain at length anything you do, unless it is for
           educational purposes. </p>
-        <p class="hidden" id="netlogger">Open NetLogger and create a Net Called RI ARES VHF Repeater Net, and enter
+        <div class="net net--netlogger hidden"><p class="net">Open NetLogger and create a Net Called RI ARES VHF Repeater Net, and enter
           W1RIA
           as the NCS, and your own call as the Operator, a password will be provided by the net manager, then create the
-          net. Place W1RIA on line 1 of the list. You can edit any fields on line 1 as appropriate to your QTH etc.</p>
+          net. Place W1RIA on line 1 of the list. You can edit any fields on line 1 as appropriate to your QTH etc.</p></div>
       </div>
       <div class="net" id="pre-net-check">
         <h4>Pre-net</h4>
@@ -180,7 +198,7 @@
           month
           with instructions sent by email. All RI ARES Practice and Training Nets start at 7:30 pm, 1930 local time.</p>
       </div>
-      <div class="net hidden" id="netlogger2">
+      <div class="net--netlogger net hidden" id="netlogger2">
         <p class="tx">Net control for this net uses NetLogger to log all checkins to this net. All stations are welcome
           to
           download the free netlogger software and follow along. OUT.</p>
@@ -225,7 +243,7 @@
         <p class="tx"> Nothing Heard, OUT.</p>
         <p class="tx">(After announcement acknowledge, and if you have questions or comments, make them) (announcer call
           sign) thanks. Roger, OUT.</p>
-        <p>(Repeat for next call signs with announcements.)</p>
+        <p>Repeat for next call signs with announcements.</p>
       </div>
       <div class="net" id="recheck">
         <h4>Re-check</h4>
@@ -242,18 +260,19 @@
           station, (Start with check-in call signs) Any comments for the net? </p>
         <p>After last listed name</p>
         <p class="tx">Are there any additional checkins for the net, OVER?</p>
-        <p>Repeat process of logging & comments.</p>
-        <p>(If nothing heard)</p>
-        <p class="tx"> Nothing Heard, OUT.</p>
-      </div>
-      <div id="bottomofroster">
-        <p class="tx">That is the bottom of the roster. This is W1RIA, Net control for this evening's RI ARES Net. Are
-          there any additional stations, comments or business for the net before we close the net, OVER.</p>
         <p>Repeat process of logging & exercise.</p>
         <p>(If nothing heard)</p>
         <p class="tx"> Nothing Heard, OUT.</p>
       </div>
-      <div id="closing">
+      <div id="bottomofroster" class="net">
+        <h4>Last Call</h4>
+        <p class="tx">That is the bottom of the roster. This is W1RIA, Net control for this evening's RI ARES Net. Are
+          there any additional stations, comments or business for the net before we close the net? This is the last call for checkins, OVER.</p>
+        <p>Log call signs, names, and locations. Repeat process of logging & exercise.</p>
+        <p>(If nothing heard)</p>
+        <p class="tx"> Nothing Heard, OUT.</p>
+      </div>
+      <div id="closing" class="net">
         <h4>Closing the net</h4>
         <p class="tx">We would like to thank all participants for joining this net, and thanks to all who stood by while
           the net was in session. The next RI ARES Net will be held at 7:30 pm, 1930 hours, on <span
@@ -265,26 +284,8 @@
           amateur use. This is <span class="callsign">(Call Sign)</span> for W1RIA, goodnight. OUT.
         </p>
       </div>
-    </div>
+  </main>
   </div>
-  <div id="checkinsdiv">
-    <label for="checkinbox">Checkins:</label><br />
-    <label for="checkinbox" style="font-size: .7em">CALL First Name, Location,Mobile/IO/Notes</label>
-    <div id="checkin-area">
-      <pre title="Click on an entry to return it to the edit block. Press or Click Enter to submit a line."
-        id="checkinreport">
-      </pre>
-      <div class="textarea-wrapper">
-        <input title="Type text and press Enter key or click enter button to the right" id="checkinbox" type="text" />
-        <button title="Enter" id="checkinboxButton" onclick="recordCheckin()"> ⏎ </button>
-        <button title="Copy Net Report to Clipboard" id="copyclip" onclick="copyNetReport_Clipboard()"> 📋 </button>
-        <!--<button title="Increase font size" onclick="alterCheckinAreaFontSize('increase')"> ➕ </button> 
-        <button title="Decrease font size" onclick="alterCheckinAreaFontSize('decrease')"> ➖ </button>  Needs Work -->
-      </div>
-    </div>
-    <script>
-
-    </script>
 </body>
 
 </html>
