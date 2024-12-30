@@ -1,3 +1,38 @@
+* {
+    box-sizing: inherit;
+}
+
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Verdana, sans-serif;
+}
+
+p,
+div,
+span {
+    opacity: 1;
+    scale: 1;
+}
+
+.help-pop {
+    width: 90vw;
+    background-color: #88aaff;
+    padding: 1em;
+}
+
+.help-pop--symbol {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: white;
+    display: inline-block;
+    padding: .5em;
+}
+
 .time-box {
     position: fixed;
     top: 0;
@@ -28,27 +63,6 @@
 
 .time-box--time-stamp--button {
     background-color: rgba(0, 0, 0, 0.3)
-}
-
-
-* {
-    box-sizing: inherit;
-}
-
-html {
-    height: 100%;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Verdana, sans-serif;
-}
-
-p,
-div,
-span {
-    opacity: 1;
-    scale: 1;
 }
 
 div#page {
@@ -345,21 +359,7 @@ div#header {
 
 
 
-#help {
-    width: 90vw;
-    background-color: #88aaff;
-    padding: 1em;
-}
 
-#help #helpsymbol {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-color: white;
-    display: inline-block;
-    padding: .5em;
-
-}
 
 /**
  * Blinking text
