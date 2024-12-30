@@ -361,4 +361,16 @@ document.addEventListener('DOMContentLoaded', function () {
     setDefaultDatePickerValues();
     buildSelectChoiceExercise();
     setValues();
+    Array.from(document.getElementsByClassName('tx')).forEach(function(item) {
+        item.addEventListener('click', function(clickevent) {
+            clickedObject = clickevent.target;
+            Array.from(document.getElementsByClassName('tx')).forEach(function(item) {
+                if( item == clickedObject && item.dataset.selected != "true" ) {
+                   item.dataset.selected = "true";
+                } else {
+                   item.dataset.selected = "false";
+                }
+            });
+        });
+    });
 });

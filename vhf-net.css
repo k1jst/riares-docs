@@ -129,6 +129,18 @@ p.tx::before {
 p.tx {
     color: darkred;
     font-weight: bold;
+    display: inline-block;
+    background: transparent;
+}
+
+p.tx[data-selected=true] {
+    background: #ee5;
+}
+div.net:has(~ div.net p.tx[data-selected=true]) p.tx {
+    background: #888;
+}
+p.tx:has(~ p.tx[data-selected=true]) {
+    background: #888;
 }
 
 p.tx::after {
