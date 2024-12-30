@@ -1,4 +1,4 @@
-.clock-block {
+.time-box {
     position: fixed;
     top: 0;
     left: 0;
@@ -16,6 +16,20 @@
     box-shadow: 0 1em 2em rgba(0, 0, 0, 0.3);
     z-index: 20;
 }
+
+.time-box--digital-clock {
+    color: white;
+}
+
+.time-box--time-stamp {
+    color: white;
+    font-size: 1rem !important;
+}
+
+.time-box--time-stamp--button {
+    background-color: rgba(0, 0, 0, 0.3)
+}
+
 
 * {
     box-sizing: inherit;
@@ -90,13 +104,7 @@ button {
     padding: .15em;
 }
 
-.timediv button {
-    background-color: rgba(0, 0, 0, 0.3)
-}
 
-.timediv button.clear {
-    padding: 0;
-}
 
 p.tx::before {
     color: black;
@@ -129,7 +137,7 @@ h4 {
     color: white;
 }
 
-span {
+div#right span {
     color: black;
 }
 
@@ -144,9 +152,6 @@ div.sidebar {
     left: -100%;
 }
 
-div#nettimesdiv {
-    font-size: .8em;
-}
 
 #netlogger,
 #netlogger2 {
@@ -202,7 +207,7 @@ label {
     #customizetoggle,
     #customtoggle,
     #consentBox,
-    .clock-block,
+    .time-box,
     .sidebar {
         display: none !important;
     }
@@ -338,10 +343,7 @@ div#header {
     justify-content: center;
 }
 
-.time {
-    color: white;
-    font-size: 1rem !important;
-}
+
 
 #help {
     width: 90vw;
@@ -359,6 +361,24 @@ div#header {
 
 }
 
+/**
+ * Blinking text
+ *
+*/
+.blink {
+    animation: blinker 1s linear infinite;
+}
+  
+@keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+}
+
 .button--state-active {
     background-color: green !important;
+}
+
+.clear-padding {
+    padding: 0 !important;
 }

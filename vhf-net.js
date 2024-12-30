@@ -30,7 +30,7 @@ function buildSelectChoiceExercise() {
  * Builds digital clock in HH:MM:SS format
  */
 function updateTime() {
-    let clock = document.querySelector('div#digital-clock');
+    let clock = document.querySelector('div#time-box--digital-clock');
     let hours = new Date().getHours();
     let minutes = new Date().getMinutes();
     let seconds = new Date().getSeconds();
@@ -139,9 +139,9 @@ function alterValueByClass(className, fieldId) {
     }
 };
 function recordTimeStamp(event, action) {
-    var eventDisplay = document.getElementsByClassName(event + "Time")
-    var eventButton = document.querySelectorAll('.mark' + event + 'Button');
-    var eventDisplayDiv = document.getElementsByClassName(event + 'Timediv');
+    var eventDisplay = document.querySelectorAll('span.time-box--time-stamp--value-' + event);
+    var eventButton = document.querySelectorAll('button.time-stamp--button-' + event );
+    var eventDisplayDiv = document.querySelectorAll('div.time-box--time-stamp-' + event);
     switch (action) {
         case 'mark':
             for (let i = 0; i < eventDisplay.length; i++) {
@@ -302,9 +302,9 @@ function alterCheckin(x) {
 function copyNetReport_Clipboard() {
     let text = "Net Date: " + document.getElementById('netdatePicker').value + '\n';
     text += "Net Control: " + document.getElementById('inputCallsign').value + ' ' + document.getElementById('inputName').value + ', ' + document.getElementById('inputLocation').value + '\n'
-    text += "Net Start Time: " + document.getElementById('netstarttime').textContent + '\nCheckins:\n';
+    text += "Net Start Time: " + document.querySelector('span#time-box--time-stamp--start-time').textContent + '\nCheckins:\n';
     text += document.getElementById('checkinreport').textContent;
-    text += "\nNet End Time: " + document.getElementById('netendtime').textContent;
+    text += "\nNet End Time: " + document.querySelector('span#time-box--time-stamp--end-time').textContent;
     navigator.clipboard
         .writeText(text)
         .then(() => {

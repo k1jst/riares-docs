@@ -65,17 +65,17 @@
     <p>If you have any suggestions or comments reach out to K1JST. Feel free to make your own improvements and submit a
       pull request at <a href="https://github.com/k1jst/riares-docs/">https://github.com/k1jst/riares-docs/</a></p>
   </div>
-  <div id="time-box" class="clock-block">
-    <div id="digital-clock" class="clock"></div>
-    <div class="timediv">
-      <button class="markstartButton" onclick="recordTimeStamp('start','mark')">Start ✅</button>
-      <button class="markendButton" onclick="recordTimeStamp('end','mark')">End ✅</button>
-      <div id="startTimediv" class="time startTimediv hidden">S
-        <span id="netstarttime" class="time startTime">(not marked)</span> <button class="clearstarttButton clear"
+  <div id="time-box" class="time-box">
+    <div id="time-box--digital-clock" class="clock"></div>
+    <div class="time-box--time-stamp">
+      <button class="time-box--time-stamp--button time-stamp--button-start" onclick="recordTimeStamp('start','mark')">Start ✅</button>
+      <button class="time-box--time-stamp--button time-stamp--button-end" onclick="recordTimeStamp('end','mark')">End ✅</button>
+      <div id="time-box--time-stamp-start" class="time-box--time-stamp--box time-box--time-stamp-start hidden">S
+        <span id="time-box--time-stamp--value-start" class="time-box--time-stamp--value time-box--time-stamp--value-start">(not marked)</span> <button id="time-box--time-stamp--button-start-clear" class="time-box--time-stamp--button clear-padding"
           onclick="recordTimeStamp('start','clear')">❎</button>
       </div>
-      <div id="endTimediv" class="time endTimediv hidden">E
-        <span id="netendtime" class="time endTime">(not marked)</span> <button class="clearendButton clear"
+      <div class="time-box--time-stamp--box time-box--time-stamp-end hidden">E
+        <span id="time-box--time-stamp--value-end" class="time-box--time-stamp--value time-box--time-stamp--value-end">(not marked)</span> <button id="time-box--time-stamp--button-end-clear" class="time-box--time-stamp--button clear-padding"
           onclick="recordTimeStamp('end','clear')">❎</button>
       </div>
     </div>
