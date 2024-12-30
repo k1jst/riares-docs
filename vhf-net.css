@@ -131,16 +131,22 @@ p.tx {
     font-weight: bold;
     display: inline-block;
     background: transparent;
+    border-radius: 1.25em;
+    padding: .2em;
 }
 
 p.tx[data-selected=true] {
     background: #ee5;
+    box-shadow:
+        0 0 .3em .2em #ee5;
 }
 div.net:has(~ div.net p.tx[data-selected=true]) p.tx {
     background: #888;
+    box-shadow: 0 0 .3em .2em #888;
 }
 p.tx:has(~ p.tx[data-selected=true]) {
     background: #888;
+    box-shadow: 0 0 .3em .2em #888;
 }
 
 p.tx::after {
