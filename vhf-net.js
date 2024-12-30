@@ -1,9 +1,21 @@
 
+/**
+ * Input/Replacement hash table
+ * @constant {string|string}
+ * @type {input_fields {replaces|from}}
+ * @see setValues()
+ */
 const INPUT_VALUES = [
     { valueClass: "callsign", fieldId: "inputCallsign" },
     { valueClass: "firstname", fieldId: "inputName" },
     { valueClass: "qth", fieldId: "inputLocation" }
 ];
+/**
+ * Date/Replacement hash table
+ * @constant {string|string}
+ * @type {input_fields {replaces|from}}
+ * @see setDateValues()
+ */
 const INPUT_DATE_FIELDS = [
     { valueClass: "netdate", fieldId: "netdatePicker" },
     { valueClass: "nextdate", fieldId: "nextdatePicker" }
@@ -13,21 +25,25 @@ const INPUT_DATE_FIELDS = [
 /**
  * Builds choice elements from EXERCISE_CHOICES and 
  * inserts them in the select element exercisePicker.
+ * @requires select#exercisePicker
+ * @requires EXERCISE_CHOICES
+ * @see deploySelectedChoiceExercise()
  */
 function buildSelectChoiceExercise() {
-    const DESTINATION = document.getElementById('exercisePicker');
-    let result = '';
-    for (choice in EXERCISE_CHOICES) {
-        if (choice === "Comments") {
-            result += '<option value=' + choice + ' selected>' + choice + '</option>';
+    const _DESTINATION = document.querySelector('select#exercisePicker');
+    let _result = '';
+    for (_choice in EXERCISE_CHOICES) {
+        if (_choice === "Comments") {
+            _result += '<option value=' + _choice + ' selected>' + _choice + '</option>';
         } else {
-            result += '<option value=' + choice + ' >' + choice + '</option>';
+            _result += '<option value=' + _choice + ' >' + _choice + '</option>';
         }
     }
-    DESTINATION.innerHTML = result;
+    _DESTINATION.innerHTML = _result;
 }
 /**
  * Builds digital clock in HH:MM:SS format
+ * @requires div#time-box--digital-clock
  */
 function updateTime() {
     let clock = document.querySelector('div#time-box--digital-clock');
@@ -46,6 +62,7 @@ function updateTime() {
  * Using the selection from exercisePicker deploys
  * replacement HTML from EXERCISE_CHOICE in the
  * exercise div element.
+ * @see buildSelectChoiceExercise()
  */
 function deploySelectedChoiceExercise() {
     const DESTINATION = document.getElementById('exercise');
@@ -88,13 +105,13 @@ function convertTextToPhonetic(text) {
  * @param {int} number 
  * @returns {string} ordinal number
  */
-function getOrdinalNumber(number) {
-    if (number > 3 && number < 21) return number + 'th';
-    switch (number % 10) {
-        case 1: return number + 'st';
-        case 2: return number + 'nd';
-        case 3: return number + 'rd';
-        default: return number + 'th';
+function getOrdinalNumber(_number) {
+    if (_number > 3 && _number < 21) return _number + 'th';
+    switch (_number % 10) {
+        case 1: return _number + 'st';
+        case 2: return _number + 'nd';
+        case 3: return _number + 'rd';
+        default: return _number + 'th';
     }
 }
 
@@ -127,17 +144,12 @@ function setDateValues(replaceDate, fieldId) {
         x[i].textContent = y;
     }
 };
-function alterValueByClass(className, fieldId) {
-    const y = document.getElementById(fieldId);
-    const x = document.getElementsByClassName(className);
-    for (let i = 0; i < x.length; i++) {
-        let z = y.value;
-        if (x[i].classList.contains('phonetic')) {
-            z = convertTextToPhonetic(y.value);
-        }
-        x[i].textContent = z;
-    }
-};
+/**
+ * On user input records or clears one of two timestamps
+ *
+ * @param {string} event - start|stop
+ * @param {string} action - mark|clear
+ */
 function recordTimeStamp(event, action) {
     var eventDisplay = document.querySelectorAll('span.time-box--time-stamp--value-' + event);
     var eventButton = document.querySelectorAll('button.time-stamp--button-' + event );
@@ -170,19 +182,32 @@ function recordTimeStamp(event, action) {
             }
     }
 };
-function toggleVisByID(idName) {
-    let x = document.getElementById(idName);
-    let y = document.getElementById(idName + 'Button');
-    if (!x.classList.contains('hidden')) {
-        x.classList.add('hidden');
-        y.style.backgroundColor = "red";
-    }
-    else {
-        x.classList.remove('hidden');
-        y.style.backgroundColor = "green";
-    }
-}
 
+/** replaces the value of any class with the value from fieldId.
+ * Also converts replacement text to phonetic if the destination class includes phonetic.
+ * @param {string} className 
+ * @param {*} fieldId 
+ */
+function alterValueByClass(className, fieldId) {
+    const y = document.getElementById(fieldId);
+    const x = document.getElementsByClassName(className);
+    for (let i = 0; i < x.length; i++) {
+        let z = y.value;
+        if (x[i].classList.contains('phonetic')) {
+            z = convertTextToPhonetic(y.value);
+        }
+        x[i].textContent = z;
+    }
+};
+
+/**
+ * Set visibility of an element or class and set button state
+ * Can be used as a toggle or to set the state
+ *
+ * @param {string} selector - valid css selector to show/hide
+ * @param {string} change - toggle*|show|hide
+ * @param {string} button - selectorButton* | valid css selector for button
+ */
 function setVisibility(selector, change, button) {
     if (!button) { button = "button." + selector + 'Button'}
     if (!change) { change = 'toggle' }
@@ -222,11 +247,24 @@ function setVisibility(selector, change, button) {
 }
 
 
+/**
+ * Retrieves cookie
+ *
+ * @param {string} name
+ * @returns {string} matches|undefined
+ */
 function getCookie(name) {
     let matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
     return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 
+/**
+ * Sets cookie
+ * Defaults to 1 year and path /
+ * @param {string} name
+ * @param {string} value 
+ * @param {array} attributes - key=value pairs 
+ */
 function setCookie(name, value, attributes = {}) {
     attributes = {
         path: '/',
@@ -245,6 +283,8 @@ function setCookie(name, value, attributes = {}) {
     }
     document.cookie = updatedCookie;
 }
+
+/** Validates if cookies are allowed, if so checks for allowCookies cookie or displays cookie consent box */
 function reviewCookieStatus() {
     const consentBox = document.getElementById("consentBox");
     if (ALLOW_COOKIE_PROMPT && (ALLOW_COOKIES_OVER_HTTP || window.location.protocol === 'https:')) {
@@ -258,6 +298,7 @@ function reviewCookieStatus() {
         consentBox.classList.add("hide");
     }
 }
+/** On user input accept cookies, set allowCookies cookie or throw an error at user */
 function acceptCookies() {
     setCookie('allowCookies', 'true');
     if (getCookie('allowCookies')) {
@@ -269,11 +310,13 @@ function acceptCookies() {
                 " setting of your browser.");
     }
 }
+/** On user input decline cookies, hide consent box */
 function declineCookies() {
     const consentBox = document.getElementById("consentBox");
     consentBox.classList.add("hide");
 }
 
+/** Sets default values in datepicker input boxes */
 function setDefaultDatePickerValues() {
     const _now = new Date();
     const tzoffset = _now.getTimezoneOffset() * 6e4;
@@ -283,6 +326,9 @@ function setDefaultDatePickerValues() {
     document.getElementById('nextdatePicker').value = nextdateTimeString;
 }
 
+/** On user input process checkin text from input box and add it to checkin display
+ * @depends setTriggerCheckinAreaEnter() - checkin declared
+ */
 function recordCheckin() {
     let checkinInput = document.getElementById('checkinbox').value;
     checkins += checkinInput;
@@ -294,6 +340,11 @@ function recordCheckin() {
     k.scrollTop = k.scrollHeight;
     document.getElementById('checkinbox').value = null;
 }
+/**
+ * Work in progress
+ *
+ * @param {string} x - increase|decrease
+ */
 function alterCheckinAreaFontSize(x) {
     let y = document.getElementById('checkin-area')
     let currentFontSize = 16;
@@ -306,6 +357,12 @@ function alterCheckinAreaFontSize(x) {
     y.style.fontSize = currentFontSize;
     recordCheckin();
 }
+
+/**
+ * On user input returns value of selected line from display into input text box to be edited
+ *
+ * @param {string} x - checkin value to be edited
+ */
 function alterCheckin(x) {
     recordCheckin();
     let p = document.getElementById('checkinbox');
@@ -313,12 +370,14 @@ function alterCheckin(x) {
     checkins = checkins.replace(t, '');
     p.value = t;
 }
+
+/** Assembles a checkin report from custom fields, timestamps, and checkins and copies it to the clipboard */
 function copyNetReport_Clipboard() {
     let text = "Net Date: " + document.getElementById('netdatePicker').value + '\n';
     text += "Net Control: " + document.getElementById('inputCallsign').value + ' ' + document.getElementById('inputName').value + ', ' + document.getElementById('inputLocation').value + '\n'
-    text += "Net Start Time: " + document.querySelector('span#time-box--time-stamp--start-time').textContent + '\nCheckins:\n';
+    text += "Net Start Time: " + document.querySelector('span#time-box--time-stamp--value-start').textContent + '\nCheckins:\n';
     text += document.getElementById('checkinreport').textContent;
-    text += "\nNet End Time: " + document.querySelector('span#time-box--time-stamp--end-time').textContent;
+    text += "\nNet End Time: " + document.querySelector('span#time-box--time-stamp--value-end').textContent;
     navigator.clipboard
         .writeText(text)
         .then(() => {
@@ -328,6 +387,7 @@ function copyNetReport_Clipboard() {
             alert("Something went wrong copying to the clipboard. Error:" + error);
         });
 }
+/** Retrieves saved default values from cookies */
 function setDefaultsfromCookies() {
     if (getCookie('allowCookies')) {
         if (getCookie('callsign')) defaultInputCallsign = getCookie('callsign');
@@ -335,11 +395,13 @@ function setDefaultsfromCookies() {
         if (getCookie('qth')) defaultInputLocation = getCookie('qth');
     }
 }
+/** Updates the user input boxes with default values */
 function alterInput_Defaults() {
     document.getElementById('inputCallsign').value = defaultInputCallsign;
     document.getElementById('inputName').value = defaultInputName;
     document.getElementById('inputLocation').value = defaultInputLocation;
 }
+/** Event listener for Enter Key in checkin box input */
 function setTriggerCheckinAreaEnter() {
     document.getElementById('checkinbox').onkeydown = function (e) {
         if (e.key == 'Enter') {
@@ -365,7 +427,32 @@ function setValues() {
     });
 };
 
-//Inital Load
+/** Listens for user clicks on text in net script and sets dataset.selected triggering different display with css*/
+function setTriggerNetText() {
+    Array.from(document.getElementsByClassName('tx', 'net')).forEach(function(item) {
+        item.addEventListener('click', function(clickevent) {
+            clickedObject = clickevent.target;
+            Array.from(document.getElementsByClassName('tx', 'net')).forEach(function(item) {
+                if( item == clickedObject && item.dataset.selected != "true" ) {
+                   item.dataset.selected = "true";
+                } else {
+                   item.dataset.selected = "false";
+                }
+            });
+        });
+    });
+}
+
+/** Initial setup on page load
+ * @fires setTriggerCheckinAreaEnter - start listener for Enter in checkin input and declare checkin
+ * @fires updateTime - build digital clock and update every 1s
+ * @fires reviewCookieStatus - checks if cookies are already allowed and set, hides consent if they are
+ * @fires setDefaultsfromCookies - gets cookie values and replaces defaults
+ * @fires alterInput_Defaults - changes current text in input fields to default values
+ * @fires buildSelectChoiceExercise - builds choices for select input for exercises from hash table
+ * @fires setValues - implements choice in exercise selection, updates values from user input boxes and saves them as cookies
+ * @fires setTriggerNetText - listens for user clicks on text in net and sets dataset.selected which alters css values
+ */
 document.addEventListener('DOMContentLoaded', function () {
     setTriggerCheckinAreaEnter();
     updateTime();
@@ -375,16 +462,5 @@ document.addEventListener('DOMContentLoaded', function () {
     setDefaultDatePickerValues();
     buildSelectChoiceExercise();
     setValues();
-    Array.from(document.getElementsByClassName('tx')).forEach(function(item) {
-        item.addEventListener('click', function(clickevent) {
-            clickedObject = clickevent.target;
-            Array.from(document.getElementsByClassName('tx')).forEach(function(item) {
-                if( item == clickedObject && item.dataset.selected != "true" ) {
-                   item.dataset.selected = "true";
-                } else {
-                   item.dataset.selected = "false";
-                }
-            });
-        });
-    });
+    setTriggerNetText();
 });

@@ -90,219 +90,7 @@ button {
     background-color: rgba(0, 0, 0, 0.3)
 }
 
-div#page {
-    position: relative;
-    height: 100vh;
-    width: 100vw;
-    align-items: center;
-}
-
-div#wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-div#left input {
-    margin: .2em;
-}
-
-div#inputdiv {
-    width: auto;
-}
-
-div#left label {
-    font-size: .8em;
-}
-
-div#right {
-    z-index: 1;
-    padding-left: 1rem;
-    padding-right: 2.5rem;
-    padding-bottom: 30vh;
-}
-
-.instructions p {
-    margin-left: 2em;
-}
-
-button {
-    transition: all .5s;
-    background-color: #444;
-    color: white;
-    padding: .25em .5em;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    border-radius: 3px;
-    margin: .2em;
-    border: none;
-}
-
-.sidebar button {
-    padding: .15em;
-}
-
-
-
-p.tx::before {
-    color: black;
-    font-size: 1.25em;
-    content: "🎙️";
-}
-
-p.tx {
-    color: darkred;
-    font-weight: bold;
-    display: inline-block;
-    background: transparent;
-}
-
-p.tx[data-selected=true] {
-    background: #ee5;
-}
-div.net:has(~ div.net p.tx[data-selected=true]) p.tx {
-    background: #888;
-}
-p.tx:has(~ p.tx[data-selected=true]) {
-    background: #888;
-}
-
-p.tx::after {
-    color: black;
-    font-size: 1.25em;
-    content: "🎧";
-}
-
-div.instructions {
-    color: darkgreen;
-}
-
-h4 {
-    color: blue;
-
-}
-
-#netloggerButton {
-    background-color: red;
-    color: white;
-}
-
-div#right span {
-    color: black;
-}
-
-div.sidebar {
-    float: left;
-    margin: 0 2vw;
-    margin-top: 1.75em;
-}
-
-#clipboardTextArea {
-    position: absolute;
-    left: -100%;
-}
-
-
-#netlogger,
-#netlogger2 {
-    font-style: oblique;
-    background-color: lightyellow;
-}
-
-div#checkinsdiv {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100vw;
-    color: white;
-    background-color: black;
-    border-top: 3px solid darkgray;
-    padding: .5em;
-    padding-left: 1em;
-
-}
-
-div#checkin-area {
-    font-size: 16px;
-}
-
-div#checkin-area pre {
-    max-height: 20vh;
-    overflow: auto;
-}
-
-div#checkin-area .checkinline {
-    color: white;
-    font-size: 1.2em;
-}
-
-input#checkinbox {
-    width: 80vw;
-}
-
-label {
-    font-weight: bolder;
-}
-
-.hidden {
-    display: none;
-    opacity: 0;
-    scale: 0;
-}
-
-@media print {
-
-    div#left,
-    div#checkinsdiv,
-    #customizetoggle,
-    #customtoggle,
-    #consentBox,
-    .time-box,
-    .sidebar {
-        display: none !important;
-    }
-
-    p {
-        line-height: 1.5;
-    }
-
-    div#right div {
-        break-inside: avoid;
-    }
-}
-
-div#customtoggle {
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: 9;
-}
-
-div#customizetoggle {
-    background-color: #666;
-    margin-right: .2em;
-    margin-top: .5em;
-    padding: .5em;
-    box-shadow: 0 1em 2em rgba(0, 0, 0, 0.3);
-}
-
-div#customizetoggle button {
-    width: 100%;
-    text-align: left;
-}
-
-button#customizetoggleButton,
-button#helpButton {
-    float: right;
-    margin: 0, .2em;
-    width: auto;
-    background-color: #444 !important;
-    color: white !important;
-}
-
-
-#consentBox {
+.cookie-consent {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -489,13 +277,23 @@ p.tx {
 }
 
 p.tx[data-selected=true] {
-    background: #ee5;
+    background-color: #ff9;
+    box-shadow: .3em .3em .3em .2em #888;
+}
+
+p.net[data-selected=true] {
+    background-color: #ff9;
+    box-shadow: .3em .3em .3em .2em #888;
 }
 div.net:has(~ div.net p.tx[data-selected=true]) p {
     text-decoration: line-through;
+    background-color: #eeeeee;
+    box-shadow: .3em .3em .3em .2em #888;
 }
 p:has(~ p.tx[data-selected=true]) {
     text-decoration: line-through;
+    background-color: #eeeeee;
+    box-shadow: .3em .3em .3em .2em #888;
 }
 
 p.tx::after {

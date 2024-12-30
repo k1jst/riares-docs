@@ -28,10 +28,10 @@
     const ALLOW_COOKIE_PROMPT = "true"; // false: no cookie permission popup, cookies not allowed 
     const ALLOW_COOKIES_OVER_HTTP = "true"; // false: no cookie popup unless the page is being served over https
     const EXERCISE_CHOICES = {
-      'Comments': '<h4>Comments from Each Station</h4><p class="tx">This is W1RIA, Net control for this evening’s RI ARES Net, we will now take comments from each station</p><p>Call each station and request comments. You cam also request comments on a certain topic, or pose a question for each station to answer. Start with Mobile or Portable stations. Skip any In and Out stations. Alternatively, you can request anyone with comments call in, as you did with announcements.</p><p class="tx">(Call Sign) Any comments for the net, OVER?</p><p>(If nothing heard)</p><p class="tx"> Nothing Heard, OUT.</p>',
-      'Weather': '<h4>Weather Exercise</h4><p class="tx">This is W1RIA, Net control for this evening’s RI ARES Net. This evening’s exercise will be to collect weather information from each station. It is ok if you do not have any information to report, just respond with "No Traffic for the Net". If you have any of this information available, please report the current temperature, humidity, barometric pressure, wind speed, wind direction, highest recent wind gusts, precipitation totals, or any other pertinent weather information.</p><p>Call each station and request comments. Start with Mobile or Portable stations. Skip any In and Out stations. Alternatively, you can request anyone with traffic call in, as you did with announcements</p><p class="tx">(Call Sign) please come with your weather information for the net, OVER.</p><p>(If nothing heard)</p><p class="tx"> Nothing Heard, OUT.</p>',
-      'Airport_Weather': '<h4>Airport Weather Exercise</h4><p class="tx">This is W1RIA, Net control for this evening’s RI ARES Net. This evening’s exercise will be to report local airport weather information gathered broadcasts in the VHF-AM Aviation Band. Details of the frequencies and airport locations of these broadcasts can be found at the ri ares dot org website under the documents tab. Traffic contents include airport name, ZULU time of report, and if available the wind, visibility, sky condition, temperature, dew point, and altimeter. It is ok if you do not have any information to report, just respond with "No Traffic for the Net". This is W1RIA, Net control for the RI ARES VHF Net, we will now take traffic from each station for this exercise.</p><p>Call each station and request comments. Start with Mobile or Portable stations. Skip any In and Out stations. Alternatively, you can request anyone with traffic call in, as you did with announcements</p><p class="tx">(Call Sign) please come with your traffic for the net, OVER.</p><p>(If nothing heard)</p><p class="tx"> Nothing Heard, OUT.</p>',
-      'Repeater': '<h4>Repeater Exercise</h4><p class="tx">This is W1RIA, Net control for this evening’s RI ARES Net. This evening’s exercise will be to report which repeater you are using to check into the net and your current power level. You may also provide any comments you may have for the net. This is W1RIA, Net control for the RI ARES VHF Net, we will now take traffic from each station for this exercise.</p><p>Call each station and request comments. Start with Mobile or Portable stations. Skip any In and Out stations.</p><p class="tx">(Call Sign) please come with your traffic for the net, OVER.</p><p>(If nothing heard)</p><p class="tx"> Nothing Heard, OUT.</p>'
+      'Comments': '<h4>Comments from Each Station</h4><p class="tx">This is W1RIA, Net control for this evening’s RI ARES Net, we will now take comments from each station</p><p class="net">Call each station and request comments. You cam also request comments on a certain topic, or pose a question for each station to answer. Start with Mobile or Portable stations. Skip any In and Out stations. Alternatively, you can request anyone with comments call in, as you did with announcements.</p><p class="tx">(Call Sign) Any comments for the net, OVER?</p><p class="net">(If nothing heard)</p><p class="tx"> Nothing Heard, OUT.</p>',
+      'Weather': '<h4>Weather Exercise</h4><p class="tx">This is W1RIA, Net control for this evening’s RI ARES Net. This evening’s exercise will be to collect weather information from each station. It is ok if you do not have any information to report, just respond with "No Traffic for the Net". If you have any of this information available, please report the current temperature, humidity, barometric pressure, wind speed, wind direction, highest recent wind gusts, precipitation totals, or any other pertinent weather information.</p><p class="net">Call each station and request comments. Start with Mobile or Portable stations. Skip any In and Out stations. Alternatively, you can request anyone with traffic call in, as you did with announcements</p><p class="tx">(Call Sign) please come with your weather information for the net, OVER.</p><p class="net">(If nothing heard)</p><p class="tx"> Nothing Heard, OUT.</p>',
+      'Airport_Weather': '<h4>Airport Weather Exercise</h4><p class="tx">This is W1RIA, Net control for this evening’s RI ARES Net. This evening’s exercise will be to report local airport weather information gathered broadcasts in the VHF-AM Aviation Band. Details of the frequencies and airport locations of these broadcasts can be found at the ri ares dot org website under the documents tab. Traffic contents include airport name, ZULU time of report, and if available the wind, visibility, sky condition, temperature, dew point, and altimeter. It is ok if you do not have any information to report, just respond with "No Traffic for the Net". This is W1RIA, Net control for the RI ARES VHF Net, we will now take traffic from each station for this exercise.</p><p class="net">Call each station and request comments. Start with Mobile or Portable stations. Skip any In and Out stations. Alternatively, you can request anyone with traffic call in, as you did with announcements</p><p class="tx">(Call Sign) please come with your traffic for the net, OVER.</p><p class="net">(If nothing heard)</p><p class="tx"> Nothing Heard, OUT.</p>',
+      'Repeater': '<h4>Repeater Exercise</h4><p class="tx">This is W1RIA, Net control for this evening’s RI ARES Net. This evening’s exercise will be to report which repeater you are using to check into the net and your current power level. You may also provide any comments you may have for the net. This is W1RIA, Net control for the RI ARES VHF Net, we will now take traffic from each station for this exercise.</p><p class="net">Call each station and request comments. Start with Mobile or Portable stations. Skip any In and Out stations.</p><p class="tx">(Call Sign) please come with your traffic for the net, OVER.</p><p class="net">(If nothing heard)</p><p class="tx"> Nothing Heard, OUT.</p>'
     }
   </script>
   <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -43,11 +43,11 @@
 
 <body>
 <!-- Fixed containers that live above the page -->
-  <div popover id="help" class="help-pop">
-    <div id="helpsymbol" class="help-pop--symbol">❔</div>
+  <div popover id="help-popup" class="help-pop">
+    <div id="help-popup-symbol" class="help-pop--symbol">❔</div>
     <p>Thanks for checking out our customizable net script.</p>
     <ul>
-      <li>Use the menu ☰ to toggle visibility of customizable elements and inputs.</li>
+      <li>Use the menu ☰ to toggle visibility of customizable elements and inputs and print your customized net script.</li>
       <li>Enter your customization in the input boxes and press replace ⟳. If you have cookies enabled and the page is
         not being used locally these values will be stored as cookies.</li>
       <li>The Date fields automatically populate. The Next Net date is set for 2 weeks out. If this is inaccurate use
@@ -163,7 +163,7 @@
       <h3>RI ARES VHF Repeater Net Script</h3>
       <div class="net instructions" id="pre-net-inst">
         <h4>Pre-Net Instructions</h4>
-        <p>Net control operators are in control of the net. If people go too fast, slow the pace down. Use pauses when
+        <p class="net">Net control operators are in control of the net. If people go too fast, slow the pace down. Use pauses when
           you
           want to slow things down. If people rush through, or step on each other, log whatever call sign you can hear,
           and continue calling for check ins. There is no need to explain at length anything you do, unless it is for
@@ -175,11 +175,11 @@
       </div>
       <div class="net" id="pre-net-check">
         <h4>Pre-net</h4>
-        <p>(check for any emergency traffic about 1 or 2 minutes prior to calling the net)</p>
+        <p class="net">(check for any emergency traffic about 1 or 2 minutes prior to calling the net)</p>
         <p class="tx">This is <span class="callsign">(Call Sign)</span> checking for any emergency or priority traffic
           on
           this repeater. There is an upcoming net. If you have emergency traffic please come now, OVER.</p>
-        <p>(if nothing heard)</p>
+        <p class="net">(if nothing heard)</p>
         <p class="tx">Nothing heard, OUT.</p>
       </div>
       <div class="net" id="preamble">
@@ -208,28 +208,23 @@
         <p class="tx">Check-ins will be taken from mobile and portable stations first, then from fixed stations. When
           checking in, please delay speaking for a second to allow the repeater network to activate, then say “This is”,
           and un-key your mic</p>
-        <p>(un-key to illustrate and wait for beep)</p>
+        <p class="net">(un-key to illustrate and wait for beep)</p>
         <p class="tx">to check for doubling. Please check in with your call sign given phonetically, your name, and your
           location.<br />
           Mobile or Portable Stations, (with emphasis) I say again, only MOBILE OR PORTABLE STATIONS wishing to check in
           please call with your callsign, name and location, now, OVER.</p>
-        <p>(Log call signs, names, and locations).</p>
-        <aside>
-          <p>If a partial callsign is heard or the signal is very noisy, ask the station to change position or boost
-            power
-            and try checking in again.</p>
-        </aside>
+        <p class="net">(Log call signs, names, and locations). If a partial callsign is heard or the signal is very noisy, ask the station to change position or boost power and try checking in again.</p>
         <p class="tx">The net recognizes (read aloud the call signs heard) OUT.</p>
-        <p>(If nothing heard)</p>
+        <p class="net">(If nothing heard)</p>
         <p class="tx"> Nothing Heard, OUT.</p>
         <p class="tx">This is W1RIA Net control for this evening’s RI ARES Net, now FIXED STATIONS please call with your
           callsign, location and name now, OVER.</p>
-        <p>(Log call signs, names, and locations)</p>
+        <p class="net">(Log call signs, names, and locations)</p>
         <p class="tx">The net recognizes (read aloud the call signs heard) OUT.</p>
         <p class=tx>This is W1RIA Net control, any additional stations for the net please call now, OVER.</p>
-        <p>(Log call signs, names, and locations)</p>
+        <p class="net">(Log call signs, names, and locations)</p>
         <p class="tx">The net recognizes (read aloud the call signs heard) OUT.</p>
-        <p>(If nothing heard)</p>
+        <p class="net">(If nothing heard)</p>
         <p class="tx"> Nothing Heard, OUT.</p>
       </div>
       <div class="net" id="announcements">
@@ -239,39 +234,39 @@
         <p class="tx">Net recognizes (list Calls signs heard) with announcements for the net. (1st Call Sign) please
           come
           with your announcement, OVER</p>
-        <p>(If nothing heard)</p>
+        <p class="net">(If nothing heard)</p>
         <p class="tx"> Nothing Heard, OUT.</p>
         <p class="tx">(After announcement acknowledge, and if you have questions or comments, make them) (announcer call
           sign) thanks. Roger, OUT.</p>
-        <p>Repeat for next call signs with announcements.</p>
+        <p class="net">Repeat for next call signs with announcements.</p>
       </div>
       <div class="net" id="recheck">
         <h4>Re-check</h4>
         <p class=tx>This is W1RIA net control for this evening's net, any additional stations wishing to checkin to the
           net please come with your callsign, name and location now, OVER.</p>
-        <p>(Log call signs, names, and locations)</p>
+        <p class="net">(Log call signs, names, and locations)</p>
         <p class="tx">The net recognizes (read aloud the call signs heard) OUT.</p>
-        <p>(If nothing heard)</p>
+        <p class="net">(If nothing heard)</p>
         <p class="tx"> Nothing Heard, OUT.</p>
       </div>
       <div class="net" id="exercise">
         <h4>Exercise</h4>
         <p class="tx">This is W1RIA, Net control for this evening’s RI ARES Net, we will now take comments from each
           station, (Start with check-in call signs) Any comments for the net? </p>
-        <p>After last listed name</p>
+        <p class="net">After last listed name</p>
         <p class="tx">Are there any additional checkins for the net, OVER?</p>
-        <p>Repeat process of logging & exercise.</p>
-        <p>(If nothing heard)</p>
+        <p class="net">Repeat process of logging & exercise.</p>
+        <p class="net">(If nothing heard)</p>
         <p class="tx"> Nothing Heard, OUT.</p>
       </div>
-      <div id="bottomofroster">
+      <div id="bottomofroster" class="net">
         <p class="tx">That is the bottom of the roster. This is W1RIA, Net control for this evening's RI ARES Net. Are
           there any additional stations, comments or business for the net before we close the net? This is the last call for checkins, OVER.</p>
-        <p>Log call signs, names, and locations. Repeat process of logging & exercise.</p>
-        <p>(If nothing heard)</p>
+        <p class="net">Log call signs, names, and locations. Repeat process of logging & exercise.</p>
+        <p class="net">(If nothing heard)</p>
         <p class="tx"> Nothing Heard, OUT.</p>
       </div>
-      <div id="closing">
+      <div id="closing" class="net">
         <h4>Closing the net</h4>
         <p class="tx">We would like to thank all participants for joining this net, and thanks to all who stood by while
           the net was in session. The next RI ARES Net will be held at 7:30 pm, 1930 hours, on <span
